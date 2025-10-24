@@ -1,31 +1,31 @@
 @font-face {
   font-family: Thedus-Condensed;
-  src: url("../src/assets/fonts/Thedus-Condensed.otf") 
+  src: url("../src/assets/fonts/Thedus-Condensed.otf");
 }
 
 @font-face {
   font-family: Thedus-CondensedLight;
-  src: url("../src/assets/fonts/Thedus-CondensedLight.otf") 
+  src: url("../src/assets/fonts/Thedus-CondensedLight.otf");
 }
 
 @font-face {
   font-family: Thedus-StencilCondensed;
-  src: url("../src/assets/fonts/Thedus-StencilCondensed.otf") 
+  src: url("../src/assets/fonts/Thedus-StencilCondensed.otf");
 }
 
 @font-face {
   font-family: Thedus-StencilWide;
-  src: url("../src/assets/fonts/Thedus-StencilWide.otf") 
+  src: url("../src/assets/fonts/Thedus-StencilWide.otf");
 }
 
 @font-face {
   font-family: Thedus-Wide;
-  src: url("../src/assets/fonts/Thedus-Wide.otf") 
+  src: url("../src/assets/fonts/Thedus-Wide.otf");
 }
 
 @font-face {
   font-family: Thedus-WideLight;
-  src: url("../src/assets/fonts/Thedus-WideLight.otf") 
+  src: url("../src/assets/fonts/Thedus-WideLight.otf");
 }
 
 @import "tailwindcss";
@@ -64,10 +64,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  width: 100vw;
 }
 
 h1 {
@@ -133,11 +131,22 @@ button:focus-visible {
 }
 .scroll-container {
   -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none;    /* Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 
-
 .icon-scroll-container {
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
 }
