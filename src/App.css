@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Custom Media Query for screens below 1280px */
+@media (max-width: 1279px) {
+  .project-cards-container {
+    flex-direction: column !important; /* Stack the cards vertically */
+    align-items: center;
+    gap: 20px;
+  }
+}
