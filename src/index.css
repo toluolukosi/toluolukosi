@@ -150,3 +150,20 @@ button:focus-visible {
     transparent 100%
   );
 }
+/* Default: small screens → take full width of container */
+.project-card-width {
+  width: 100%;
+}
+
+/* From 1280px upward → smoothly scale between 372px and 680px */
+@media (min-width: 1280px) {
+  .project-card-width {
+    /* Linear map:
+       1280px viewport → 372px
+       2560px viewport → 680px
+       width = 24.0625vw + 64px
+       and clamp between 372 and 680 so it doesn't overshoot
+    */
+    width: clamp(372px, 24.0625vw + 64px, 680px);
+  }
+}

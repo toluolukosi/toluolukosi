@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 
 const images = [
-    "public/images/AboutPictures/IMG_1552.jpg",
-    "public/images/AboutPictures/IMG_0220.jpg",
-    "public/images/AboutPictures/IMG_1566.jpg",
-    "public/images/AboutPictures/IMG_0344.jpg",
-    "public/images/AboutPictures/IMG_0549.jpg",
-    "public/images/AboutPictures/IMG_0586.jpg",
-    "public/images/AboutPictures/IMG_0767.jpg",
-    "public/images/AboutPictures/IMG_4792.jpg",
-    "public/images/AboutPictures/IMG_1298.jpg",
-    "public/images/AboutPictures/IMG_1462.jpg",
-    "public/images/AboutPictures/IMG_7642.jpg",
-    "public/images/AboutPictures/IMG_8181.jpg",
-    "public/images/AboutPictures/IMG_9535.jpg",
-    "public/images/AboutPictures/IMG_6769.jpg",
-    "public/images/AboutPictures/IMG_9665.jpg",
-    "public/images/AboutPictures/IMG_0199.jpg",
-    ];
+  "/images/AboutPictures/IMG_1552.jpg",
+  "/images/AboutPictures/IMG_3747.jpg",
+  "/images/AboutPictures/IMG_0220.jpg",
+  "/images/AboutPictures/IMG_1566.jpg",
+  "/images/AboutPictures/IMG_4792.jpg",
+  "/images/AboutPictures/IMG_1298.jpg",
+  "/images/AboutPictures/IMG_1462.jpg",
+  "/images/AboutPictures/IMG_8181.jpg",
+  "/images/AboutPictures/IMG_9535.jpg",
+  "/images/AboutPictures/IMG_0199.jpg",
+  "/images/AboutPictures/IMG_9665.jpg",
+];
 
 function AboutSlider() {
   const [index, setIndex] = useState(0);
@@ -30,7 +25,7 @@ function AboutSlider() {
   }, []);
 
   return (
-    <div className="group w-[478px] h-[500px] bg-gray-800 rounded-2xl overflow-hidden relative">
+    <div className="group w-[478px] h-[500px] w-full bg-gray-800 rounded-2xl overflow-hidden relative">
       {images.map((src, i) => (
         <img
           key={i}
@@ -47,7 +42,5 @@ function AboutSlider() {
     </div>
   );
 }
-
-
 
 export default AboutSlider;

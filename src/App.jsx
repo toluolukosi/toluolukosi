@@ -1,303 +1,126 @@
-import React, { useEffect } from "react";
-import ProjectCard from "./components/ProjectCard";
-import AboutSlider from "./components/AboutSlider";
-import { Link } from "react-router-dom";
+// src/App.jsx
+import React, { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+
+// pages
+import HomePage from "./pages/HomePage";
+import StillsPage from "./pages/StillsPage";
+import LivePage from "./pages/LivePage";
+import SoundPage from "./pages/SoundPage";
+import DevPage from "./pages/DevPage";
+import SprezzaturraPage from "./pages/SprezzaturraPage";
+import OtisPage from "./pages/OtisPage";
+import TolukosiPage from "./pages/TolukosiPage";
 
 const App = () => {
-  // Utils
-  const sides = [
-    {
-      title: "Stills ",
-      route: "/",
-      image: "",
-    },
-    {
-      title: "Motion",
-      route: "/",
-      image: "",
-    },
-    {
-      title: "Sound",
-      route: "/",
-      image: "",
-    },
-    {
-      title: "Dev ",
-      route: "/",
-      image: "",
-    },
-  ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const indicator = document.getElementById("scroll-indicator");
-      if (window.scrollY > 10) {
-        indicator.style.opacity = "0";
-      } else {
-        indicator.style.opacity = "1";
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="bg-black overflow-auto border-5 min-h-screen max-w-screen w-full">
+    <div className="bg-black overflow-auto min-h-screen max-w-screen w-full">
+      {/* NAVBAR */}
       <nav
-        className="sticky z-10 flex items-center px-10 py-2 gap-8 border h-[60px]"
+        className="sticky z-10 flex items-center justify-between px-10 py-2 gap-8 h-[100px] bg-black"
         id="navbar"
       >
-        <img
-          src="src\assets\otis ambigram.png"
-          alt="OTIS Ambigram"
-          className="h-10 w-auto z-10"
-        />
-        <ul className="flex items=center ml-auto gap-8">
-          {[
-            { number: "01", text: "Projects", link: "#projects" },
-            { number: "02", text: "Gallery", link: "#gallery" },
-            { number: "03", text: "About Me", link: "#about" },
-          ].map((item, idx) => (
-            <a
-              key={idx}
-              href={item.link}
-              className="group text-left font-thedus-condensed leading-tight cursor-pointer"
-            >
-              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
-                {item.number}
-              </div>
-              <div className="text-gray-400 text-[18px] leading-[15px]">
-                {item.text}
-              </div>
-            </a>
-          ))}
+        <Link to="/">
+          <img
+            src="src/assets/otis ambigram.png"
+            alt="OTIS Ambigram"
+            className="h-10 w-auto z-10"
+          />
+        </Link>
+
+        {/* Hamburger Icon for small screens */}
+        <button
+          className="md:hidden flex items-center justify-center w-8 h-8 border border-gray-400 rounded-md"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+
+        {/* Menu */}
+        <ul
+          className={`${
+            menuOpen ? "flex" : "hidden"
+          } md:flex items-center ml-auto gap-8 flex-col md:flex-row md:gap-8`}
+        >
+          {/* These hash links only really make sense on the homepage,
+              but they won't break on other pages. */}
+          <a
+            href="/#projects"
+            className="group text-left font-thedus-condensed leading-tight cursor-pointer"
+          >
+            <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+              01
+            </div>
+            <div className="text-gray-400 text-[18px] leading-[15px]">
+              Projects
+            </div>
+          </a>
+          <a
+            href="/#gallery"
+            className="group text-left font-thedus-condensed leading-tight cursor-pointer"
+          >
+            <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+              02
+            </div>
+            <div className="text-gray-400 text-[18px] leading-[15px]">
+              Gallery
+            </div>
+          </a>
+          <a
+            href="/#about"
+            className="group text-left font-thedus-condensed leading-tight cursor-pointer"
+          >
+            <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+              03
+            </div>
+            <div className="text-gray-400 text-[18px] leading-[15px]">
+              About Me
+            </div>
+          </a>
         </ul>
       </nav>
-      <div className="h-[calc(100vh-60px)] flex items-center justify-center">
-        <div className="flex text-gray-400 text-[30px] tracking-wide font-thedus-condensed translate-x-[80px] relative z-2">
-          TOLU OLUKOSI
-        </div>
-        <img
-          src="/images/portfolio-landing-page.jpg"
-          alt="Background"
-          className=" h-full object-cover brightness-75 contrast-110 z-0"
-        />
 
-        <div className="flex text-gray-400 text-[30px] tracking-wide font-thedus-condensed translate-x-[-80px] relative z-2">
-          DIGITAL CREATOR
-        </div>
+      {/* ROUTES */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-        <div className="absolute top-[90.8%] left-[4%] text-[18px] leading-[15px] tracking-[1.5px] text-white font-thedus-condensed">
-          Based in Lagos, Nigeria
-          <br />
-          <span className="text-[#848484] text-[14px]">for now</span>
-        </div>
+        {/* Sides */}
+        <Route path="/stills" element={<StillsPage />} />
+        <Route path="/live" element={<LivePage />} />
+        <Route path="/sound" element={<SoundPage />} />
+        <Route path="/dev" element={<DevPage />} />
 
-        <div className="absolute top-[90.8%] right-[4%] text-[14px] leading-[15px] tracking-[1.5px] text-[#848484] font-thedus-condensed text-right">
-          Freelance Availability
-          <br />
-          <span className="text-white text-[18px]">LIMITED HOURS</span>
-        </div>
-      </div>
+        {/* Projects */}
+        <Route path="/project1" element={<SprezzaturraPage />} />
+        <Route path="/otis" element={<OtisPage />} />
+        <Route path="/tolukosi" element={<TolukosiPage />} />
 
-      <div className=" w-full flex items-center justify-between gap-6 px-[4%]">
-        <div className="flex flex-col gap-10 basis-[505px]">
-          <div className="text-gray-400 text-[50px] leading-[1.2] tracking-wide font-thedus-condensed">
-            Nigerian Digital creator who uses different tools <br />
-            to express his ideas and those of others
-          </div>
-
-          <div className="scroll-container w-[405px] overflow-hidden whitespace-nowrap">
-            <div className="scroll-track flex gap-5 w-max">
-              {[
-                "src/assets/ICONS/aftereffects.png",
-                "src/assets/ICONS/illustrator.png",
-                "src/assets/ICONS/indesign.png",
-                "src/assets/ICONS/photoshop.png",
-                "src/assets/ICONS/premierpro.png",
-                "src/assets/ICONS/flstudio.png",
-                "src/assets/ICONS/figma.png",
-                "src/assets/ICONS/html.png",
-                "src/assets/ICONS/css.png",
-                "src/assets/ICONS/js.png",
-              ].map((icon, idx) => (
-                <img
-                  key={idx}
-                  src={icon}
-                  alt={`icon-${idx}`}
-                  className="h-[43px] w-auto opacity-10 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
-                />
-              ))}
+        {/* 404 */}
+        <Route
+          path="*"
+          element={
+            <div className="text-white p-10 font-thedus-condensed">
+              <h1 className="text-3xl mb-4">404</h1>
+              <p>Page not found.</p>
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-[10px] flex-1">
-          {sides.map((side) => {
-            return (
-              <Link
-                to={side?.route}
-                className="basis-[calc(50%-10px)] h-[250px] bg-gray-800 rounded-2xl"
-              ></Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Scroll Down Indicator */}
-      <div
-        id="scroll-indicator"
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce text-white opacity-100 transition-opacity duration-500 z-20"
-      >
-        <span className="text-sm text-white mb-1 tracking-widest font-thedus-condensed">
-          SCROLL
-        </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </div>
-
-      {/* PROJECTS SECTION */}
-      <section id="projects" className="mt-[100px] px-[48.5px] flex gap-6">
-        <ProjectCard
-          title="Sprezzaturra"
-          year="2022"
-          image="/images/project1.jpg"
-          logo="src/assets/Spprezzatura.png"
-          line1="Music Project"
-          line2="Portfolio Design"
+          }
         />
-        <ProjectCard
-          title="otis"
-          year="2023"
-          image="/images/project2.jpg"
-          logo="src/assets/BRANDICONS/otisambigramforwebsite.png"
-          line1="multidisciplinary creative company"
-          line2="Film, Design, Music, fashion"
-        />
-        <ProjectCard
-          title="tolukosi"
-          year="2024"
-          image="/images/project3.jpg"
-          logo="src/assets/BRANDICONS/tolukosiicon.png"
-          line1="luxury fashion"
-          line2="Admin Panel"
-        />
-      </section>
-
-      {/* Left Column - About Text */}
-
-      <section
-        id="about"
-        className="mt-[200px] px-[48.5px] z-10 flex gap-[24.5px] absolute top-[300%]"
-      >
-        {/* Left Column - About Text */}
-        <div
-          className="w-[478px] bg-gray-800 text-gray-300 p-6 rounded-2xl font-thedus-condensed leading-relaxed tracking-wide"
-          style={{ height: "930px" }}
-        >
-          <h2 className="text-[31px] text-white mb-4">About Me</h2>
-          <div className="text-[20px] font-normal  text-gray-400 space-y-4">
-            <p>
-              I am a multidisciplinary creative based in Lagos, working at the
-              intersection of design, technology, and storytelling. My work
-              spans visual and motion content. To be honest, I'll do anything
-              with good internet and the required tools.
-            </p>
-            <p>
-              I don’t consider myself an artist. My creative process often
-              begins with imitation, not in malice but in reverence. I draw from
-              things that inspire me, and then evolve those ideas into something
-              original. Because of this, I feel my work lacks the emotional and
-              moral weight that, to me, defines true art. Still, it may evoke
-              emotions in others, and some might see it as art regardless.
-            </p>
-            <p>
-              Although I’ve completed a fair amount of contracted work, the
-              pieces I value most are those I created for no reason other than
-              to grow — to sharpen my skill and feed my soul. At the heart of my
-              creative pursuit is the drive to master craft and make things that
-              leave an impression.
-            </p>
-          </div>
-        </div>
-
-        {/* Middle - Slideshow + Something Underneath */}
-        <div className="flex flex-col gap-[24.5px]">
-          <AboutSlider />
-          {/* Something else under the slider */}
-          <div className="w-[478px] h-[200px] bg-gray-800 text-gray-300 p-6 rounded-2xl text-white flex font-thedus-condensed leading-relaxed tracking-wide">
-            <h2 className="text-[31px] text-white mb-4">Tool stack</h2>
-          </div>
-          <div className="w-[478px] h-[50px] bg-gray-800 text-gray-300 px-6 pt-1 rounded-2xl text-white flex font-thedus-condensed leading-relaxed tracking-wide">
-            <h2 className="text-[31px]">certifications</h2>
-          </div>
-        </div>
-
-        {/* Right Column - Stack both video cards vertically */}
-        <div className="flex flex-col gap-y-[24.5px]">
-          {/* Airbuds video card */}
-          <div
-            className="group w-[478px] bg-gray-800 rounded-2xl overflow-hidden"
-            style={{ height: "420px" }}
-          >
-            <a
-              href="https://i.airbuds.fm/tolukosi/r0bSHeN1m4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <video
-                src="public/images/videos/weeklyRecap-2025-08-04.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover transition-all duration-[1500ms] ease-in-out grayscale-[80%] group-hover:grayscale-0 scale-100 group-hover:scale-105"
-              />
-            </a>
-          </div>
-
-          {/* Strava image card */}
-          <div
-            className="group w-[478px] bg-gray-800 rounded-2xl overflow-hidden"
-            style={{ height: "200px" }}
-          >
-            <a
-              href="https://strava.app.link/29lfoeGVyVb"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="public/images/Strava-logo.png"
-                className="w-full h-full object-cover transition-all duration-[1500ms] ease-in-out grayscale-[80%] group-hover:grayscale-0 scale-100 group-hover:scale-105"
-              />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <section
-        id="footer"
-        className="mt-[300px] px-[48.5px] z-10 flex gap-[24.5px] absolute top-[450%]"
-      >
-        <div
-          className="w-[478px] bg-gray-800 text-gray-300 p-6 rounded-2xl font-thedus-condensed leading-relaxed tracking-wide"
-          style={{ height: "550px" }} // Adjust this height as needed
-        ></div>
-      </section>
+      </Routes>
     </div>
   );
 };
