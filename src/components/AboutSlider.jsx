@@ -25,7 +25,7 @@ function AboutSlider() {
   }, []);
 
   return (
-    <div className="group w-[478px] h-[500px] w-full bg-gray-800 rounded-2xl overflow-hidden relative">
+    <div className="group w-[478px] border border-white/10 h-[500px] w-full bg-gray-800 rounded-2xl overflow-hidden relative">
       {images.map((src, i) => (
         <img
           key={i}
