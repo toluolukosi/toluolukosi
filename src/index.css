@@ -167,3 +167,44 @@ button:focus-visible {
     width: clamp(372px, 24.0625vw + 64px, 680px);
   }
 }
+
+/* scroll only inside the right info panel, styled like the reference */
+.project-panel-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.project-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.project-panel-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 999px;
+}
+.project-panel-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.project-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.project-panel-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 999px;
+}
+
+.project-panel-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.project-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.project-panel-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 999px;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
