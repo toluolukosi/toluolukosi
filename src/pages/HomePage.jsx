@@ -298,15 +298,15 @@ const HomePage = () => {
 
               {/* TOLU | OLUKOSI */}
               <div
-                className="mt-3 mb-3 font-thedus-condensed uppercase"
+                className="mt-3 mb-1 sm:mt-4 sm:mb-2 font-thedus-condensed uppercase"
                 style={{ opacity: 0.35 + middleOpacity * 0.65 }}
               >
                 <div
                   className="
-                    flex justify-between
-                    text-[clamp(0.7rem,2vw,1.9rem)]
-                    tracking-[0.3em]
-                  "
+      flex justify-between
+      text-[clamp(0.7rem,2vw,1.9rem)]
+      tracking-[0.3em]
+    "
                 >
                   <span>TOLU</span>
                   <span>OLUKOSI</span>
