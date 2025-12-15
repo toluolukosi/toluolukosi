@@ -40,19 +40,20 @@ const HomePage = () => {
   ];
 
   const toolIcons = [
-    "src/assets/TOOLS STACK/figma.png",
-    "src/assets/TOOLS STACK/Illustrator.png",
-    "src/assets/TOOLS STACK/Photoshop.png",
-    "src/assets/TOOLS STACK/Indesign.png",
-    "src/assets/TOOLS STACK/AfterEffets.png",
-    "src/assets/TOOLS STACK/Premiere Pro.png",
-    "src/assets/TOOLS STACK/fruityloops.png",
-    "src/assets/TOOLS STACK/Audacity.png",
-    "src/assets/TOOLS STACK/VScode.png",
-    "src/assets/TOOLS STACK/React.png",
-    "src/assets/TOOLS STACK/TailwindCSS.png",
-    "src/assets/TOOLS STACK/github.png",
-    "src/assets/TOOLS STACK/chatgpt.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/figma_jb5nuy.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/Illustrator_rdt3et.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/Photoshop_mhn9dr.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/Indesign_jpllrw.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545095/Light_room_re2o9k.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/AfterEffets_mymhmq.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/Premiere_Pro_uenwlk.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/fruityloops_j8tbhe.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/Audacity_jejvn0.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/VScode_qjjlp6.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/React_z6myfj.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545095/TailwindCSS_gxuoxu.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/github_z2dw9o.png",
+    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/chatgpt_k4gn9e.png",
   ];
 
   const certifications = [
@@ -160,7 +161,7 @@ useEffect(() => {
       <header className="fixed top-0 left-0 right-0 z-50 px-10 pt-4 flex items-start justify-between pointer-events-none">
         {/* Icon as click-to-top image — NO background */}
         <img
-          src="src/assets/otis ambigram.png"
+          src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
           alt="Back to top"
           onClick={scrollToTop}
           className="pointer-events-auto h-10 w-auto cursor-pointer select-none"
@@ -427,10 +428,10 @@ useEffect(() => {
               {[
                 "src/assets/ICONS/aftereffects.png",
                 "src/assets/ICONS/illustrator.png",
-                "src/assets/ICONS/indesign.png",
+                "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/Indesign_jpllrw.png",
                 "src/assets/ICONS/photoshop.png",
-                "src/assets/ICONS/premierpro.png",
-                "src/assets/ICONS/flstudio.png",
+                "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/Premiere_Pro_uenwlk.png",
+                "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/fruityloops_j8tbhe.png",
                 "src/assets/ICONS/figma.png",
                 "src/assets/ICONS/html.png",
                 "src/assets/ICONS/css.png",
@@ -496,7 +497,7 @@ useEffect(() => {
                   <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                     <span>{side.title}</span>
                     <img
-                      src="src/assets/ICONS/padlock.png"
+                      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545065/Padlock_fpevps.png"
                       alt="locked"
                       className="w-4 h-4 object-contain"
                     />
@@ -522,7 +523,7 @@ useEffect(() => {
                   <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                     <span>{side.title}</span>
                     <img
-                      src="src/assets/ICONS/Padlock.png"
+                      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545065/Padlock_fpevps.png"
                       alt="locked"
                       className="w-4 h-4 object-contain"
                     />
@@ -900,7 +901,7 @@ useEffect(() => {
           {/* LOGO + COPYRIGHT – CENTERED ON MOBILE/TABLET */}
           <div className="flex flex-col items-center lg:items-start gap-0 font-thedus-condensed">
             <img
-              src="src/assets/otis ambigram.png"
+              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
               alt="Tolu logo"
               className="h-15 w-auto"
             />
