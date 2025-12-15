@@ -161,7 +161,7 @@ useEffect(() => {
       <header className="fixed top-0 left-0 right-0 z-50 px-10 pt-4 flex items-start justify-between pointer-events-none">
         {/* Icon as click-to-top image — NO background */}
         <img
-          src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
+          src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545050/otis_ambigram_kvkh1g.png"
           alt="Back to top"
           onClick={scrollToTop}
           className="pointer-events-auto h-10 w-auto cursor-pointer select-none"
@@ -901,7 +901,7 @@ useEffect(() => {
           {/* LOGO + COPYRIGHT – CENTERED ON MOBILE/TABLET */}
           <div className="flex flex-col items-center lg:items-start gap-0 font-thedus-condensed">
             <img
-              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
+              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545050/otis_ambigram_kvkh1g.png"
               alt="Tolu logo"
               className="h-15 w-auto"
             />
@@ -919,7 +919,7 @@ useEffect(() => {
   {/* CONTACT BUTTON */}
   <Link
     to="/contact"
-    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
     aria-label="Contact Me"
   >
     <img
@@ -932,12 +932,40 @@ useEffect(() => {
   {/* COPY EMAIL BUTTON */}
 <div
   onClick={() => {
+    // Copy email to clipboard
     navigator.clipboard.writeText("toluolukosi@gmail.com");
-    // Toast logic here
+
+    // Create toast element
+    const toast = document.createElement("div");
+    toast.textContent = "Email copied to clipboard";
+    toast.className = `
+      fixed bottom-20 left-1/2 transform -translate-x-1/2
+      bg-black/80 text-white text-sm px-4 py-2
+      rounded-full shadow-lg backdrop-blur-md
+      opacity-0 transition-opacity duration-300 z-[9999]
+    `;
+
+    // Append toast to body
+    document.body.appendChild(toast);
+
+    // Trigger fade-in
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+    });
+
+    // Fade-out after 2s
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, 2000);
   }}
   role="button"
   tabIndex={0}
-  onKeyDown={(e) => e.key === 'Enter' && navigator.clipboard.writeText("toluolukosi@gmail.com")}
+  onKeyDown={(e) =>
+    e.key === "Enter" && navigator.clipboard.writeText("toluolukosi@gmail.com")
+  }
   className="
     w-10 h-10
     cursor-pointer
@@ -945,7 +973,7 @@ useEffect(() => {
     border border-white/20
     bg-white/5
     flex items-center justify-center
-    hover:bg-white hover:text-black
+    hover:bg-white/20 hover:text-black
     transition-colors duration-200
   "
   aria-label="Copy Email"
@@ -957,12 +985,13 @@ useEffect(() => {
   />
 </div>
 
+
   {/* LINKEDIN BUTTON */}
   <a
     href="https://www.linkedin.com/in/your-username"
     target="_blank"
     rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
     aria-label="LinkedIn"
   >
     <img
@@ -1015,12 +1044,59 @@ useEffect(() => {
   {/* COPY EMAIL BUTTON */}
 <div
   onClick={() => {
+    // Copy email to clipboard
     navigator.clipboard.writeText("toluolukosi@gmail.com");
-    // Toast logic here
+
+    // Create toast element
+    const toast = document.createElement("div");
+    toast.textContent = "Email copied";
+    toast.className = `
+      fixed bottom-20 left-1/2 transform -translate-x-1/2
+      bg-black/0 text-black text-2 px-8 py-2
+      
+    `;
+
+    // Append toast to body
+    document.body.appendChild(toast);
+
+    // Trigger fade-in
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+    });
+
+    // Fade-out after 2s, then remove
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, 2000);
   }}
   role="button"
   tabIndex={0}
-  onKeyDown={(e) => e.key === 'Enter' && navigator.clipboard.writeText("toluolukosi@gmail.com")}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      navigator.clipboard.writeText("toluolukosi@gmail.com");
+      const toast = document.createElement("div");
+      toast.textContent = "Email copied";
+      toast.className = `
+        fixed bottom-20 left-1/2 transform -translate-x-1/2
+        bg-black/0 text-white text-sm px-8 py-2
+        rounded-full shadow-lg backdrop-blur-md
+        opacity-0 transition-opacity duration-300 z-[9999]
+      `;
+      document.body.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.style.opacity = "1";
+      });
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 2000);
+    }
+  }}
   className="
     w-10 h-10
     cursor-pointer
@@ -1039,6 +1115,7 @@ useEffect(() => {
     className="w-5 h-5 object-contain"
   />
 </div>
+
 
 
   {/* LINKEDIN BUTTON */}
