@@ -12,7 +12,8 @@ const HomePage = () => {
     {
       title: "Stills",
       route: "/stills",
-      image: "/images/AboutPictures/IMG_3747.jpg",
+      image:
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1734509688/eclipse-project_azc83s.png",
       locked: false,
     },
     {
@@ -39,16 +40,19 @@ const HomePage = () => {
   ];
 
   const toolIcons = [
-    "src/assets/TOOLS/tool1.png",
-    "src/assets/TOOLS/tool2.png",
-    "src/assets/TOOLS/tool3.png",
-    "src/assets/TOOLS/tool4.png",
-    "src/assets/TOOLS/tool5.png",
-    "src/assets/TOOLS/tool6.png",
-    "src/assets/TOOLS/tool7.png",
-    "src/assets/TOOLS/tool8.png",
-    "src/assets/TOOLS/tool9.png",
-    "src/assets/TOOLS/tool10.png",
+    "src/assets/TOOLS STACK/figma.png",
+    "src/assets/TOOLS STACK/Illustrator.png",
+    "src/assets/TOOLS STACK/Photoshop.png",
+    "src/assets/TOOLS STACK/Indesign.png",
+    "src/assets/TOOLS STACK/AfterEffets.png",
+    "src/assets/TOOLS STACK/Premiere Pro.png",
+    "src/assets/TOOLS STACK/fruityloops.png",
+    "src/assets/TOOLS STACK/Audacity.png",
+    "src/assets/TOOLS STACK/VScode.png",
+    "src/assets/TOOLS STACK/React.png",
+    "src/assets/TOOLS STACK/TailwindCSS.png",
+    "src/assets/TOOLS STACK/github.png",
+    "src/assets/TOOLS STACK/chatgpt.png",
   ];
 
   const certifications = [
@@ -72,31 +76,57 @@ const HomePage = () => {
     },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const hero = document.getElementById("hero");
-      if (hero) {
-        const rect = hero.getBoundingClientRect();
-        const height = rect.height || 1;
-        const distance = Math.min(Math.max(-rect.top, 0), height);
-        const progress = distance / height;
-        setHeroProgress(progress);
-      }
+useEffect(() => {
+  const handleScroll = () => {
+    const hero = document.getElementById("hero");
+    const footer = document.querySelector("footer");
+    const floatingIcons = document.getElementById("floating-icons");
+    const indicator = document.getElementById("scroll-indicator");
 
-      const indicator = document.getElementById("scroll-indicator");
-      if (indicator) {
-        indicator.style.opacity = window.scrollY > 10 ? "0" : "1";
-      }
-    };
+    // Handle hero scroll progress
+    if (hero) {
+      const rect = hero.getBoundingClientRect();
+      const height = rect.height || 1;
+      const distance = Math.min(Math.max(-rect.top, 0), height);
+      const progress = distance / height;
+      setHeroProgress(progress);
+    }
 
-    handleScroll(); // initial
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
+    // Scroll indicator fading
+    if (indicator) {
+      indicator.style.opacity = window.scrollY > 10 ? "0" : "1";
+    }
+
+    // Show/hide floating icons
+    if (floatingIcons && footer) {
+      const footerRect = footer.getBoundingClientRect();
+      const isFooterVisible =
+        footerRect.top < window.innerHeight && footerRect.bottom > 0;
+
+      const hasScrolled = window.scrollY > 50;
+
+      if (hasScrolled && !isFooterVisible) {
+        floatingIcons.style.opacity = "1";
+        floatingIcons.style.pointerEvents = "auto";
+      } else {
+        floatingIcons.style.opacity = "0";
+        floatingIcons.style.pointerEvents = "none";
+      }
+    }
+  };
+
+  handleScroll(); // Run on load
+
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
+  };
+}, []);
+
+
 
   // ===== PARALLAX VALUES (for hero) =====
   const clamped = Math.min(Math.max(heroProgress, 0), 1);
@@ -139,37 +169,47 @@ const HomePage = () => {
         {/* ===== MOBILE / TABLET NAV (hamburger) ===== */}
         <div className="pointer-events-auto ml-auto flex items-center lg:hidden relative">
           {/* Hamburger button */}
-          <button
-            type="button"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="
+{/* Hamburger icon (translucent, like floating icons) */}
+<div
+  onClick={() => setMenuOpen((prev) => !prev)}
+  role="button"
+  tabIndex={0}
+  onKeyDown={(e) => e.key === "Enter" && setMenuOpen((prev) => !prev)}
+  className="
     flex flex-col items-center justify-center
-    w-9 h-9 rounded-md border border-gray-400 bg-transparent
+    w-9 h-9
+    cursor-pointer
+    rounded-md
+    border border-white/10
+    bg-black/50 backdrop-blur-md
     gap-[4px]
+    transition-all duration-300
+    hover:bg-white/10
   "
-          >
-            {/* top line */}
-            <span
-              className={`
+  aria-label="Toggle Menu"
+>
+  {/* top line */}
+  <span
+    className={`
       block h-[2px] w-5 bg-white transition-transform duration-200
       ${menuOpen ? "translate-y-[6px] rotate-45" : ""}
     `}
-            />
-            {/* middle line */}
-            <span
-              className={`
+  />
+  {/* middle line */}
+  <span
+    className={`
       block h-[2px] w-5 bg-white transition-opacity duration-200
       ${menuOpen ? "opacity-0" : "opacity-100"}
     `}
-            />
-            {/* bottom line */}
-            <span
-              className={`
+  />
+  {/* bottom line */}
+  <span
+    className={`
       block h-[2px] w-5 bg-white transition-transform duration-200
       ${menuOpen ? "-translate-y-[6px] -rotate-45" : ""}
     `}
-            />
-          </button>
+  />
+</div>
 
           {/* Dropdown menu */}
           {menuOpen && (
@@ -295,7 +335,6 @@ const HomePage = () => {
               >
                 DIGITAL
               </span>
-
               {/* TOLU | OLUKOSI */}
               <div
                 className="mt-3 mb-1 sm:mt-4 sm:mb-2 font-thedus-condensed uppercase"
@@ -409,7 +448,6 @@ const HomePage = () => {
         </div>
 
         {/* Sides grid */}
-        {/* Sides grid */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-[10px] flex-1 w-full">
           {sides.map((side) =>
             side.locked ? (
@@ -484,7 +522,7 @@ const HomePage = () => {
                   <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                     <span>{side.title}</span>
                     <img
-                      src="src/assets/ICONS/padlock.png"
+                      src="src/assets/ICONS/Padlock.png"
                       alt="locked"
                       className="w-4 h-4 object-contain"
                     />
@@ -570,60 +608,54 @@ const HomePage = () => {
       <section id="projects" className="mt-[100px] px-[4%]">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-wrap gap-6 justify-center">
-            {/* Card 1 */}
             <div
               className="
-                project-card-width
-                basis-full
-                sm:basis-[calc((100%-24px)/2)]
-                lg:basis-[calc((100%-48px)/3)]
-              "
+      project-card-width
+      basis-full
+      lg:basis-[calc((100%-48px)/3)]
+    "
             >
               <ProjectCard
                 title="Sprezzaturra"
                 year="2022"
                 image="/images/AboutPictures/IMG_3747.jpg"
-                logo="src/assets/Spprezzatura.png"
+                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545050/Spprezzatura_ccd7x6.png"
                 line1="Music Project"
                 line2="Album?"
                 route="/project1"
               />
             </div>
 
-            {/* Card 2 */}
             <div
               className="
-                project-card-width
-                basis-full
-                sm:basis-[calc((100%-24px)/2)]
-                lg:basis-[calc((100%-48px)/3)]
-              "
+      project-card-width
+      basis-full
+      lg:basis-[calc((100%-48px)/3)]
+    "
             >
               <ProjectCard
                 title="otis"
                 year="2023"
                 image="/images/AboutPictures/IMG_3747.jpg"
-                logo="src/assets/BRANDICONS/otisambigramforwebsite.png"
+                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
                 line1="Multidisciplinary Creative Company"
                 line2="Film, Design, Music, Fashion"
                 route="/otis"
               />
             </div>
 
-            {/* Card 3 */}
             <div
               className="
-                project-card-width
-                basis-full
-                sm:basis-[calc((100%-24px)/2)]
-                lg:basis-[calc((100%-48px)/3)]
-              "
+      project-card-width
+      basis-full
+      lg:basis-[calc((100%-48px)/3)]
+    "
             >
               <ProjectCard
                 title="tolukosi"
                 year="2024"
-                image="/images/AboutPictures/IMG_3747.jpg"
-                logo="src/assets/BRANDICONS/tolukosiicon.png"
+                image="https://res.cloudinary.com/dzl5osene/image/upload/v1734509830/TOLUKOSILAGOS_kioi4u.jpg"
+                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/tolukosiicon_qodiyw.png"
                 line1="Luxury Fashion"
                 line2="Suits, Concept Fashion"
                 route="/tolukosi"
@@ -881,54 +913,65 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* SOCIAL ICONS – ONLY SHOW ON DESKTOP */}
-          <div className="hidden lg:flex justify-center">
-            <div className="flex items-center gap-4">
-              {[
-                {
-                  label: "Email",
-                  src: "src/assets/social/email.png",
-                  alt: "Email",
-                },
-                {
-                  label: "LinkedIn",
-                  src: "src/assets/social/linkedin.png",
-                  alt: "LinkedIn",
-                },
-                {
-                  label: "Dribbble",
-                  src: "src/assets/social/dribbble.png",
-                  alt: "Dribbble",
-                },
-                {
-                  label: "X",
-                  src: "src/assets/social/x.png",
-                  alt: "X (Twitter)",
-                },
-              ].map((item) => (
-                <a
-                  key={item.label}
-                  href="#"
-                  aria-label={item.label}
-                  className="
-                    w-8 h-8 md:w-9 md:h-9
-                    rounded-full
-                    border border-white/20
-                    bg-white/5
-                    flex items-center justify-center
-                    hover:bg-white hover:text-black
-                    transition-colors duration-200
-                  "
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-4 h-4 object-contain"
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
+{/* NEW FOOTER ICONS – DESKTOP ONLY */}
+<div className="hidden lg:flex items-center gap-4">
+  {/* CONTACT BUTTON */}
+  <Link
+    to="/contact"
+    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+    aria-label="Contact Me"
+  >
+    <img
+      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
+      alt="Contact Me"
+      className="w-5 h-5 object-contain"
+    />
+  </Link>
+
+  {/* COPY EMAIL BUTTON */}
+<div
+  onClick={() => {
+    navigator.clipboard.writeText("toluolukosi@gmail.com");
+    // Toast logic here
+  }}
+  role="button"
+  tabIndex={0}
+  onKeyDown={(e) => e.key === 'Enter' && navigator.clipboard.writeText("toluolukosi@gmail.com")}
+  className="
+    w-10 h-10
+    cursor-pointer
+    rounded-full
+    border border-white/20
+    bg-white/5
+    flex items-center justify-center
+    hover:bg-white hover:text-black
+    transition-colors duration-200
+  "
+  aria-label="Copy Email"
+>
+  <img
+    src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
+    alt="Copy Email"
+    className="w-5 h-5 object-contain"
+  />
+</div>
+
+  {/* LINKEDIN BUTTON */}
+  <a
+    href="https://www.linkedin.com/in/your-username"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+    aria-label="LinkedIn"
+  >
+    <img
+      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
+      alt="LinkedIn"
+      className="w-5 h-5 object-contain"
+    />
+  </a>
+</div>
+
 
           {/* CREATED WITH LOVE – CENTERED ON MOBILE/TABLET */}
           <div className="flex flex-col items-center lg:items-end gap-0 font-thedus-condensed">
@@ -941,6 +984,79 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+
+{/* FLOATING ICONS FOR MOBILE & TABLET */}
+<div
+  id="floating-icons"
+  className="
+    fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50
+    flex flex-row gap-4
+    bg-black/70 backdrop-blur-md px-4 py-2 rounded-full border border-white/10
+    lg:hidden
+    opacity-0 pointer-events-none
+    transition-opacity duration-300
+  "
+>
+
+  {/* CONTACT BUTTON */}
+  <Link
+    to="/contact"
+    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+    aria-label="Contact Me"
+  >
+    <img
+      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
+      alt="Contact"
+      className="w-5 h-5 object-contain"
+    />
+  </Link>
+
+  {/* COPY EMAIL BUTTON */}
+<div
+  onClick={() => {
+    navigator.clipboard.writeText("toluolukosi@gmail.com");
+    // Toast logic here
+  }}
+  role="button"
+  tabIndex={0}
+  onKeyDown={(e) => e.key === 'Enter' && navigator.clipboard.writeText("toluolukosi@gmail.com")}
+  className="
+    w-10 h-10
+    cursor-pointer
+    rounded-full
+    border border-white/20
+    bg-white/5
+    flex items-center justify-center
+    hover:bg-white hover:text-black
+    transition-colors duration-200
+  "
+  aria-label="Copy Email"
+>
+  <img
+    src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
+    alt="Copy Email"
+    className="w-5 h-5 object-contain"
+  />
+</div>
+
+
+  {/* LINKEDIN BUTTON */}
+  <a
+    href="https://www.linkedin.com/in/your-username"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+    aria-label="LinkedIn"
+  >
+    <img
+      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
+      alt="LinkedIn"
+      className="w-5 h-5 object-contain"
+    />
+  </a>
+</div>
+
+
       </footer>
     </>
   );

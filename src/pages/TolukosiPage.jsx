@@ -11,7 +11,7 @@ const CovidProjectPage = () => {
   return (
     <ProjectLayout
       title="TOLUKOSI"
-      company="Ministry of Health"
+      company="Luxury Fashion"
       year="2020"
       type="Mobile"
       heroImages={[Covid1, Covid2, Covid3]}

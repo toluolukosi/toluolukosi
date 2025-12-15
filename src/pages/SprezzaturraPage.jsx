@@ -2,19 +2,27 @@
 import React from "react";
 import ProjectLayout from "../components/ProjectLayout";
 
-// adjust image paths to your setup (public/images or src/assets)
-import Covid1 from "/public/images/Strava-logo.png";
-import Covid2 from "/public/images/portfolio-landing-page.jpg";
-import Covid3 from "/public/images/Strava-logo.png";
+// 🔁 REMOVE these:
+// import Covid1 from "/public/images/Strava-logo.png";
+// import Covid2 from "/public/images/portfolio-landing-page.jpg";
+// import Covid3 from "/public/images/Strava-logo.png";
+
+// ✅ ADD Cloudinary URLs as plain constants instead:
+const SprezzaturaImg1 =
+  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
+const SprezzaturaImg2 =
+  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
+const SprezzaturaImg3 =
+  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
 
 const CovidProjectPage = () => {
   return (
     <ProjectLayout
       title="SPREZZATURA"
-      company="Ministry of Health"
+      company="Music Project"
       year="2020"
       type="Mobile"
-      heroImages={[Covid1, Covid2, Covid3]}
+      heroImages={[SprezzaturaImg1, SprezzaturaImg2, SprezzaturaImg3]}
       overview={[
         "In the early days of the COVID-19 pandemic in Brazil, the Ministry of Health faced an urgent challenge: to swiftly and accurately provide citizens with official health information while also gathering data on their health status.",
         "The solution was an intuitive progressive web app designed to inform, guide, and track the pandemic's progression. This app provided critical information to the public and gathered essential data to shape public policies.",
