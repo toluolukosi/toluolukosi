@@ -1052,8 +1052,9 @@ useEffect(() => {
     toast.textContent = "Email copied";
     toast.className = `
       fixed bottom-20 left-1/2 transform -translate-x-1/2
-      bg-black/0 text-black text-2 px-8 py-2
-      
+      bg-black/80 text-white text-sm px-8 py-2
+      rounded-full shadow-lg backdrop-blur-md
+      opacity-0 transition-opacity duration-300 z-[9999]
     `;
 
     // Append toast to body
