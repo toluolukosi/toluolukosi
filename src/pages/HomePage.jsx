@@ -77,57 +77,55 @@ const HomePage = () => {
     },
   ];
 
-useEffect(() => {
-  const handleScroll = () => {
-    const hero = document.getElementById("hero");
-    const footer = document.querySelector("footer");
-    const floatingIcons = document.getElementById("floating-icons");
-    const indicator = document.getElementById("scroll-indicator");
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById("hero");
+      const footer = document.querySelector("footer");
+      const floatingIcons = document.getElementById("floating-icons");
+      const indicator = document.getElementById("scroll-indicator");
 
-    // Handle hero scroll progress
-    if (hero) {
-      const rect = hero.getBoundingClientRect();
-      const height = rect.height || 1;
-      const distance = Math.min(Math.max(-rect.top, 0), height);
-      const progress = distance / height;
-      setHeroProgress(progress);
-    }
-
-    // Scroll indicator fading
-    if (indicator) {
-      indicator.style.opacity = window.scrollY > 10 ? "0" : "1";
-    }
-
-    // Show/hide floating icons
-    if (floatingIcons && footer) {
-      const footerRect = footer.getBoundingClientRect();
-      const isFooterVisible =
-        footerRect.top < window.innerHeight && footerRect.bottom > 0;
-
-      const hasScrolled = window.scrollY > 50;
-
-      if (hasScrolled && !isFooterVisible) {
-        floatingIcons.style.opacity = "1";
-        floatingIcons.style.pointerEvents = "auto";
-      } else {
-        floatingIcons.style.opacity = "0";
-        floatingIcons.style.pointerEvents = "none";
+      // Handle hero scroll progress
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const height = rect.height || 1;
+        const distance = Math.min(Math.max(-rect.top, 0), height);
+        const progress = distance / height;
+        setHeroProgress(progress);
       }
-    }
-  };
 
-  handleScroll(); // Run on load
+      // Scroll indicator fading
+      if (indicator) {
+        indicator.style.opacity = window.scrollY > 10 ? "0" : "1";
+      }
 
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleScroll);
+      // Show/hide floating icons
+      if (floatingIcons && footer) {
+        const footerRect = footer.getBoundingClientRect();
+        const isFooterVisible =
+          footerRect.top < window.innerHeight && footerRect.bottom > 0;
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    window.removeEventListener("resize", handleScroll);
-  };
-}, []);
+        const hasScrolled = window.scrollY > 50;
 
+        if (hasScrolled && !isFooterVisible) {
+          floatingIcons.style.opacity = "1";
+          floatingIcons.style.pointerEvents = "auto";
+        } else {
+          floatingIcons.style.opacity = "0";
+          floatingIcons.style.pointerEvents = "none";
+        }
+      }
+    };
 
+    handleScroll(); // Run on load
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   // ===== PARALLAX VALUES (for hero) =====
   const clamped = Math.min(Math.max(heroProgress, 0), 1);
@@ -145,21 +143,20 @@ useEffect(() => {
   };
 
   // helper to close mobile menu when clicking a link
-const handleNavClick = (hash) => {
-  setMenuOpen(false);
+  const handleNavClick = (hash) => {
+    setMenuOpen(false);
 
-  if (!hash) return;
+    if (!hash) return;
 
-  const el = document.querySelector(hash);
-  if (!el) return;
+    const el = document.querySelector(hash);
+    if (!el) return;
 
-  const top = el.getBoundingClientRect().top + window.scrollY - 80; // offset for header height
-  window.scrollTo({
-    top,
-    behavior: "smooth",
-  });
-};
-
+    const top = el.getBoundingClientRect().top + window.scrollY - 80; // offset for header height
+    window.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -176,13 +173,13 @@ const handleNavClick = (hash) => {
         {/* ===== MOBILE / TABLET NAV (hamburger) ===== */}
         <div className="pointer-events-auto ml-auto flex items-center lg:hidden relative">
           {/* Hamburger button */}
-{/* Hamburger icon (translucent, like floating icons) */}
-<div
-  onClick={() => setMenuOpen((prev) => !prev)}
-  role="button"
-  tabIndex={0}
-  onKeyDown={(e) => e.key === "Enter" && setMenuOpen((prev) => !prev)}
-  className="
+          {/* Hamburger icon (translucent, like floating icons) */}
+          <div
+            onClick={() => setMenuOpen((prev) => !prev)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && setMenuOpen((prev) => !prev)}
+            className="
     flex flex-col items-center justify-center
     w-9 h-9
     cursor-pointer
@@ -193,74 +190,73 @@ const handleNavClick = (hash) => {
     transition-all duration-300
     hover:bg-white/10
   "
-  aria-label="Toggle Menu"
->
-  {/* top line */}
-  <span
-    className={`
+            aria-label="Toggle Menu"
+          >
+            {/* top line */}
+            <span
+              className={`
       block h-[2px] w-5 bg-white transition-transform duration-200
       ${menuOpen ? "translate-y-[6px] rotate-45" : ""}
     `}
-  />
-  {/* middle line */}
-  <span
-    className={`
+            />
+            {/* middle line */}
+            <span
+              className={`
       block h-[2px] w-5 bg-white transition-opacity duration-200
       ${menuOpen ? "opacity-0" : "opacity-100"}
     `}
-  />
-  {/* bottom line */}
-  <span
-    className={`
+            />
+            {/* bottom line */}
+            <span
+              className={`
       block h-[2px] w-5 bg-white transition-transform duration-200
       ${menuOpen ? "-translate-y-[6px] -rotate-45" : ""}
     `}
-  />
-</div>
+            />
+          </div>
 
           {/* Dropdown menu */}
           {menuOpen && (
             <div className="absolute top-11 right-0 bg-black/80 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg">
-<ul className="flex flex-col items-start gap-3 font-thedus-condensed text-[16px] leading-tight">
-  {/* 01 PROJECTS */}
-  <div
-    onClick={() => handleNavClick("#projects")}
-    role="button"
-    tabIndex={0}
-    className="text-left group cursor-pointer"
-  >
-    <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
-      01
-    </div>
-    <div className="text-gray-400 leading-[15px]">Projects</div>
-  </div>
+              <ul className="flex flex-col items-start gap-3 font-thedus-condensed text-[16px] leading-tight">
+                {/* 01 PROJECTS */}
+                <div
+                  onClick={() => handleNavClick("#projects")}
+                  role="button"
+                  tabIndex={0}
+                  className="text-left group cursor-pointer"
+                >
+                  <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
+                    01
+                  </div>
+                  <div className="text-gray-400 leading-[15px]">Projects</div>
+                </div>
 
-  {/* 02 GALLERY */}
-  <Link
-    to="/stills"
-    onClick={() => setMenuOpen(false)}
-    className="text-left group cursor-pointer"
-  >
-    <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
-      02
-    </div>
-    <div className="text-gray-400 leading-[15px]">Gallery</div>
-  </Link>
+                {/* 02 GALLERY */}
+                <Link
+                  to="/stills"
+                  onClick={() => setMenuOpen(false)}
+                  className="text-left group cursor-pointer"
+                >
+                  <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
+                    02
+                  </div>
+                  <div className="text-gray-400 leading-[15px]">Gallery</div>
+                </Link>
 
-  {/* 03 ABOUT ME */}
-  <div
-    onClick={() => handleNavClick("#about")}
-    role="button"
-    tabIndex={0}
-    className="text-left group cursor-pointer"
-  >
-    <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
-      03
-    </div>
-    <div className="text-gray-400 leading-[15px]">About Me</div>
-  </div>
-</ul>
-
+                {/* 03 ABOUT ME */}
+                <div
+                  onClick={() => handleNavClick("#about")}
+                  role="button"
+                  tabIndex={0}
+                  className="text-left group cursor-pointer"
+                >
+                  <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
+                    03
+                  </div>
+                  <div className="text-gray-400 leading-[15px]">About Me</div>
+                </div>
+              </ul>
             </div>
           )}
         </div>
@@ -278,31 +274,31 @@ const handleNavClick = (hash) => {
               }
             `}
           >
-<div
-  onClick={() => handleNavClick("#projects")}
-  role="button"
-  tabIndex={0}
-  className="group text-left leading-tight cursor-pointer"
->
-  <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
-    01
-  </div>
-  <div className="text-gray-400 text-[18px] leading-[15px]">
-    Projects
-  </div>
-</div>
+            <div
+              onClick={() => handleNavClick("#projects")}
+              role="button"
+              tabIndex={0}
+              className="group text-left leading-tight cursor-pointer"
+            >
+              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+                01
+              </div>
+              <div className="text-gray-400 text-[18px] leading-[15px]">
+                Projects
+              </div>
+            </div>
 
             <Link
-  to="/stills"
-  className="group text-left leading-tight cursor-pointer"
->
-  <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
-    02
-  </div>
-  <div className="text-gray-400 text-[18px] leading-[15px]">
-    Gallery
-  </div>
-</Link>
+              to="/stills"
+              className="group text-left leading-tight cursor-pointer"
+            >
+              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+                02
+              </div>
+              <div className="text-gray-400 text-[18px] leading-[15px]">
+                Gallery
+              </div>
+            </Link>
 
             <a
               href="#about"
@@ -444,7 +440,7 @@ const handleNavClick = (hash) => {
             to express his ideas and those of others
           </div>
 
-         {/*
+          {/*
          <div className="scroll-container w-full md:w-[405px] overflow-hidden whitespace-nowrap">
             <div className="scroll-track flex gap-5 w-max">
               {[
@@ -470,7 +466,6 @@ const handleNavClick = (hash) => {
           </div>
           */}
         </div>
-        
 
         {/* Sides grid */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-[10px] flex-1 w-full">
@@ -724,28 +719,32 @@ const handleNavClick = (hash) => {
                 <p>
                   My creative process often begins with imitation, rooted in
                   reverence rather than malice. I am drawn to people and works
-                  that inspire me, using their influence as a foundation to build
-                  ideas that evolve into my own. Artists like Slawn, Pharrell, Drake,
-                  and Kanye West have shaped how I see creativity as a conversation
-                  between identity, culture, and innovation.
+                  that inspire me, using their influence as a foundation to
+                  build ideas that evolve into my own. Artists like Slawn,
+                  Pharrell, Drake, and Kanye West have shaped how I see
+                  creativity as a conversation between identity, culture, and
+                  innovation.
                 </p>
                 <p>
-                  Although I sometimes question whether my work carries the emotional
-                  and moral depth that defines what I consider true art, I have learned
-                  that authenticity can take many forms. My work often resonates with
-                  others in unexpected ways, and I find meaning in that exchange.
+                  Although I sometimes question whether my work carries the
+                  emotional and moral depth that defines what I consider true
+                  art, I have learned that authenticity can take many forms. My
+                  work often resonates with others in unexpected ways, and I
+                  find meaning in that exchange.
                 </p>
                 <p>
-                  This portfolio reflects my curiosity, adaptability, and ability to identify
-                  patterns and connect ideas across disciplines. It is a record of growth and
-                  a testament to my commitment to mastering my craft and creating work that
-                  leaves a lasting impression.
+                  This portfolio reflects my curiosity, adaptability, and
+                  ability to identify patterns and connect ideas across
+                  disciplines. It is a record of growth and a testament to my
+                  commitment to mastering my craft and creating work that leaves
+                  a lasting impression.
                 </p>
                 <p>
-                  I am especially interested in contributing to projects as an art director,
-                  where I can shape ideas from concept to execution and collaborate with others
-                  to bring creative visions to life.
-                  </p>
+                  I am especially interested in contributing to projects as an
+                  art director, where I can shape ideas from concept to
+                  execution and collaborate with others to bring creative
+                  visions to life.
+                </p>
               </div>
             </section>
 
@@ -947,59 +946,60 @@ const handleNavClick = (hash) => {
             </div>
           </div>
 
-{/* NEW FOOTER ICONS – DESKTOP ONLY */}
-<div className="hidden lg:flex items-center gap-4">
-  {/* CONTACT BUTTON */}
-  <Link
-    to="/contact"
-    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
-    aria-label="Contact Me"
-  >
-    <img
-      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
-      alt="Contact Me"
-      className="w-5 h-5 object-contain"
-    />
-  </Link>
+          {/* NEW FOOTER ICONS – DESKTOP ONLY */}
+          <div className="hidden lg:flex items-center gap-4">
+            {/* CONTACT BUTTON */}
+            <Link
+              to="/contact"
+              className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
+              aria-label="Contact Me"
+            >
+              <img
+                src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
+                alt="Contact Me"
+                className="w-5 h-5 object-contain"
+              />
+            </Link>
 
-  {/* COPY EMAIL BUTTON */}
-<div
-  onClick={() => {
-    // Copy email to clipboard
-    navigator.clipboard.writeText("toluolukosi@gmail.com");
+            {/* COPY EMAIL BUTTON */}
+            <div
+              onClick={() => {
+                // Copy email to clipboard
+                navigator.clipboard.writeText("toluolukosi@gmail.com");
 
-    // Create toast element
-    const toast = document.createElement("div");
-    toast.textContent = "Email copied to clipboard";
-    toast.className = `
+                // Create toast element
+                const toast = document.createElement("div");
+                toast.textContent = "Email copied to clipboard";
+                toast.className = `
       fixed bottom-20 left-1/2 transform -translate-x-1/2
       bg-black/80 text-white text-sm px-4 py-2
       rounded-full shadow-lg backdrop-blur-md
       opacity-0 transition-opacity duration-300 z-[9999]
     `;
 
-    // Append toast to body
-    document.body.appendChild(toast);
+                // Append toast to body
+                document.body.appendChild(toast);
 
-    // Trigger fade-in
-    requestAnimationFrame(() => {
-      toast.style.opacity = "1";
-    });
+                // Trigger fade-in
+                requestAnimationFrame(() => {
+                  toast.style.opacity = "1";
+                });
 
-    // Fade-out after 2s
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      setTimeout(() => {
-        document.body.removeChild(toast);
-      }, 300);
-    }, 2000);
-  }}
-  role="button"
-  tabIndex={0}
-  onKeyDown={(e) =>
-    e.key === "Enter" && navigator.clipboard.writeText("toluolukosi@gmail.com")
-  }
-  className="
+                // Fade-out after 2s
+                setTimeout(() => {
+                  toast.style.opacity = "0";
+                  setTimeout(() => {
+                    document.body.removeChild(toast);
+                  }, 300);
+                }, 2000);
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) =>
+                e.key === "Enter" &&
+                navigator.clipboard.writeText("toluolukosi@gmail.com")
+              }
+              className="
     w-10 h-10
     cursor-pointer
     rounded-full
@@ -1009,32 +1009,30 @@ const handleNavClick = (hash) => {
     hover:bg-white/20 hover:text-black
     transition-colors duration-200
   "
-  aria-label="Copy Email"
->
-  <img
-    src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
-    alt="Copy Email"
-    className="w-5 h-5 object-contain"
-  />
-</div>
+              aria-label="Copy Email"
+            >
+              <img
+                src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
+                alt="Copy Email"
+                className="w-5 h-5 object-contain"
+              />
+            </div>
 
-
-  {/* LINKEDIN BUTTON */}
-  <a
-    href="https://www.linkedin.com/in/your-username"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
-    aria-label="LinkedIn"
-  >
-    <img
-      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
-      alt="LinkedIn"
-      className="w-5 h-5 object-contain"
-    />
-  </a>
-</div>
-
+            {/* LINKEDIN BUTTON */}
+            <a
+              href="https://www.linkedin.com/in/your-username"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <img
+                src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
+                alt="LinkedIn"
+                className="w-5 h-5 object-contain"
+              />
+            </a>
+          </div>
 
           {/* CREATED WITH LOVE – CENTERED ON MOBILE/TABLET */}
           <div className="flex flex-col items-center lg:items-end gap-0 font-thedus-condensed">
@@ -1048,10 +1046,10 @@ const handleNavClick = (hash) => {
           </div>
         </div>
 
-{/* FLOATING ICONS FOR MOBILE & TABLET */}
-<div
-  id="floating-icons"
-  className="
+        {/* FLOATING ICONS FOR MOBILE & TABLET */}
+        <div
+          id="floating-icons"
+          className="
     fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50
     flex flex-row gap-4
     bg-black/70 backdrop-blur-md px-4 py-2 rounded-full border border-white/10
@@ -1059,79 +1057,78 @@ const handleNavClick = (hash) => {
     opacity-0 pointer-events-none
     transition-opacity duration-300
   "
->
+        >
+          {/* CONTACT BUTTON */}
+          <Link
+            to="/contact"
+            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+            aria-label="Contact Me"
+          >
+            <img
+              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
+              alt="Contact"
+              className="w-5 h-5 object-contain"
+            />
+          </Link>
 
-  {/* CONTACT BUTTON */}
-  <Link
-    to="/contact"
-    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
-    aria-label="Contact Me"
-  >
-    <img
-      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
-      alt="Contact"
-      className="w-5 h-5 object-contain"
-    />
-  </Link>
+          {/* COPY EMAIL BUTTON */}
+          <div
+            onClick={() => {
+              // Copy email to clipboard
+              navigator.clipboard.writeText("toluolukosi@gmail.com");
 
-  {/* COPY EMAIL BUTTON */}
-<div
-  onClick={() => {
-    // Copy email to clipboard
-    navigator.clipboard.writeText("toluolukosi@gmail.com");
-
-    // Create toast element
-    const toast = document.createElement("div");
-    toast.textContent = "Email copied";
-    toast.className = `
+              // Create toast element
+              const toast = document.createElement("div");
+              toast.textContent = "Email copied";
+              toast.className = `
       fixed bottom-20 left-1/2 transform -translate-x-1/2
       bg-black/80 text-white text-sm px-8 py-2
       rounded-full shadow-lg backdrop-blur-md
       opacity-0 transition-opacity duration-300 z-[9999]
     `;
 
-    // Append toast to body
-    document.body.appendChild(toast);
+              // Append toast to body
+              document.body.appendChild(toast);
 
-    // Trigger fade-in
-    requestAnimationFrame(() => {
-      toast.style.opacity = "1";
-    });
+              // Trigger fade-in
+              requestAnimationFrame(() => {
+                toast.style.opacity = "1";
+              });
 
-    // Fade-out after 2s, then remove
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      setTimeout(() => {
-        document.body.removeChild(toast);
-      }, 300);
-    }, 2000);
-  }}
-  role="button"
-  tabIndex={0}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      navigator.clipboard.writeText("toluolukosi@gmail.com");
-      const toast = document.createElement("div");
-      toast.textContent = "Email copied";
-      toast.className = `
+              // Fade-out after 2s, then remove
+              setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => {
+                  document.body.removeChild(toast);
+                }, 300);
+              }, 2000);
+            }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                navigator.clipboard.writeText("toluolukosi@gmail.com");
+                const toast = document.createElement("div");
+                toast.textContent = "Email copied";
+                toast.className = `
         fixed bottom-20 left-1/2 transform -translate-x-1/2
         bg-black/0 text-white text-sm px-8 py-2
         rounded-full shadow-lg backdrop-blur-md
         opacity-0 transition-opacity duration-300 z-[9999]
       `;
-      document.body.appendChild(toast);
-      requestAnimationFrame(() => {
-        toast.style.opacity = "1";
-      });
-      setTimeout(() => {
-        toast.style.opacity = "0";
-        setTimeout(() => {
-          document.body.removeChild(toast);
-        }, 300);
-      }, 2000);
-    }
-  }}
-  className="
+                document.body.appendChild(toast);
+                requestAnimationFrame(() => {
+                  toast.style.opacity = "1";
+                });
+                setTimeout(() => {
+                  toast.style.opacity = "0";
+                  setTimeout(() => {
+                    document.body.removeChild(toast);
+                  }, 300);
+                }, 2000);
+              }
+            }}
+            className="
     w-10 h-10
     cursor-pointer
     rounded-full
@@ -1141,34 +1138,30 @@ const handleNavClick = (hash) => {
     hover:bg-white hover:text-black
     transition-colors duration-200
   "
-  aria-label="Copy Email"
->
-  <img
-    src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
-    alt="Copy Email"
-    className="w-5 h-5 object-contain"
-  />
-</div>
+            aria-label="Copy Email"
+          >
+            <img
+              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
+              alt="Copy Email"
+              className="w-5 h-5 object-contain"
+            />
+          </div>
 
-
-
-  {/* LINKEDIN BUTTON */}
-  <a
-    href="https://www.linkedin.com/in/your-username"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
-    aria-label="LinkedIn"
-  >
-    <img
-      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
-      alt="LinkedIn"
-      className="w-5 h-5 object-contain"
-    />
-  </a>
-</div>
-
-
+          {/* LINKEDIN BUTTON */}
+          <a
+            href="https://www.linkedin.com/in/your-username"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
+              alt="LinkedIn"
+              className="w-5 h-5 object-contain"
+            />
+          </a>
+        </div>
       </footer>
     </>
   );

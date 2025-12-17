@@ -9,7 +9,7 @@ import ProjectLayout from "../components/ProjectLayout";
 
 // ✅ ADD Cloudinary URLs as plain constants instead:
 const SprezzaturaImg1 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
+  "https://res.cloudinary.com/dzl5osene/image/upload/v1765984749/TOKYO_1_h6aerr.png";
 const SprezzaturaImg2 =
   "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
 const SprezzaturaImg3 =

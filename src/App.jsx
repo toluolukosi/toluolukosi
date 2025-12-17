@@ -12,6 +12,10 @@ import SprezzaturraPage from "./pages/SprezzaturraPage";
 import OtisPage from "./pages/OtisPage";
 import TolukosiPage from "./pages/TolukosiPage";
 
+// new still pages
+import BrutalistCities from "./pages/Stills/BrutalistCities";
+// (add more as you create them)
+
 const App = () => {
   return (
     <div className="bg-black min-h-screen w-full overflow-x-hidden overflow-y-auto">
@@ -23,6 +27,10 @@ const App = () => {
         <Route path="/live" element={<LivePage />} />
         <Route path="/sound" element={<SoundPage />} />
         <Route path="/dev" element={<DevPage />} />
+
+        {/* Stills detail pages */}
+        <Route path="/stills/brutalist-cities" element={<BrutalistCities />} />
+        {/* Add more still pages here */}
 
         {/* Projects */}
         <Route path="/project1" element={<SprezzaturraPage />} />
