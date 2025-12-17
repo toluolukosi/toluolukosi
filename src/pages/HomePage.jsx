@@ -145,15 +145,21 @@ useEffect(() => {
   };
 
   // helper to close mobile menu when clicking a link
-  const handleNavClick = (hash) => {
-    setMenuOpen(false);
-    if (hash) {
-      const el = document.querySelector(hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
+const handleNavClick = (hash) => {
+  setMenuOpen(false);
+
+  if (!hash) return;
+
+  const el = document.querySelector(hash);
+  if (!el) return;
+
+  const top = el.getBoundingClientRect().top + window.scrollY - 80; // offset for header height
+  window.scrollTo({
+    top,
+    behavior: "smooth",
+  });
+};
+
 
   return (
     <>
@@ -215,35 +221,46 @@ useEffect(() => {
           {/* Dropdown menu */}
           {menuOpen && (
             <div className="absolute top-11 right-0 bg-black/80 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg">
-              <ul className="flex flex-col items-start gap-3 font-thedus-condensed text-[16px] leading-tight">
-                <button
-                  onClick={() => handleNavClick("#projects")}
-                  className="text-left group"
-                >
-                  <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
-                    01
-                  </div>
-                  <div className="text-gray-400 leading-[15px]">Projects</div>
-                </button>
-                <button
-                  onClick={() => handleNavClick("#gallery")}
-                  className="text-left group"
-                >
-                  <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
-                    02
-                  </div>
-                  <div className="text-gray-400 leading-[15px]">Gallery</div>
-                </button>
-                <button
-                  onClick={() => handleNavClick("#about")}
-                  className="text-left group"
-                >
-                  <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
-                    03
-                  </div>
-                  <div className="text-gray-400 leading-[15px]">About Me</div>
-                </button>
-              </ul>
+<ul className="flex flex-col items-start gap-3 font-thedus-condensed text-[16px] leading-tight">
+  {/* 01 PROJECTS */}
+  <div
+    onClick={() => handleNavClick("#projects")}
+    role="button"
+    tabIndex={0}
+    className="text-left group cursor-pointer"
+  >
+    <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
+      01
+    </div>
+    <div className="text-gray-400 leading-[15px]">Projects</div>
+  </div>
+
+  {/* 02 GALLERY */}
+  <Link
+    to="/stills"
+    onClick={() => setMenuOpen(false)}
+    className="text-left group cursor-pointer"
+  >
+    <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
+      02
+    </div>
+    <div className="text-gray-400 leading-[15px]">Gallery</div>
+  </Link>
+
+  {/* 03 ABOUT ME */}
+  <div
+    onClick={() => handleNavClick("#about")}
+    role="button"
+    tabIndex={0}
+    className="text-left group cursor-pointer"
+  >
+    <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
+      03
+    </div>
+    <div className="text-gray-400 leading-[15px]">About Me</div>
+  </div>
+</ul>
+
             </div>
           )}
         </div>
@@ -261,28 +278,32 @@ useEffect(() => {
               }
             `}
           >
-            <a
-              href="#projects"
-              className="group text-left leading-tight cursor-pointer"
-            >
-              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
-                01
-              </div>
-              <div className="text-gray-400 text-[18px] leading-[15px]">
-                Projects
-              </div>
-            </a>
-            <a
-              href="#gallery"
-              className="group text-left leading-tight cursor-pointer"
-            >
-              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
-                02
-              </div>
-              <div className="text-gray-400 text-[18px] leading-[15px]">
-                Gallery
-              </div>
-            </a>
+<div
+  onClick={() => handleNavClick("#projects")}
+  role="button"
+  tabIndex={0}
+  className="group text-left leading-tight cursor-pointer"
+>
+  <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+    01
+  </div>
+  <div className="text-gray-400 text-[18px] leading-[15px]">
+    Projects
+  </div>
+</div>
+
+            <Link
+  to="/stills"
+  className="group text-left leading-tight cursor-pointer"
+>
+  <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+    02
+  </div>
+  <div className="text-gray-400 text-[18px] leading-[15px]">
+    Gallery
+  </div>
+</Link>
+
             <a
               href="#about"
               className="group text-left leading-tight cursor-pointer"
@@ -423,7 +444,8 @@ useEffect(() => {
             to express his ideas and those of others
           </div>
 
-          <div className="scroll-container w-full md:w-[405px] overflow-hidden whitespace-nowrap">
+         {/*
+         <div className="scroll-container w-full md:w-[405px] overflow-hidden whitespace-nowrap">
             <div className="scroll-track flex gap-5 w-max">
               {[
                 "src/assets/ICONS/aftereffects.png",
@@ -446,7 +468,9 @@ useEffect(() => {
               ))}
             </div>
           </div>
+          */}
         </div>
+        
 
         {/* Sides grid */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-[10px] flex-1 w-full">
@@ -698,21 +722,30 @@ useEffect(() => {
                   anything with good internet and the required tools.
                 </p>
                 <p>
-                  My creative process often begins with imitation, not in malice
-                  but in reverence. I draw from things that inspire me, and then
-                  evolve those ideas into original expressions. Because of this,
-                  I feel my work lacks the emotional and moral weight that, to
-                  me, defines true art. Still, it may evoke emotions in others,
-                  and some might see it as art regardless.
+                  My creative process often begins with imitation, rooted in
+                  reverence rather than malice. I am drawn to people and works
+                  that inspire me, using their influence as a foundation to build
+                  ideas that evolve into my own. Artists like Slawn, Pharrell, Drake,
+                  and Kanye West have shaped how I see creativity as a conversation
+                  between identity, culture, and innovation.
                 </p>
                 <p>
-                  This portfolio is a demonstration of my willingness to learn,
-                  my adaptability and ability to identify patterns and apply
-                  knowledge across fields. It's evidence of my willingness to
-                  grow — to sharpen my skill and feed my soul. At the heart of
-                  my creative pursuit is the drive to master craft and make
-                  things that leave an impression.
+                  Although I sometimes question whether my work carries the emotional
+                  and moral depth that defines what I consider true art, I have learned
+                  that authenticity can take many forms. My work often resonates with
+                  others in unexpected ways, and I find meaning in that exchange.
                 </p>
+                <p>
+                  This portfolio reflects my curiosity, adaptability, and ability to identify
+                  patterns and connect ideas across disciplines. It is a record of growth and
+                  a testament to my commitment to mastering my craft and creating work that
+                  leaves a lasting impression.
+                </p>
+                <p>
+                  I am especially interested in contributing to projects as an art director,
+                  where I can shape ideas from concept to execution and collaborate with others
+                  to bring creative visions to life.
+                  </p>
               </div>
             </section>
 

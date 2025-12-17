@@ -17,6 +17,7 @@ const ProjectLayout = ({
   const [current, setCurrent] = useState(0);
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
 
+  
   // ✅ INITIAL SLIDE DIRECTION (entry animation)
   // If we came via "Previous", new page should enter from LEFT.
   // If via "Next" or direct link, enter from RIGHT.
@@ -100,6 +101,53 @@ const ProjectLayout = ({
     }, 450);
   };
 
+  // ✅ SWIPE HANDLERS (for mobile/tablet)
+useEffect(() => {
+  const slider = document.getElementById("hero-slider");
+  if (!slider) return;
+
+  let startX = 0;
+  let endX = 0;
+
+  const handleTouchStart = (e) => {
+    startX = e.touches[0].clientX; // where the finger starts
+  };
+
+  const handleTouchMove = (e) => {
+    endX = e.touches[0].clientX; // where the finger moves to
+  };
+
+  const handleTouchEnd = () => {
+    const distance = startX - endX;
+
+    // Only count significant swipes
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) {
+        // Swipe left → next image
+        handleNextImage();
+      } else {
+        // Swipe right → previous image
+        handlePrevImage();
+      }
+    }
+
+    // Reset values
+    startX = 0;
+    endX = 0;
+  };
+
+  slider.addEventListener("touchstart", handleTouchStart);
+  slider.addEventListener("touchmove", handleTouchMove);
+  slider.addEventListener("touchend", handleTouchEnd);
+
+  // Cleanup when component unmounts or current image changes
+  return () => {
+    slider.removeEventListener("touchstart", handleTouchStart);
+    slider.removeEventListener("touchmove", handleTouchMove);
+    slider.removeEventListener("touchend", handleTouchEnd);
+  };
+}, [current]);
+
   return (
     <section
       className={`
@@ -127,21 +175,22 @@ const ProjectLayout = ({
           "
         >
           {/* ========== LEFT – MEDIA CARD ========== */}
-          <div
-            className="
-              relative
-              rounded-[10px] md:rounded-[10px]
-              overflow-hidden
-              border border-white/10
-              shadow-[0_26px_80px_rgba(0,0,0,0.75)]
-              bg-black
-
-              h-[360px]
-              sm:h-[420px]
-              md:h-[480px]
-              lg:h-full
-            "
-          >
+<div
+  id="hero-slider"
+  className="
+    relative
+    rounded-[10px] md:rounded-[10px]
+    overflow-hidden
+    border border-white/10
+    shadow-[0_26px_80px_rgba(0,0,0,0.75)]
+    bg-black
+    touch-pan-y select-none
+    h-[360px]
+    sm:h-[420px]
+    md:h-[480px]
+    lg:h-full
+  "
+>
             {hasImages ? (
               <>
                 <img

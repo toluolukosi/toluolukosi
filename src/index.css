@@ -1,32 +1,63 @@
+/* Thedus Condensed */
 @font-face {
-  font-family: Thedus-Condensed;
-  src: url("../src/assets/fonts/Thedus-Condensed.otf");
+  font-family: 'Thedus-Condensed';
+  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-Condensed_skvflo.otf')
+       format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Thedus Condensed Light */
 @font-face {
-  font-family: Thedus-CondensedLight;
-  src: url("../src/assets/fonts/Thedus-CondensedLight.otf");
+  font-family: 'Thedus-CondensedLight';
+  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-CondensedLight_uxphfe.otf')
+       format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Thedus Stencil Condensed */
 @font-face {
-  font-family: Thedus-StencilCondensed;
-  src: url("../src/assets/fonts/Thedus-StencilCondensed.otf");
+  font-family: 'Thedus-StencilCondensed';
+  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-StencilCondensed_sgtfql.otf')
+       format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Thedus Stencil Wide */
 @font-face {
-  font-family: Thedus-StencilWide;
-  src: url("../src/assets/fonts/Thedus-StencilWide.otf");
+  font-family: 'Thedus-StencilWide';
+  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-StencilWide_khcuj6.otf')
+       format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Thedus Wide */
 @font-face {
-  font-family: Thedus-Wide;
-  src: url("../src/assets/fonts/Thedus-Wide.otf");
+  font-family: 'Thedus-Wide';
+  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-Wide_wnfnwf.otf')
+       format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Thedus Wide Light */
 @font-face {
-  font-family: Thedus-WideLight;
-  src: url("../src/assets/fonts/Thedus-WideLight.otf");
+  font-family: 'Thedus-WideLight';
+  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-WideLight_luczri.otf')
+       format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
+
 
 @import "tailwindcss";
 

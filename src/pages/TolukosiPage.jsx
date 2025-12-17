@@ -16,8 +16,8 @@ const CovidProjectPage = () => {
       type="Mobile"
       heroImages={[Covid1, Covid2, Covid3]}
       overview={[
-        "In the early days of the COVID-19 pandemic in Brazil, the Ministry of Health faced an urgent challenge: to swiftly and accurately provide citizens with official health information while also gathering data on their health status.",
-        "The solution was an intuitive progressive web app designed to inform, guide, and track the pandemic's progression. This app provided critical information to the public and gathered essential data to shape public policies.",
+        "Luxury menswear brand redefining the modern suit.",
+        "Tolukosi's designs prioritize a relaxed fit that balances comfort with precision, offering versatility that allows each piece to transition effortlessly between formal and casual settings.",
       ]}
       contributions={[
         "Conducted interviews with epidemiology experts, desk research of global solutions, and benchmark analyses to derive insights and shape the app's foundational strategy.",
