@@ -1,15 +1,22 @@
-// src/components/layouts/StillLayout.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const StillLayout = ({ title, description = [], images = [] }) => {
+const StillLayout = ({
+  title,
+  overview = [],
+  contributions = [],
+  images = [],
+  company = "Design Studio",
+  year = "2025",
+  projectOptions = [],
+  prevProject = null,
+  nextProject = null,
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const [current, setCurrent] = useState(0);
   const [fullscreen, setFullscreen] = useState(false);
-
-  // For subtle slide-in animation
   const [slideClass, setSlideClass] = useState(
     location.state?.from === "left"
       ? "-translate-x-full opacity-0"
@@ -29,18 +36,22 @@ const StillLayout = ({ title, description = [], images = [] }) => {
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  const handleDotClick = (index) => {
-    setCurrent(index);
+  const handleProjectSelect = (path) => {
+    navigate(path);
+    setProjectMenuOpen(false);
   };
 
+  const handlePrevProject = () => prevProject && navigate(prevProject.path);
+  const handleNextProject = () => nextProject && navigate(nextProject.path);
+
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      setSlideClass("translate-x-0 opacity-100");
-    });
+    const id = requestAnimationFrame(() =>
+      setSlideClass("translate-x-0 opacity-100")
+    );
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // ✅ SWIPE HANDLERS (for mobile/tablet)
+  // Mobile swipe logic
   useEffect(() => {
     const slider = document.getElementById("still-slider");
     if (!slider) return;
@@ -53,8 +64,7 @@ const StillLayout = ({ title, description = [], images = [] }) => {
     const handleTouchEnd = () => {
       const distance = startX - endX;
       if (Math.abs(distance) > 50) {
-        if (distance > 0) handleNext();
-        else handlePrev();
+        distance > 0 ? handleNext() : handlePrev();
       }
     };
 
@@ -74,10 +84,8 @@ const StillLayout = ({ title, description = [], images = [] }) => {
       className={`
         fixed inset-0 z-[60]
         bg-[#050609]
-        flex justify-center
-        items-start lg:items-center
-        px-4 md:px-6 lg:px-10
-        py-6 lg:py-10
+        flex justify-center items-start lg:items-center
+        px-4 md:px-6 lg:px-10 py-6 lg:py-10
         overflow-y-auto lg:overflow-y-hidden
         transition-transform transition-opacity duration-500
         ease-[cubic-bezier(0.22,0.61,0.36,1)]
@@ -86,17 +94,15 @@ const StillLayout = ({ title, description = [], images = [] }) => {
       style={{ fontFamily: "var(--project-font, system-ui, sans-serif)" }}
     >
       <div className="w-full mx-auto grid gap-6 lg:gap-4 lg:grid-cols-[65%_35%] items-stretch lg:h-[90vh]">
-        {/* ========== LEFT: IMAGE GALLERY ========== */}
+        {/* ========== LEFT – IMAGE GALLERY ========== */}
         <div
           id="still-slider"
           onClick={() => setFullscreen(true)}
           className="
             relative cursor-pointer
-            rounded-[10px] md:rounded-[10px]
-            overflow-hidden
-            border border-white/10
+            rounded-[10px] overflow-hidden
+            border border-white/10 bg-black
             shadow-[0_26px_80px_rgba(0,0,0,0.75)]
-            bg-black
             h-[360px] sm:h-[420px] md:h-[480px] lg:h-full
             touch-pan-y select-none
           "
@@ -106,23 +112,26 @@ const StillLayout = ({ title, description = [], images = [] }) => {
               <img
                 src={images[current]}
                 alt={title}
-                className="w-full h-full object-cover object-center transition-transform duration-500 ease-out"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out"
               />
 
+              {/* Hide arrows on mobile */}
               {hasMultiple && (
                 <>
+                  {/* Left Arrow */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handlePrev();
                     }}
                     className="
+                      hidden md:flex
                       absolute left-5 top-1/2 -translate-y-1/2
                       w-9 h-9 md:w-10 md:h-10
                       rounded-[16px]
                       bg-[rgba(6,8,16,0.75)]
                       border border-white/15
-                      flex items-center justify-center
+                      items-center justify-center
                       text-xs md:text-sm text-white
                       shadow-[0_16px_40px_rgba(0,0,0,0.7)]
                       hover:bg-black transition
@@ -131,18 +140,20 @@ const StillLayout = ({ title, description = [], images = [] }) => {
                     &lt;
                   </button>
 
+                  {/* Right Arrow */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handleNext();
                     }}
                     className="
+                      hidden md:flex
                       absolute right-5 top-1/2 -translate-y-1/2
                       w-9 h-9 md:w-10 md:h-10
                       rounded-[16px]
                       bg-[rgba(6,8,16,0.75)]
                       border border-white/15
-                      flex items-center justify-center
+                      items-center justify-center
                       text-xs md:text-sm text-white
                       shadow-[0_16px_40px_rgba(0,0,0,0.7)]
                       hover:bg-black transition
@@ -152,32 +163,6 @@ const StillLayout = ({ title, description = [], images = [] }) => {
                   </button>
                 </>
               )}
-
-              {hasMultiple && (
-                <div className="absolute bottom-5 left-1/2 -translate-x-1/2">
-                  <div
-                    className="
-                      flex items-center gap-1.5
-                      px-2.5 py-1
-                      rounded-full bg-black/35 backdrop-blur-sm
-                      shadow-[0_10px_30px_rgba(0,0,0,0.6)]
-                    "
-                  >
-                    {images.map((_, i) => (
-                      <span
-                        key={i}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDotClick(i);
-                        }}
-                        className={`block cursor-pointer w-1.5 h-1.5 rounded-full transition-transform duration-200 ${
-                          i === current ? "bg-white scale-125" : "bg-white/30"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
             </>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-xs text-white/80">
@@ -186,7 +171,7 @@ const StillLayout = ({ title, description = [], images = [] }) => {
           )}
         </div>
 
-        {/* ========== RIGHT: INFO PANEL ========== */}
+        {/* ========== RIGHT – DETAIL PANEL ========== */}
         <article
           className="
             bg-[#111217]
@@ -198,49 +183,179 @@ const StillLayout = ({ title, description = [], images = [] }) => {
             lg:h-full
           "
         >
-          {/* Header */}
-          <header className="px-4 md:px-6 pt-4 md:pt-5 flex items-center justify-between">
-            <h2 className="font-thedus-condensed text-white uppercase text-[clamp(16px,3vw,22px)]">
-              {title}
-            </h2>
+          {/* HEADER – Clickable Title + Close */}
+          <header className="px-4 md:px-6 pt-4 md:pt-5">
+            <div className="relative">
+              <div className="flex items-center gap-3 flex-nowrap">
+                {/* Title Block */}
+                <div className="flex-1 min-w-0">
+                  <div
+                    className="
+    w-full rounded-[10px] border border-white/10
+    bg-[#171821] px-4 py-2.5
+    text-center sm:text-left
+  "
+                  >
+                    <h1
+                      className="
+      font-thedus-condensed uppercase
+      text-[clamp(12px,4vw,24px)] leading-tight
+      text-white truncate
+    "
+                    >
+                      {title}
+                    </h1>
+                  </div>
+                </div>
 
-            <button
-              onClick={() => navigate("/stills")}
-              className="
-                rounded-[10px] border border-white/10
-                bg-[#171821]
-                text-gray-300 text-sm
-                hover:bg-[#1F2937] hover:text-white
-                transition px-3 py-1.5
-              "
-            >
-              ←
-            </button>
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => navigate("/stills")}
+                  className="
+                    hidden sm:flex flex-shrink-0
+                    w-9 h-9 md:w-10 md:h-10
+                    rounded-[10px]
+                    border border-white/10
+                    bg-[#171821]
+                    items-center justify-center
+                    text-sm text-gray-300
+                    hover:bg-[#1F2937] hover:text-white transition
+                  "
+                  aria-label="Close project"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
           </header>
 
-          {/* Content */}
-          <div className="px-4 md:px-6 pb-6 pt-4 flex-1 overflow-y-auto">
-            {Array.isArray(description) ? (
-              description.map((para, i) => (
-                <p
-                  key={i}
-                  className={`text-[13px] leading-relaxed text-gray-300 ${
-                    i > 0 ? "mt-3" : ""
-                  }`}
-                >
-                  {para}
-                </p>
-              ))
-            ) : (
-              <p className="text-[13px] leading-relaxed text-gray-300">
-                {description}
-              </p>
+          {/* META ROW */}
+          <div className="px-4 md:px-6 pt-3 pb-2">
+            <div
+              className="
+                grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-3
+                rounded-[10px] border border-white/10 bg-transparent
+                px-4 py-3.5
+              "
+            >
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-1">
+                  Type
+                </div>
+                <div className="text-[13px] tracking-[0.12em] font-thedus-condensed text-white">
+                  {company}
+                </div>
+              </div>
+              <div className="sm:text-right">
+                <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-1">
+                  Year
+                </div>
+                <div className="text-[13px] tracking-[0.12em] font-thedus-condensed text-white">
+                  {year}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CONTENT AREA */}
+          <div className="px-4 md:px-6 pb-4 md:pb-6 flex-1 min-h-0 flex flex-col gap-3">
+            <div className="flex-1 min-h-0">
+              <div
+                className="
+                  h-full rounded-[10px] border border-white/8 bg-transparent
+                  px-4 md:px-5 py-4 md:py-5 overflow-y-auto
+                  space-y-6 md:space-y-7
+                "
+              >
+                {/* OVERVIEW */}
+                <section>
+                  <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-4">
+                    Overview
+                  </div>
+                  {Array.isArray(overview) ? (
+                    overview.map((para, i) => (
+                      <p
+                        key={i}
+                        className={`text-[13px] leading-relaxed text-gray-300 ${
+                          i > 0 ? "mt-2" : ""
+                        }`}
+                      >
+                        {para}
+                      </p>
+                    ))
+                  ) : (
+                    <p className="text-[13px] leading-relaxed text-gray-300">
+                      {overview}
+                    </p>
+                  )}
+                </section>
+
+                {/* CONTRIBUTIONS */}
+                {contributions.length > 0 && (
+                  <>
+                    <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <section>
+                      <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-2">
+                        My Contribution
+                      </div>
+                      <ul className="space-y-2.5">
+                        {contributions.map((item, i) => (
+                          <li
+                            key={i}
+                            className="grid grid-cols-[16px_minmax(0,1fr)] gap-2 text-[13px] leading-relaxed text-gray-300"
+                          >
+                            <span className="mt-[7px] w-[7px] h-[7px] rounded-full border border-white/70" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* PREVIOUS / NEXT BUTTONS */}
+            {(prevProject || nextProject) && (
+              <div className="flex gap-3 font-thedus-condensed">
+                {prevProject && (
+                  <button
+                    type="button"
+                    onClick={handlePrevProject}
+                    className="
+                      flex-1 rounded-[10px] border border-white/10
+                      bg-[#171821] px-5 py-2.5
+                      text-[11px] md:text-[12px]
+                      tracking-[0.22em] uppercase
+                      text-gray-100 hover:bg-white hover:text-black transition
+                    "
+                  >
+                    Previous
+                  </button>
+                )}
+                {nextProject && (
+                  <button
+                    type="button"
+                    onClick={handleNextProject}
+                    className="
+                      flex-1 rounded-[10px] border border-white/10
+                      bg-[#171821] px-5 py-2.5
+                      text-[11px] md:text-[12px]
+                      tracking-[0.22em] uppercase
+                      text-gray-100 hover:bg-white hover:text-black transition
+                    "
+                  >
+                    Next
+                  </button>
+                )}
+              </div>
             )}
           </div>
         </article>
       </div>
 
-      {/* ========== FULLSCREEN VIEWER ========== */}
+      {/* FULLSCREEN VIEWER */}
       {fullscreen && (
         <div
           className="fixed inset-0 z-[70] bg-black/95 flex flex-col items-center justify-center"

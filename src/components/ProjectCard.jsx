@@ -39,9 +39,9 @@ const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
             shadow-[0_8px_24px_rgba(0,0,0,0.6)]
 
             /* 🖥 desktop hover: purple gradient effect */
-            lg:group-hover:from-[rgba(139,92,246,0.28)]
-            lg:group-hover:via-[#151822]
-            lg:group-hover:to-[#151822]
+            lg:group-hover:from-white/5
+            lg:group-hover:via-white/5
+            lg:group-hover:to-white/5
             lg:group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.75)]
             transition-[background,box-shadow] duration-300
           "

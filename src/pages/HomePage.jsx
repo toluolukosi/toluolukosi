@@ -280,10 +280,10 @@ const HomePage = () => {
               tabIndex={0}
               className="group text-left leading-tight cursor-pointer"
             >
-              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+              <div className="text-white text-[18px] leading-[15px] group-hover:text-gray-400 transition duration-300">
                 01
               </div>
-              <div className="text-gray-400 text-[18px] leading-[15px]">
+              <div className="text-gray-400 group-hover:text-white text-[18px] leading-[15px]">
                 Projects
               </div>
             </div>
@@ -292,10 +292,10 @@ const HomePage = () => {
               to="/stills"
               className="group text-left leading-tight cursor-pointer"
             >
-              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+              <div className="text-white text-[18px] leading-[15px] group-hover:text-gray-400 transition duration-300">
                 02
               </div>
-              <div className="text-gray-400 text-[18px] leading-[15px]">
+              <div className="text-gray-400 group-hover:text-white text-[18px] leading-[15px]">
                 Gallery
               </div>
             </Link>
@@ -304,10 +304,10 @@ const HomePage = () => {
               href="#about"
               className="group text-left leading-tight cursor-pointer"
             >
-              <div className="text-white text-[18px] leading-[15px] group-hover:text-yellow-400 transition duration-300">
+              <div className="text-white text-[18px] leading-[15px] group-hover:text-gray-400 transition duration-300">
                 03
               </div>
-              <div className="text-gray-400 text-[18px] leading-[15px]">
+              <div className="text-gray-400 group-hover:text-white text-[18px] leading-[15px]">
                 About Me
               </div>
             </a>
@@ -636,12 +636,12 @@ const HomePage = () => {
     "
             >
               <ProjectCard
-                title="Sprezzaturra"
+                title="eclipse"
                 year="2022"
-                image="/images/AboutPictures/IMG_3747.jpg"
-                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545050/Spprezzatura_ccd7x6.png"
-                line1="Music Project"
-                line2="Album?"
+                image="https://res.cloudinary.com/dzl5osene/image/upload/v1767624920/Eclipsequad_uvcdec.png"
+                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1767626188/eclipselogo_j90npw.png"
+                line1="Event"
+                line2="Dinner & Awards event"
                 route="/project1"
               />
             </div>
@@ -674,7 +674,7 @@ const HomePage = () => {
               <ProjectCard
                 title="tolukosi"
                 year="2024"
-                image="https://res.cloudinary.com/dzl5osene/image/upload/v1734509830/TOLUKOSILAGOS_kioi4u.jpg"
+                image="https://res.cloudinary.com/dzl5osene/image/upload/v1767629352/Tolukosi_1_spx2br.png"
                 logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/tolukosiicon_qodiyw.png"
                 line1="Luxury Fashion"
                 line2="Suits, Concept Fashion"

@@ -17,7 +17,6 @@ const ProjectLayout = ({
   const [current, setCurrent] = useState(0);
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
 
-  
   // ✅ INITIAL SLIDE DIRECTION (entry animation)
   // If we came via "Previous", new page should enter from LEFT.
   // If via "Next" or direct link, enter from RIGHT.
@@ -102,51 +101,51 @@ const ProjectLayout = ({
   };
 
   // ✅ SWIPE HANDLERS (for mobile/tablet)
-useEffect(() => {
-  const slider = document.getElementById("hero-slider");
-  if (!slider) return;
+  useEffect(() => {
+    const slider = document.getElementById("hero-slider");
+    if (!slider) return;
 
-  let startX = 0;
-  let endX = 0;
+    let startX = 0;
+    let endX = 0;
 
-  const handleTouchStart = (e) => {
-    startX = e.touches[0].clientX; // where the finger starts
-  };
+    const handleTouchStart = (e) => {
+      startX = e.touches[0].clientX; // where the finger starts
+    };
 
-  const handleTouchMove = (e) => {
-    endX = e.touches[0].clientX; // where the finger moves to
-  };
+    const handleTouchMove = (e) => {
+      endX = e.touches[0].clientX; // where the finger moves to
+    };
 
-  const handleTouchEnd = () => {
-    const distance = startX - endX;
+    const handleTouchEnd = () => {
+      const distance = startX - endX;
 
-    // Only count significant swipes
-    if (Math.abs(distance) > 50) {
-      if (distance > 0) {
-        // Swipe left → next image
-        handleNextImage();
-      } else {
-        // Swipe right → previous image
-        handlePrevImage();
+      // Only count significant swipes
+      if (Math.abs(distance) > 50) {
+        if (distance > 0) {
+          // Swipe left → next image
+          handleNextImage();
+        } else {
+          // Swipe right → previous image
+          handlePrevImage();
+        }
       }
-    }
 
-    // Reset values
-    startX = 0;
-    endX = 0;
-  };
+      // Reset values
+      startX = 0;
+      endX = 0;
+    };
 
-  slider.addEventListener("touchstart", handleTouchStart);
-  slider.addEventListener("touchmove", handleTouchMove);
-  slider.addEventListener("touchend", handleTouchEnd);
+    slider.addEventListener("touchstart", handleTouchStart);
+    slider.addEventListener("touchmove", handleTouchMove);
+    slider.addEventListener("touchend", handleTouchEnd);
 
-  // Cleanup when component unmounts or current image changes
-  return () => {
-    slider.removeEventListener("touchstart", handleTouchStart);
-    slider.removeEventListener("touchmove", handleTouchMove);
-    slider.removeEventListener("touchend", handleTouchEnd);
-  };
-}, [current]);
+    // Cleanup when component unmounts or current image changes
+    return () => {
+      slider.removeEventListener("touchstart", handleTouchStart);
+      slider.removeEventListener("touchmove", handleTouchMove);
+      slider.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [current]);
 
   return (
     <section
@@ -175,9 +174,9 @@ useEffect(() => {
           "
         >
           {/* ========== LEFT – MEDIA CARD ========== */}
-<div
-  id="hero-slider"
-  className="
+          <div
+            id="hero-slider"
+            className="
     relative
     rounded-[10px] md:rounded-[10px]
     overflow-hidden
@@ -190,7 +189,7 @@ useEffect(() => {
     md:h-[480px]
     lg:h-full
   "
->
+          >
             {hasImages ? (
               <>
                 <img
@@ -311,6 +310,7 @@ useEffect(() => {
                         px-3 sm:px-4 md:px-5
                         py-2 sm:py-2.5
                         flex items-center
+                        hover:text-black
                         cursor-pointer
                       "
                     >
@@ -325,6 +325,7 @@ useEffect(() => {
                             whitespace-nowrap
                             overflow-hidden text-ellipsis
                             text-center sm:text-left
+                            hover:text-black
                           "
                         >
                           {title}
@@ -406,19 +407,16 @@ useEffect(() => {
       grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-3
       rounded-[10px]
       border border-white/10
-      bg-gradient-to-br
-        from-[rgba(139,92,246,0.22)]
-        via-[#151822]
-        to-[#151822]
+      bg-transparent
       px-4 py-3.5
     "
               >
                 {/* Company – left */}
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-1">
-                    Company
+                    TYPE
                   </div>
-                  <div className="text-[13px] font-thedus-condensed text-white">
+                  <div className="text-[13px] tracking-[0.12em] font-thedus-condensed text-white">
                     {company}
                   </div>
                 </div>
@@ -428,7 +426,7 @@ useEffect(() => {
                   <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-1">
                     Year
                   </div>
-                  <div className="text-[13px] font-semibold text-white">
+                  <div className="text-[13px] tracking-[0.12em] font-thedus-condensed text-white">
                     {year}
                   </div>
                 </div>
@@ -444,7 +442,7 @@ useEffect(() => {
                     h-full
                     rounded-[10px]
                     border border-white/8
-                    bg-gradient-to-b from-white/4 via-transparent to-transparent
+                    bg-transparent
                     px-4 md:px-5 py-4 md:py-5
                     overflow-y-auto project-panel-scroll
                     space-y-6 md:space-y-7
@@ -452,7 +450,7 @@ useEffect(() => {
                 >
                   {/* OVERVIEW */}
                   <section>
-                    <div className="text-[10px] uppercase tracking-[0.22em] text-gray-500 mb-2">
+                    <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-2">
                       Overview
                     </div>
                     {Array.isArray(overview) ? (
@@ -480,7 +478,7 @@ useEffect(() => {
                   {/* CONTRIBUTIONS */}
                   {contributions.length > 0 && (
                     <section>
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-gray-500 mb-2">
+                      <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-2">
                         My Contribution
                       </div>
                       <ul className="space-y-2.5">
@@ -505,7 +503,7 @@ useEffect(() => {
 
               {/* 5th row – PREVIOUS / NEXT buttons */}
               {(prevProject || nextProject) && (
-                <div className="flex gap-3">
+                <div className="flex gap-3 font-thedus-condensed">
                   {prevProject && (
                     <button
                       type="button"

@@ -1,15 +1,7 @@
-// src/pages/StillsPage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 
 const stills = [
-  {
-    title: "Illustrations",
-    image:
-      "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
-    route: "/stills/Retro",
-    locked: false,
-  },
   {
     title: "Brutalist Cities",
     image:
@@ -21,19 +13,11 @@ const stills = [
     title: "Media Blending",
     image:
       "https://res.cloudinary.com/demo/image/upload/v1734509830/tokyo_xxx.jpg",
-    route: "/stills/Media Blending",
+    route: "/stills/MediaBlending",
     locked: false,
   },
   {
-    title: "Photography",
-    image:
-      "https://res.cloudinary.com/demo/image/upload/v1734509830/noir_xxx.jpg",
-    route: "/stills/Photography",
-    locked: true,
-    lockNote: "Protected",
-  },
-  {
-    title: "Psychedlic",
+    title: "Psychedelic",
     image:
       "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
     route: "/stills/Psychedelic",
@@ -53,16 +37,57 @@ const stills = [
     route: "/stills/Minimalist",
     locked: false,
   },
+  {
+    title: "Experimental",
+    image:
+      "https://res.cloudinary.com/demo/image/upload/v1734509830/noir_xxx.jpg",
+    route: "/stills/Experimental",
+    locked: true,
+    lockNote: "Protected",
+  },
+  {
+    title: "Illustrations",
+    image:
+      "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
+    route: "/stills/Illustrations",
+    locked: false,
+  },
+  {
+    title: "Photography",
+    image:
+      "https://res.cloudinary.com/demo/image/upload/v1734509830/noir_xxx.jpg",
+    route: "/stills/Photography",
+    locked: true,
+    lockNote: "Protected",
+  },
 ];
 
 const StillsPage = () => {
   return (
     <section className="min-h-screen bg-black px-[4%] py-16">
-      <h1 className="text-white font-thedus-condensed text-[48px] md:text-[64px] tracking-wide mb-10">
-        Gallery
-      </h1>
+      {/* PAGE TITLE */}
+      <div className="flex items-center justify-between mb-10">
+        <h1 className="text-white font-thedus-condensed text-[48px] md:text-[64px] tracking-wide">
+          Gallery
+        </h1>
 
-      {/* Grid of stills */}
+        {/* 🏠 BACK TO HOME BUTTON */}
+        <Link
+          to="/"
+          className="
+            text-white text-[14px] md:text-[15px]
+            uppercase tracking-[0.22em]
+            border border-white/20
+            px-4 py-2 rounded-[8px]
+            hover:bg-white hover:text-black
+            transition duration-300
+          "
+        >
+          ←
+        </Link>
+      </div>
+
+      {/* GRID OF STILLS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px]">
         {stills.map((still) =>
           still.locked ? (
@@ -89,9 +114,7 @@ const StillsPage = () => {
                 "
                 style={{ backgroundImage: `url(${still.image})` }}
               />
-
               <div className="absolute inset-0 bg-black/40 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
-
               <div className="absolute bottom-4 left-4 text-white">
                 <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                   <span>{still.title}</span>
@@ -133,9 +156,7 @@ const StillsPage = () => {
                 "
                 style={{ backgroundImage: `url(${still.image})` }}
               />
-
               <div className="absolute inset-0 bg-black/40 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
-
               <div className="absolute bottom-4 left-4 text-white">
                 <p className="text-[24px] font-bold font-thedus-condensed leading-none">
                   {still.title}

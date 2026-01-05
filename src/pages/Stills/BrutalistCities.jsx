@@ -5,9 +5,10 @@ const BrutalistCities = () => {
   return (
     <StillLayout
       title="Brutalist Cities"
-      description={[
-        "Brutalist Cities is a design exploration inspired by architectural minimalism and typographic weight.",
-        "The project reimagines iconic global cities through the lens of brutalist graphic design principles — concrete, geometry, and contrast.",
+      overview={[
+        "Brutalist Cities is a poster series that reimagines iconic global locations through the lens of brutalist graphic design.",
+        " Using weighty typography, rigid grid systems, grain-heavy textures, and high-contrast duotone palettes, each piece distills a city into bold, minimal landmarks and raw visual rhythm.",
+        "The project explores how restraint, structure, and “material” noise can communicate identity with impact.",
       ]}
       images={[
         "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/BC_ovhoa6.png",

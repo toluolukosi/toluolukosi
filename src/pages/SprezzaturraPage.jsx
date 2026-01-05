@@ -18,7 +18,7 @@ const SprezzaturaImg3 =
 const CovidProjectPage = () => {
   return (
     <ProjectLayout
-      title="SPREZZATURA"
+      title="eclipse"
       company="Music Project"
       year="2020"
       type="Mobile"
