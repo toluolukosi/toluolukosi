@@ -656,10 +656,10 @@ const HomePage = () => {
               <ProjectCard
                 title="otis"
                 year="2023"
-                image="/images/AboutPictures/IMG_3747.jpg"
+                image="https://res.cloudinary.com/dzl5osene/image/upload/v1768218445/OTIS_1_ge0anb.png"
                 logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
                 line1="Multidisciplinary Creative Company"
-                line2="Film, Design, Music, Fashion"
+                line2="Film, Design, Music, Fashion, Lifestyle"
                 route="/otis"
               />
             </div>
