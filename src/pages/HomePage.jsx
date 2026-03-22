@@ -56,26 +56,40 @@ const HomePage = () => {
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/chatgpt_k4gn9e.png",
   ];
 
+  
   const certifications = [
-    {
-      period: "2024",
-      title: "Placeholder Certification Name",
-      org: "Issuing Organization / Platform",
-      linkLabel: "View credential",
-    },
-    {
-      period: "2023",
-      title: "Another Certification Title",
-      org: "Another Platform",
-      linkLabel: "See details",
-    },
-    {
-      period: "2022",
-      title: "Yet Another Certification",
-      org: "Some Academy",
-      linkLabel: "Open certificate",
-    },
-  ];
+  {
+    period: "2018",
+    title: "Music (theory) Preliminary - grade 4",
+    org: "THE MUSICAL SOCIETY OF NIGERIA (MUSON)",
+    href: "https://drive.google.com/drive/folders/1I2Cs-fIAaWhxdHtrtfNLLSLEhpTQW0yv?usp=drive_link",
+  },
+  {
+    period: "2018",
+    title: "Music (piano) Preliminary - grade 3",
+    org: "THE MUSICAL SOCIETY OF NIGERIA (MUSON)",
+    href: "https://drive.google.com/drive/folders/1FTM1OVJuOBllhNP-AoO9Y2ssTpFFXnma?usp=drive_link",
+  },
+  {
+    period: "2020",
+    title: "DELF A1",
+    org: "Alliance française",
+    href: "https://drive.google.com/file/d/18Dg95sLalZ428RZI_rSbp3dn0JDIAXF6/view?usp=drive_link",
+  },
+  {
+    period: "2022",
+    title: "MEMBER OF THE YEAR",
+    org: "AIESEC",
+    href: "https://drive.google.com/file/d/1bErbRScqJfBz6y-ikIYYq_nHiWsOCn61/view?usp=drive_link",
+  },
+  {
+    period: "2023",
+    title: "Graphics design specialisation",
+    org: "CALARTS",
+    linkLabel: "Open certificate",
+    href: "https://drive.google.com/drive/folders/1DB2ILoG0_6sOGD4BMIL7erH0y6_J-aII?usp=drive_link",
+  },
+];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -393,7 +407,7 @@ const HomePage = () => {
         <div className="absolute inset-x-0 bottom-5 px-6 sm:px-10 lg:px-16 flex items-center justify-between text-[11px] sm:text-xs lg:text-[18px] text-white tracking-[0.05em] leading -[0.05em] ext-gray-400 font-thedus-condensed">
           <div className="uppercase">
             Based in Lagos, Nigeria
-            <div className="text-[10px] sm:text-[11px] text-gray-500 lg:text-[16px] normal-case">
+            <div className="text-[10px] sm:text-[11px] text-white lg:text-[16px] normal-case">
               for now
             </div>
           </div>
@@ -423,9 +437,9 @@ const HomePage = () => {
 
           <div className="text-right lg:text-[16px] uppercase">
             Freelance Availability
-            <div className="text-[10px] sm:text-[11px] lg:text-[18px] text-white">
-              <span className="text-[#f97316] align-middle mr-1">●</span>
-              Limited Hours
+            <div className="text-[10px] sm:text-[11px] lg:text-[16px] text-white">
+              <span className="text-[#00FF00] align-middle mr-1">●</span>
+              Active
             </div>
           </div>
         </div>
@@ -659,7 +673,7 @@ const HomePage = () => {
                 image="https://res.cloudinary.com/dzl5osene/image/upload/v1768218445/OTIS_1_ge0anb.png"
                 logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
                 line1="Multidisciplinary Creative Company"
-                line2="Film, Design, Music, Fashion, Lifestyle"
+                line2="Design, Fashion, Film, Lifestyle, Music"
                 route="/otis"
               />
             </div>
@@ -828,24 +842,23 @@ const HomePage = () => {
                     </div>
 
                     {/* right – details */}
-                    <div className="flex flex-col gap-1">
-                      <div className="text-[13px] md:text-[14px] text-gray-100 leading-tight">
-                        {cert.title}
-                      </div>
-                      <div className="text-[11px] md:text-[12px] text-gray-500 leading-snug">
-                        {cert.org}{" "}
-                        <a
-                          href="#"
-                          className="
-                            text-gray-400
-                            hover:text-white
-                            underline-offset-2
-                            hover:underline
-                          "
-                        >
-                          {cert.linkLabel}
-                        </a>
-                      </div>
+ <div className="flex flex-col gap-1">
+  <a
+    href={cert.href}
+    target="_blank"
+    rel="noreferrer"
+    className="group cursor-pointer"
+    >
+      <div
+    className="text-white text-[13px] md:text-[14px] group-hover:text-gray-400 leading-tight transition duration-300">    
+    {cert.title}
+  </div>
+  </a>
+
+  <div className="text-[11px] md:text-[12px] text-gray-500 leading-snug">
+    {cert.org}{" "}
+  </div>
+
                     </div>
                   </div>
                 ))}
