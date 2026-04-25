@@ -17,10 +17,10 @@ const stills = [
     locked: false,
   },
   {
-    title: "Psychedelic",
+    title: "LSD.mp3",
     image:
-      "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
-    route: "/stills/Psychedelic",
+      "https://res.cloudinary.com/dzl5osene/image/upload/v1777115694/PARIS_ej7vkn.png",
+    route: "/stills/LSDmp3",
     locked: false,
   },
   {

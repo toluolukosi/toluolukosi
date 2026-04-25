@@ -306,7 +306,7 @@ const ProjectLayout = ({
                         w-full
                         rounded-[10px] md:rounded-[10px]
                         border border-white/10
-                        bg-[#171821]
+                        bg-[#111217]
                         px-3 sm:px-4 md:px-5
                         py-2 sm:py-2.5
                         flex items-center

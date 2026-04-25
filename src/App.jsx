@@ -11,9 +11,11 @@ import DevPage from "./pages/DevPage";
 import SprezzaturraPage from "./pages/SprezzaturraPage";
 import OtisPage from "./pages/OtisPage";
 import TolukosiPage from "./pages/TolukosiPage";
+import ContactPage from "./pages/ContactPage";
 
 // new still pages
 import BrutalistCities from "./pages/Stills/BrutalistCities";
+import LSDmp3 from "./pages/Stills/LSDmp3"
 // (add more as you create them)
 
 const App = () => {
@@ -30,12 +32,16 @@ const App = () => {
 
         {/* Stills detail pages */}
         <Route path="/stills/brutalist-cities" element={<BrutalistCities />} />
+        <Route path="/stills/LSDmp3" element={<LSDmp3 />} />
         {/* Add more still pages here */}
 
         {/* Projects */}
         <Route path="/project1" element={<SprezzaturraPage />} />
         <Route path="/otis" element={<OtisPage />} />
         <Route path="/tolukosi" element={<TolukosiPage />} />
+
+        {/* Projects */}
+        <Route path="/contact" element={<ContactPage />} />
 
         {/* 404 */}
         <Route
