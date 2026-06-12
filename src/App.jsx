@@ -15,7 +15,9 @@ import ContactPage from "./pages/ContactPage";
 
 // new still pages
 import BrutalistCities from "./pages/Stills/BrutalistCities";
-import LSDmp3 from "./pages/Stills/LSDmp3"
+import LSDmp3 from "./pages/Stills/LSDmp3";
+import FergieEra from "./pages/Stills/FergieEra";
+import Reduced from "./pages/Stills/Reduced";
 // (add more as you create them)
 
 const App = () => {
@@ -33,6 +35,8 @@ const App = () => {
         {/* Stills detail pages */}
         <Route path="/stills/brutalist-cities" element={<BrutalistCities />} />
         <Route path="/stills/LSDmp3" element={<LSDmp3 />} />
+        <Route path="/stills/fergie-era" element={<FergieEra />} />
+        <Route path="/stills/Reduced" element={<Reduced />} />
         {/* Add more still pages here */}
 
         {/* Projects */}

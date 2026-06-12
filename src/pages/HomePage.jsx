@@ -734,7 +734,7 @@ const HomePage = () => {
                   My creative process often begins with imitation, rooted in
                   reverence rather than malice. I am drawn to people and works
                   that inspire me, using their influence as a foundation to
-                  build ideas that evolve into my own. Artists like Slawn,
+                  build ideas that evolve into my own. Artists like Slawn
                   Pharrell, Drake, and Kanye West have shaped how I see
                   creativity as a conversation between identity, culture, and
                   innovation.

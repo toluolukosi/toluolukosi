@@ -1,25 +1,25 @@
 import React from "react";
 import StillLayout from "../../components/StillLayout";
 
-const LSDmp3 = () => {
+const Reduced = () => {
   return (
     <StillLayout
-      title="LSD.mp3"
+      title="Reduced"
       overview={[
         "LSD.mp3 is a poster series that reinterprets some of my favourite music albums through a psychedelic visual language.",
         "Using fluid typography, warped compositions, saturated color gradients, and hallucinatory textures, each piece translates the emotional and sonic identity of an album into immersive, surreal forms.",
         "The project explores how distortion, color, and visual rhythm can evoke sound, memory, and mood beyond literal representation."
       ]}
       images={[
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115694/PARIS_ej7vkn.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115686/TAKE_CARE_ik7t2n.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115687/KOD_tlz109.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777202374/SYRE_n4w83b.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115695/PSYCHODDRAMA_deuluy.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115691/THE_MELODIC_BLUE_f7zpzd.png",
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/REDUCED_qeutvv.png",
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007943/INTERSTELLAR_tvdkgx.png",
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/WOLF_OF_WALL_SREET_uouxhr.png",
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007775/DUNE_lepqfb.png",
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/WHIPLASH_nccybw.png",
+        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/AMERICAN_PSYCHO_fstddl.png"
       ]}
     />
   );
 };
 
-export default LSDmp3;
+export default Reduced;

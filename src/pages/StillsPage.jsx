@@ -8,12 +8,11 @@ const stills = [
       "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/BC_ovhoa6.png",
     route: "/stills/brutalist-cities",
     locked: false,
-  },
-  {
-    title: "Media Blending",
+  },  {
+    title: "Fergie Era",
     image:
-      "https://res.cloudinary.com/demo/image/upload/v1734509830/tokyo_xxx.jpg",
-    route: "/stills/MediaBlending",
+      "https://res.cloudinary.com/dzl5osene/image/upload/v1780512300/fergie_era_3_ghkxex.png",
+    route: "/stills/fergie-era",
     locked: false,
   },
   {
@@ -23,18 +22,18 @@ const stills = [
     route: "/stills/LSDmp3",
     locked: false,
   },
-  {
-    title: "Retro",
+    {
+    title: "Media Blending",
     image:
-      "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
-    route: "/stills/Retro",
+      "https://res.cloudinary.com/demo/image/upload/v1734509830/tokyo_xxx.jpg",
+    route: "/stills/MediaBlending",
     locked: false,
   },
   {
-    title: "Minimalist",
+    title: "Reduced",
     image:
-      "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
-    route: "/stills/Minimalist",
+      "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/REDUCED_qeutvv.png",
+    route: "/stills/Reduced",
     locked: false,
   },
   {
