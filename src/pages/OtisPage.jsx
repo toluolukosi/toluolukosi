@@ -2,11 +2,6 @@
 import React from "react";
 import ProjectLayout from "../components/ProjectLayout";
 
-// 🔁 REMOVE these:
-// import Covid1 from "/public/images/Strava-logo.png";
-// import Covid2 from "/public/images/portfolio-landing-page.jpg";
-// import Covid3 from "/public/images/Strava-logo.png";
-
 // ✅ ADD Cloudinary URLs as plain constants instead:
 const SprezzaturaImg1 =
   "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
@@ -22,7 +17,19 @@ const CovidProjectPage = () => {
       company="Multidisciplinary Creative Company"
       year="2020"
       type="Mobile"
-      heroImages={[SprezzaturaImg1, SprezzaturaImg2, SprezzaturaImg3]}
+      // Each section is a row: swipe left/right through its images,
+      // scroll up/down to move to the next section.
+      // TODO: swap in the real Cloudinary URLs for each section.
+      sections={[
+        {
+          title: "Branding",
+          images: [SprezzaturaImg1, SprezzaturaImg2, SprezzaturaImg3],
+        },
+        {
+          title: "Clothing Drops",
+          images: [SprezzaturaImg1, SprezzaturaImg2],
+        },
+      ]}
       overview={[
         "In the early days of the COVID-19 pandemic in Brazil, the Ministry of Health faced an urgent challenge: to swiftly and accurately provide citizens with official health information while also gathering data on their health status.",
         "The solution was an intuitive progressive web app designed to inform, guide, and track the pandemic's progression. This app provided critical information to the public and gathered essential data to shape public policies.",

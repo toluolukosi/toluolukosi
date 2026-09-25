@@ -1,5 +1,5 @@
 // src/components/ProjectLayout.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const ProjectLayout = ({
@@ -10,11 +10,25 @@ const ProjectLayout = ({
   overview,
   contributions = [],
   heroImages = [],
+  sections = [],
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [current, setCurrent] = useState(0);
+  // Media is a grid: each section is a row (swipe horizontally within it),
+  // and rows stack vertically (scroll up/down to move between sections).
+  // Pages that only pass heroImages get a single untitled row.
+  const mediaSections =
+    sections.length > 0
+      ? sections.filter((s) => s.images && s.images.length > 0)
+      : heroImages.length > 0
+      ? [{ title: null, images: heroImages }]
+      : [];
+
+  const gridRef = useRef(null);
+  const rowRefs = useRef([]);
+  const [activeRow, setActiveRow] = useState(0);
+  const [activeCols, setActiveCols] = useState({});
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
 
   // ✅ INITIAL SLIDE DIRECTION (entry animation)
@@ -26,22 +40,108 @@ const ProjectLayout = ({
       : "translate-x-full opacity-0" // enter from right (default)
   );
 
-  const hasImages = heroImages && heroImages.length > 0;
-  const hasMultiple = heroImages.length > 1;
+  const hasImages = mediaSections.length > 0;
+  const hasMultipleRows = mediaSections.length > 1;
+  const currentSection = mediaSections[activeRow];
+  const currentCol = activeCols[activeRow] ?? 0;
+  const rowHasMultiple = currentSection?.images.length > 1;
+
+  // Track which row / image is in view from the native scroll position
+  const handleGridScroll = (e) => {
+    const el = e.currentTarget;
+    if (!el.clientHeight) return;
+    setActiveRow(Math.round(el.scrollTop / el.clientHeight));
+  };
+
+  const handleRowScroll = (rowIndex) => (e) => {
+    const el = e.currentTarget;
+    if (!el.clientWidth) return;
+    const col = Math.round(el.scrollLeft / el.clientWidth);
+    setActiveCols((prev) =>
+      prev[rowIndex] === col ? prev : { ...prev, [rowIndex]: col }
+    );
+  };
+
+  const goToImage = (rowIndex, colIndex) => {
+    const row = rowRefs.current[rowIndex];
+    if (!row) return;
+    row.scrollTo({ left: colIndex * row.clientWidth, behavior: "smooth" });
+  };
+
+  const goToRow = (rowIndex) => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    grid.scrollTo({ top: rowIndex * grid.clientHeight, behavior: "smooth" });
+  };
+
+  // Mouse wheel / trackpad: one gesture = one step. Native snap alone lets a
+  // single wheel notch snap back to where it started.
+  // Vertical → next/prev section, horizontal → next/prev image in the row.
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    let lastEvent = 0;
+    let locked = false;
+    let accX = 0;
+    let accY = 0;
+
+    const onWheel = (e) => {
+      const now = Date.now();
+      const quiet = now - lastEvent > 180; // gesture ended (incl. momentum)
+      lastEvent = now;
+      if (quiet) {
+        locked = false;
+        accX = 0;
+        accY = 0;
+      }
+      if (locked) {
+        e.preventDefault();
+        return;
+      }
+
+      accX += e.deltaX;
+      accY += e.deltaY;
+      if (Math.abs(accX) < 25 && Math.abs(accY) < 25) {
+        e.preventDefault();
+        return;
+      }
+
+      const rowCount = grid.children.length;
+      const row = Math.round(grid.scrollTop / grid.clientHeight);
+
+      if (Math.abs(accY) >= Math.abs(accX)) {
+        const target = row + (accY > 0 ? 1 : -1);
+        // At the first/last section, let the page scroll instead (mobile)
+        if (target < 0 || target >= rowCount) return;
+        e.preventDefault();
+        goToRow(target);
+      } else {
+        e.preventDefault();
+        const rowEl = rowRefs.current[row];
+        if (!rowEl) return;
+        const count = rowEl.children.length;
+        const col = Math.round(rowEl.scrollLeft / rowEl.clientWidth);
+        const target = col + (accX > 0 ? 1 : -1);
+        if (target < 0 || target >= count) return;
+        goToImage(row, target);
+      }
+      locked = true;
+    };
+
+    grid.addEventListener("wheel", onWheel, { passive: false });
+    return () => grid.removeEventListener("wheel", onWheel);
+  }, [hasImages]);
 
   const handleNextImage = () => {
-    if (!hasImages) return;
-    setCurrent((prev) => (prev + 1) % heroImages.length);
+    if (!rowHasMultiple) return;
+    goToImage(activeRow, (currentCol + 1) % currentSection.images.length);
   };
 
   const handlePrevImage = () => {
-    if (!hasImages) return;
-    setCurrent((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1));
-  };
-
-  const handleDotClick = (index) => {
-    if (!hasImages) return;
-    setCurrent(index);
+    if (!rowHasMultiple) return;
+    const count = currentSection.images.length;
+    goToImage(activeRow, currentCol === 0 ? count - 1 : currentCol - 1);
   };
 
   // ===== PROJECT LIST (for dropdown + PREV/NEXT buttons) =====
@@ -100,53 +200,6 @@ const ProjectLayout = ({
     }, 450);
   };
 
-  // ✅ SWIPE HANDLERS (for mobile/tablet)
-  useEffect(() => {
-    const slider = document.getElementById("hero-slider");
-    if (!slider) return;
-
-    let startX = 0;
-    let endX = 0;
-
-    const handleTouchStart = (e) => {
-      startX = e.touches[0].clientX; // where the finger starts
-    };
-
-    const handleTouchMove = (e) => {
-      endX = e.touches[0].clientX; // where the finger moves to
-    };
-
-    const handleTouchEnd = () => {
-      const distance = startX - endX;
-
-      // Only count significant swipes
-      if (Math.abs(distance) > 50) {
-        if (distance > 0) {
-          // Swipe left → next image
-          handleNextImage();
-        } else {
-          // Swipe right → previous image
-          handlePrevImage();
-        }
-      }
-
-      // Reset values
-      startX = 0;
-      endX = 0;
-    };
-
-    slider.addEventListener("touchstart", handleTouchStart);
-    slider.addEventListener("touchmove", handleTouchMove);
-    slider.addEventListener("touchend", handleTouchEnd);
-
-    // Cleanup when component unmounts or current image changes
-    return () => {
-      slider.removeEventListener("touchstart", handleTouchStart);
-      slider.removeEventListener("touchmove", handleTouchMove);
-      slider.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, [current]);
-
   return (
     <section
       className={`
@@ -174,8 +227,10 @@ const ProjectLayout = ({
           "
         >
           {/* ========== LEFT – MEDIA CARD ========== */}
+          {/* Rows = project sections (scroll vertically between them).
+              Images inside a row scroll horizontally. Native scroll-snap
+              handles wheel, trackpad and touch. */}
           <div
-            id="hero-slider"
             className="
     relative
     rounded-[10px] md:rounded-[10px]
@@ -183,7 +238,7 @@ const ProjectLayout = ({
     border border-white/10
     shadow-[0_26px_80px_rgba(0,0,0,0.75)]
     bg-black
-    touch-pan-y select-none
+    select-none
     h-[360px]
     sm:h-[420px]
     md:h-[480px]
@@ -192,13 +247,105 @@ const ProjectLayout = ({
           >
             {hasImages ? (
               <>
-                <img
-                  src={heroImages[current]}
-                  alt={title}
-                  className="w-full h-full object-cover object-center"
-                />
+                <div
+                  ref={gridRef}
+                  onScroll={handleGridScroll}
+                  className="
+                    w-full h-full
+                    overflow-y-auto overflow-x-hidden
+                    snap-y snap-mandatory
+                    no-scrollbar
+                  "
+                >
+                  {mediaSections.map((section, rowIndex) => (
+                    <div
+                      key={section.title ?? rowIndex}
+                      ref={(el) => (rowRefs.current[rowIndex] = el)}
+                      onScroll={handleRowScroll(rowIndex)}
+                      className="
+                        w-full h-full
+                        flex
+                        overflow-x-auto overflow-y-hidden
+                        snap-x snap-mandatory snap-start snap-always
+                        overscroll-x-contain
+                        no-scrollbar
+                      "
+                    >
+                      {section.images.map((src, colIndex) => (
+                        <img
+                          key={`${src}-${colIndex}`}
+                          src={src}
+                          alt={
+                            section.title
+                              ? `${title} – ${section.title} ${colIndex + 1}`
+                              : `${title} ${colIndex + 1}`
+                          }
+                          loading={rowIndex === 0 ? "eager" : "lazy"}
+                          draggable={false}
+                          className="
+                            w-full h-full flex-shrink-0
+                            object-cover object-center
+                            snap-start snap-always
+                          "
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
 
-                {hasMultiple && (
+                {/* Section label – top left */}
+                {currentSection?.title && (
+                  <div
+                    className="
+                      absolute top-5 left-5
+                      px-3 py-1
+                      rounded-full
+                      bg-black/35 backdrop-blur-sm
+                      text-[10px] uppercase tracking-[0.22em]
+                      font-thedus-condensed text-white
+                      pointer-events-none
+                    "
+                  >
+                    {currentSection.title}
+                    {rowHasMultiple && (
+                      <span className="text-white/60">
+                        {" "}
+                        · {currentCol + 1}/{currentSection.images.length}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Section dots – top right (vertical) */}
+                {hasMultipleRows && (
+                  <div
+                    className="
+                      absolute top-5 right-5
+                      flex flex-col items-center gap-1.5
+                      px-1 py-2.5
+                      rounded-full
+                      bg-black/35 backdrop-blur-sm
+                      shadow-[0_10px_30px_rgba(0,0,0,0.6)]
+                    "
+                  >
+                    {mediaSections.map((section, i) => (
+                      <span
+                        key={i}
+                        role="button"
+                        onClick={() => goToRow(i)}
+                        aria-label={`Go to ${section.title ?? `section ${i + 1}`}`}
+                        title={section.title ?? undefined}
+                        className={`block cursor-pointer w-1.5 h-1.5 rounded-full transition-transform duration-200 ${
+                          i === activeRow
+                            ? "bg-white scale-125"
+                            : "bg-white/30 scale-100"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {rowHasMultiple && (
                   <>
                     <button
                       type="button"
@@ -237,46 +384,44 @@ const ProjectLayout = ({
                     >
                       &gt;
                     </button>
-                  </>
-                )}
 
-                {hasMultiple && (
-                  <div className="absolute bottom-5 left-1/2 -translate-x-1/2">
-                    {/* pill background */}
-                    <div
-                      className="
-                        flex items-center gap-1.5
-                        px-2.5 py-1
-                        rounded-full
-                        bg-black/35
-                        backdrop-blur-sm
-                        shadow-[0_10px_30px_rgba(0,0,0,0.6)]
-                      "
-                    >
-                      {heroImages.map((_, i) => (
-                        <span
-                          key={i}
-                          onClick={() => handleDotClick(i)}
-                          className={`block cursor-pointer
-                            w-1.5 h-1.5
-                            rounded-full
-                            flex-shrink-0
-                            transition-transform duration-200
-                            ${
-                              i === current
-                                ? "bg-white scale-125"
-                                : "bg-white/30 scale-100"
-                            }
-                          `}
-                        />
-                      ))}
+                    {/* Image dots for the current section – bottom */}
+                    <div className="absolute bottom-5 left-1/2 -translate-x-1/2">
+                      <div
+                        className="
+                          flex items-center gap-1.5
+                          px-2.5 py-1
+                          rounded-full
+                          bg-black/35
+                          backdrop-blur-sm
+                          shadow-[0_10px_30px_rgba(0,0,0,0.6)]
+                        "
+                      >
+                        {currentSection.images.map((_, i) => (
+                          <span
+                            key={i}
+                            onClick={() => goToImage(activeRow, i)}
+                            className={`block cursor-pointer
+                              w-1.5 h-1.5
+                              rounded-full
+                              flex-shrink-0
+                              transition-transform duration-200
+                              ${
+                                i === currentCol
+                                  ? "bg-white scale-125"
+                                  : "bg-white/30 scale-100"
+                              }
+                            `}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  </>
                 )}
               </>
             ) : (
               <div className="w-full h-full flex items-center justify-center text-xs text-white/80">
-                Add media via <code>heroImages</code>.
+                Add media via <code>sections</code> or <code>heroImages</code>.
               </div>
             )}
           </div>

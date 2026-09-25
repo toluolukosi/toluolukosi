@@ -239,3 +239,12 @@ body,
   max-width: 100%;
   overflow-x: hidden;
 }
+
+/* hide scrollbars but keep native scrolling (project media grid) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
