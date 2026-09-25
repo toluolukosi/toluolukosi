@@ -23,11 +23,20 @@ const CovidProjectPage = () => {
       sections={[
         {
           title: "Branding",
-          images: [SprezzaturaImg1, SprezzaturaImg2, SprezzaturaImg3],
+          images: [
+            SprezzaturaImg1,
+            // TEMP placeholders so the swipe is visible – replace with OTIS branding
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/LAGOS_mm0r7l.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/TOKYO_xbnsrq.png",
+          ],
         },
         {
           title: "Clothing Drops",
-          images: [SprezzaturaImg1, SprezzaturaImg2],
+          // TEMP placeholders – replace with OTIS clothing drop images
+          images: [
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1777115687/KOD_tlz109.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1777115686/TAKE_CARE_ik7t2n.png",
+          ],
         },
       ]}
       overview={[
