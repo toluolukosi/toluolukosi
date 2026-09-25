@@ -22,12 +22,12 @@ const stills = [
     route: "/stills/LSDmp3",
     locked: false,
   },
-    {
+  {
     title: "Media Blending",
     image:
       "https://res.cloudinary.com/demo/image/upload/v1734509830/tokyo_xxx.jpg",
-    route: "/stills/MediaBlending",
-    locked: false,
+    locked: true,
+    lockNote: "Coming soon",
   },
   {
     title: "Reduced",
@@ -40,24 +40,22 @@ const stills = [
     title: "Experimental",
     image:
       "https://res.cloudinary.com/demo/image/upload/v1734509830/noir_xxx.jpg",
-    route: "/stills/Experimental",
     locked: true,
-    lockNote: "Protected",
+    lockNote: "Coming soon",
   },
   {
     title: "Illustrations",
     image:
       "https://res.cloudinary.com/demo/image/upload/v1734509830/studiomood_xxx.jpg",
-    route: "/stills/Illustrations",
-    locked: false,
+    locked: true,
+    lockNote: "Coming soon",
   },
   {
     title: "Photography",
     image:
       "https://res.cloudinary.com/demo/image/upload/v1734509830/noir_xxx.jpg",
-    route: "/stills/Photography",
     locked: true,
-    lockNote: "Protected",
+    lockNote: "Coming soon",
   },
 ];
 
@@ -89,31 +87,25 @@ const StillsPage = () => {
       {/* GRID OF STILLS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px]">
         {stills.map((still) =>
-          still.locked ? (
-            // 🔒 LOCKED CARD
+          !still.route ? (
+            // 🔒 NON-CLICKABLE CARD (no route yet)
             <div
               key={still.title}
               className="
-                group relative
+                relative
                 w-full h-[250px]
                 rounded-2xl overflow-hidden
                 bg-[#050609]
                 border border-white/10
                 opacity-80
                 cursor-not-allowed
-                transition-all duration-300
               "
             >
               <div
-                className="
-                  absolute inset-0 bg-cover bg-center
-                  transition-transform duration-300 ease-out
-                  grayscale-0 lg:grayscale-80 lg:group-hover:grayscale-0
-                  lg:group-hover:scale-105
-                "
+                className="absolute inset-0 bg-cover bg-center grayscale-80"
                 style={{ backgroundImage: `url(${still.image})` }}
               />
-              <div className="absolute inset-0 bg-black/40 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-black/40" />
               <div className="absolute bottom-4 left-4 text-white">
                 <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                   <span>{still.title}</span>

@@ -347,12 +347,13 @@ const HomePage = () => {
             {/* This inline-flex block is the DESIGN width.
                 All three lines live inside it so they scale together. */}
             <div
-              className="inline-flex flex-col items-stretch text-white leading-none"
+              className="flex w-full flex-col items-stretch text-white leading-none"
               style={{
                 fontFamily: "Thedus-StencilWide, system-ui, sans-serif",
               }}
             >
               {/* DIGITAL */}
+              {/*
               <span
                 className="
                   block text-center
@@ -367,6 +368,7 @@ const HomePage = () => {
               >
                 DIGITAL
               </span>
+              */}
               {/* TOLU | OLUKOSI */}
               <div
                 className="mt-3 mb-1 sm:mt-4 sm:mb-2 font-thedus-condensed uppercase"
@@ -374,8 +376,10 @@ const HomePage = () => {
               >
                 <div
                   className="
-      flex justify-between
-      text-[clamp(0.7rem,2vw,1.9rem)]
+      flex flex-row
+      items-center justify-center
+      gap-[clamp(0.5rem,24.1002vw,19.25rem)]
+      text-[clamp(1.15rem,4vw,1.9rem)]
       tracking-[0.3em]
     "
                 >
@@ -385,6 +389,7 @@ const HomePage = () => {
               </div>
 
               {/* CREATOR */}
+              {/*
               <span
                 className="
                   block text-center
@@ -399,6 +404,7 @@ const HomePage = () => {
               >
                 CREATOR
               </span>
+              */}
             </div>
           </div>
         </div>

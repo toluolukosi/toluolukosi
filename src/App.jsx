@@ -58,6 +58,7 @@ const App = () => {
           }
         />
       </Routes>
+      <div className="grunge-overlay" aria-hidden="true" />
     </div>
   );
 };
