@@ -9,6 +9,7 @@ const ProjectLayout = ({
   type,
   overview,
   contributions = [],
+  credits = [],
   heroImages = [],
   sections = [],
 }) => {
@@ -146,7 +147,7 @@ const ProjectLayout = ({
 
   // ===== PROJECT LIST (for dropdown + PREV/NEXT buttons) =====
   const projectOptions = [
-    { label: "Sprezzatura", path: "/project1" },
+    { label: "Eclipse", path: "/project1" },
     { label: "OTIS", path: "/otis" },
     { label: "Tolukosi", path: "/tolukosi" },
   ];
@@ -271,24 +272,84 @@ const ProjectLayout = ({
                         no-scrollbar
                       "
                     >
-                      {section.images.map((src, colIndex) => (
-                        <img
-                          key={`${src}-${colIndex}`}
-                          src={src}
-                          alt={
-                            section.title
-                              ? `${title} – ${section.title} ${colIndex + 1}`
-                              : `${title} ${colIndex + 1}`
-                          }
-                          loading={rowIndex === 0 ? "eager" : "lazy"}
-                          draggable={false}
-                          className="
+                      {section.images.map((item, colIndex) => {
+                        // Items are URL strings, or { src, muted: false } for
+                        // a video that should play with sound
+                        const src = typeof item === "string" ? item : item.src;
+                        const withSound = item?.muted === false;
+                        const mediaClass = `
                             w-full h-full flex-shrink-0
                             object-cover object-center
                             snap-start snap-always
-                          "
-                        />
-                      ))}
+                          `;
+
+                        // { src, website: true } shows the live site; the
+                        // overlay keeps swipe/scroll working and opens it
+                        if (item?.website) {
+                          return (
+                            <a
+                              key={`${src}-${colIndex}`}
+                              href={src}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              draggable={false}
+                              className={`${mediaClass} relative block group`}
+                            >
+                              <iframe
+                                src={src}
+                                title={`${title} website`}
+                                loading="lazy"
+                                tabIndex={-1}
+                                className="w-full h-full border-0 pointer-events-none bg-black"
+                              />
+                              <span
+                                className="
+                                  absolute bottom-16 left-1/2 -translate-x-1/2
+                                  px-4 py-2
+                                  rounded-full
+                                  bg-black/60 backdrop-blur-sm
+                                  border border-white/20
+                                  text-[11px] uppercase tracking-[0.22em]
+                                  font-thedus-condensed text-white
+                                  group-hover:bg-white group-hover:text-black
+                                  transition
+                                "
+                              >
+                                Visit site ↗
+                              </span>
+                            </a>
+                          );
+                        }
+                        // Video URLs (.mp4 etc.) render as muted looping clips
+                        return /\.(mp4|webm|mov)$/i.test(src) ? (
+                          <video
+                            key={`${src}-${colIndex}`}
+                            src={src}
+                            // Browsers block autoplay with sound, so videos
+                            // with sound get controls and start on click
+                            autoPlay={!withSound}
+                            muted={!withSound}
+                            loop={!withSound}
+                            controls={withSound}
+                            playsInline
+                            preload={rowIndex === 0 ? "auto" : "metadata"}
+                            className={mediaClass}
+                          />
+                        ) : (
+                          <img
+                            key={`${src}-${colIndex}`}
+                            src={src}
+                            alt={
+                              section.title
+                                ? `${title} – ${section.title} ${colIndex + 1}`
+                                : `${title} ${colIndex + 1}`
+                            }
+                            loading={rowIndex === 0 ? "eager" : "lazy"}
+                            draggable={false}
+                            className={mediaClass}
+                          />
+                        );
+                      })}
                     </div>
                   ))}
                 </div>
@@ -638,6 +699,37 @@ const ProjectLayout = ({
                           >
                             <span className="mt-[7px] w-[7px] h-[7px] rounded-full border border-white/70" />
                             <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
+
+                  {credits.length > 0 && (
+                    <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  )}
+
+                  {/* CREDITS */}
+                  {credits.length > 0 && (
+                    <section>
+                      <div className="text-[10px] uppercase tracking-[0.22em] font-thedus-condensed text-gray-400 mb-2">
+                        Credits
+                      </div>
+                      <ul className="space-y-2">
+                        {credits.map(({ name, role }, i) => (
+                          <li
+                            key={i}
+                            className="
+                              flex justify-between gap-4
+                              text-[13px] leading-relaxed
+                            "
+                          >
+                            <span className="text-gray-100">{name}</span>
+                            {role && (
+                              <span className="text-right text-gray-400">
+                                {role}
+                              </span>
+                            )}
                           </li>
                         ))}
                       </ul>

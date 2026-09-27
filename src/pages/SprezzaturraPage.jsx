@@ -2,38 +2,98 @@
 import React from "react";
 import ProjectLayout from "../components/ProjectLayout";
 
-// 🔁 REMOVE these:
-// import Covid1 from "/public/images/Strava-logo.png";
-// import Covid2 from "/public/images/portfolio-landing-page.jpg";
-// import Covid3 from "/public/images/Strava-logo.png";
+const EclipseLoop =
+  "https://res.cloudinary.com/dzl5osene/video/upload/v1790342274/Untitled_design_1_vcngzo.mp4";
+const EclipseFilm =
+  "https://res.cloudinary.com/dzl5osene/video/upload/v1790496971/A_BLACK_AFFAIR_1_vv9q9q.mp4";
 
-// ✅ ADD Cloudinary URLs as plain constants instead:
-const SprezzaturaImg1 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1765984749/TOKYO_1_h6aerr.png";
-const SprezzaturaImg2 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
-const SprezzaturaImg3 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
-
-const CovidProjectPage = () => {
+const EclipsePage = () => {
   return (
     <ProjectLayout
       title="eclipse"
-      company="Music Project"
-      year="2020"
-      type="Mobile"
-      heroImages={[SprezzaturaImg1, SprezzaturaImg2, SprezzaturaImg3]}
+      company="Event"
+      year="2024"
+      // Each section is a row: swipe left/right through its media,
+      // scroll up/down to move to the next section.
+      sections={[
+        {
+          title: "Branding",
+          images: [
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489765/Frame_227_oq4drk.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489780/Frame_238_p1ojnn.png",
+            EclipseLoop,
+          ],
+        },
+        {
+          title: "In Use",
+          images: [
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489763/Frame_230_fx15cv.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489768/Frame_236_cl590r.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489773/Frame_231_lqrufp.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489783/Frame_234_i0s3q2.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489772/Frame_233_uc23qt.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489773/Frame_232_ish5ca.png",
+            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489878/Frame_237_xsmuvx.png",
+          ],
+        },
+        {
+          title: "MP4",
+          images: [{ src: EclipseFilm, muted: false }],
+        },
+        {
+          title: "Website",
+          images: [
+            { src: "https://ail-eclipse.netlify.app/", website: true },
+          ],
+        },
+      ]}
       overview={[
-        "In the early days of the COVID-19 pandemic in Brazil, the Ministry of Health faced an urgent challenge: to swiftly and accurately provide citizens with official health information while also gathering data on their health status.",
-        "The solution was an intuitive progressive web app designed to inform, guide, and track the pandemic's progression. This app provided critical information to the public and gathered essential data to shape public policies.",
+        <>
+          <strong>Eclipse: A Black Affair</strong> is a luxury visual identity
+          created for an <strong>exclusive dinner and awards night</strong>{" "}
+          celebrating excellence, recognition, and community.
+        </>,
+        <>
+          The identity is built around the concept of{" "}
+          <strong>light emerging from darkness</strong>, expressed through
+          dramatic monochromatic photography, the eclipse/crescent symbol,
+          refined typography, and generous negative space.
+        </>,
+        <>
+          The system combines <strong>Cormorant Garamond</strong> for elegance
+          and editorial expression with <strong>Montserrat</strong> for modern
+          structure and clarity. At the heart of the identity is{" "}
+          <strong>“A Black Affair”</strong>, developed as a distinctive
+          signature expression that can exist independently of the Eclipse
+          logo.
+        </>,
+        <>
+          The branding extends across the complete event experience, including{" "}
+          <strong>
+            invitations, menus, table tags, tickets, signage, social media,
+            stage graphics, and event materials
+          </strong>
+          , creating a cohesive and sophisticated atmosphere from first
+          impression to the night itself.
+        </>,
       ]}
       contributions={[
-        "Conducted interviews with epidemiology experts, desk research of global solutions, and benchmark analyses to derive insights and shape the app's foundational strategy.",
-        "Developed a user-centric interface complemented by diverse, color-coded virtual screening illustrations and consistent iconography to enhance user engagement and comprehension.",
-        "Introduced features such as GPS-based Health Unit locator, symptom self-assessment flows, and tailored recommendations based on risk categorization.",
+        "Set the creative vision for Eclipse, defining “light emerging from darkness” as the concept behind every visual and written decision.",
+        "Led the visual identity, from the eclipse/crescent mark and the “A Black Affair” signature to the typography system and monochrome palette.",
+        "Art directed the photography and video, shaping the lighting, mood and styling of the shoots.",
+        "Guided the tone of voice and copy so the words carried the same restraint and elegance as the visuals.",
+        "Extended the identity across every touchpoint, from invitations and tickets to signage and stage graphics, keeping the guest experience consistent from first impression to the night itself.",
+        "Brought together and directed the photographers, videographers and copywriter, reviewing work at each stage through to final delivery.",
+      ]}
+      credits={[
+        { name: "Kareem Saheed", role: "Photographer & Videographer" },
+        { name: "Laolu Majekodunmi", role: "Photographer" },
+        { name: "David Shitta-Bey", role: "Videographer" },
+        { name: "Okiki Adeyeye", role: "Copy" },
+        { name: "Tobe Ezimorah", role: "Dev" },
       ]}
     />
   );
 };
 
-export default CovidProjectPage;
+export default EclipsePage;

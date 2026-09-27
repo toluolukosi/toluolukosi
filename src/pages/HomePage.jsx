@@ -657,7 +657,7 @@ const HomePage = () => {
             >
               <ProjectCard
                 title="eclipse"
-                year="2022"
+                year="2024"
                 image="https://res.cloudinary.com/dzl5osene/image/upload/v1767624920/Eclipsequad_uvcdec.png"
                 logo="https://res.cloudinary.com/dzl5osene/image/upload/v1767626188/eclipselogo_j90npw.png"
                 line1="Event"
