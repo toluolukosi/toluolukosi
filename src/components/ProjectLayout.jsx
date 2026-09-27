@@ -279,7 +279,7 @@ const ProjectLayout = ({
                         const withSound = item?.muted === false;
                         const mediaClass = `
                             w-full h-full flex-shrink-0
-                            object-cover object-center
+                            object-contain object-center
                             snap-start snap-always
                           `;
 
