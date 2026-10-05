@@ -738,12 +738,12 @@ const HomePage = () => {
       {/* ========== ABOUT SECTION (3 columns → vertical stack on small) ========== */}
       <section id="about" className="mt-[200px] px-[4%] z-10">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-[24.5px]">
-          {/* LEFT COLUMN – ABOUT ME + TOOL STACK */}
-          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col gap-[24.5px]">
+          {/* COLUMN 1 – ABOUT ME */}
+          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col">
             {/* ABOUT ME CARD */}
             <section
               className="
-                w-full
+                w-full lg:flex-1
                 rounded-2xl
                 border border-white/10
                 bg-[#151822]/90
@@ -796,11 +796,19 @@ const HomePage = () => {
                 </p>
               </div>
             </section>
+          </div>
 
-            {/* TOOL STACK UNDER ABOUT ME */}
+          {/* COLUMN 2 – IMAGE SLIDER (fills the column height on desktop) */}
+          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col">
+            <AboutSlider />
+          </div>
+
+          {/* COLUMN 3 – TOOL STACK + CERTIFICATIONS + VIDEO */}
+          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col gap-[24.5px]">
+            {/* TOOL STACK */}
             <section
               className="
-                w-full lg:flex-1
+                w-full
                 rounded-2xl
                 border border-white/10
                 bg-[#151822]/90
@@ -838,13 +846,8 @@ const HomePage = () => {
                 ))}
               </div>
             </section>
-          </div>
 
-          {/* MIDDLE COLUMN – SLIDER + CERTIFICATIONS */}
-          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col gap-[24.5px]">
-            <AboutSlider />
-
-            {/* CERTIFICATIONS UNDER SLIDER */}
+            {/* CERTIFICATIONS */}
             <section
               className="
                 w-full
@@ -899,17 +902,15 @@ const HomePage = () => {
                 ))}
               </div>
             </section>
-          </div>
 
-          {/* RIGHT COLUMN – WEEKLY RECAP VIDEO (fills the column height on desktop) */}
-          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col">
+            {/* WEEKLY RECAP VIDEO – takes the remaining height */}
             <a
               href="https://i.airbuds.fm/tolukosi/r0bSHeN1m4"
               target="_blank"
               rel="noopener noreferrer"
               className="
                 group relative block
-                w-full h-[560px] lg:h-auto lg:flex-1
+                w-full h-[560px] lg:h-auto lg:flex-1 lg:min-h-[220px]
                 rounded-2xl overflow-hidden
                 border border-white/10
                 bg-[#151822]/90
