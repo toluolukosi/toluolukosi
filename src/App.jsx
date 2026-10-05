@@ -12,6 +12,7 @@ import SprezzaturraPage from "./pages/SprezzaturraPage";
 import OtisPage from "./pages/OtisPage";
 import TolukosiPage from "./pages/TolukosiPage";
 import ContactPage from "./pages/ContactPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 // new still pages
 import BrutalistCities from "./pages/Stills/BrutalistCities";
@@ -40,6 +41,7 @@ const App = () => {
         {/* Add more still pages here */}
 
         {/* Projects */}
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/project1" element={<SprezzaturraPage />} />
         <Route path="/otis" element={<OtisPage />} />
         <Route path="/tolukosi" element={<TolukosiPage />} />

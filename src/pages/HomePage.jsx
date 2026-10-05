@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
+import projects from "../data/projects";
 import AboutSlider from "../components/AboutSlider";
 
 const HomePage = () => {
@@ -648,75 +649,33 @@ const HomePage = () => {
       <section id="projects" className="mt-[100px] px-[4%]">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-wrap gap-6 justify-center">
-            <div
-              className="
-      project-card-width
-      basis-full
-      lg:basis-[calc((100%-48px)/3)]
-    "
-            >
-              <ProjectCard
-                title="eclipse"
-                year="2024"
-                image="https://res.cloudinary.com/dzl5osene/image/upload/v1767624920/Eclipsequad_uvcdec.png"
-                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1767626188/eclipselogo_j90npw.png"
-                line1="Event"
-                line2="Dinner & Awards event"
-                route="/project1"
-              />
-            </div>
-
-            <div
-              className="
-      project-card-width
-      basis-full
-      lg:basis-[calc((100%-48px)/3)]
-    "
-            >
-              <ProjectCard
-                title="otis"
-                year="2023"
-                image="https://res.cloudinary.com/dzl5osene/image/upload/v1768218445/OTIS_1_ge0anb.png"
-                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png"
-                line1="Multidisciplinary Creative Company"
-                line2="Design, Fashion, Film, Lifestyle, Music"
-                route="/otis"
-              />
-            </div>
-
-            <div
-              className="
-      project-card-width
-      basis-full
-      lg:basis-[calc((100%-48px)/3)]
-    "
-            >
-              <ProjectCard
-                title="tolukosi"
-                year="2024"
-                image="https://res.cloudinary.com/dzl5osene/image/upload/v1767629352/Tolukosi_1_spx2br.png"
-                logo="https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/tolukosiicon_qodiyw.png"
-                line1="Luxury Fashion"
-                line2="Suits, Concept Fashion"
-                route="/tolukosi"
-              />
-            </div>
+            {projects.map((project) => (
+              <div
+                key={project.route}
+                className="
+                  project-card-width
+                  basis-full
+                  lg:basis-[calc((100%-48px)/3)]
+                "
+              >
+                <ProjectCard {...project} />
+              </div>
+            ))}
           </div>
 
-          {/* "More" button – same shell + top bar styling as ProjectCard */}
-          <button
-            type="button"
+          {/* "More" link – same shell + top bar styling as ProjectCard */}
+          <Link
+            to="/projects"
             className="
               group
               mt-6 w-full
-              rounded-2xl!
-              bg-[#050609]!
-              border border-white/10!
-              lg:hover:border-white/20!
+              rounded-2xl
+              bg-[#050609]
+              border border-white/10
+              lg:hover:border-white/20
               transition-colors duration-300
-              p-[10px]!
+              p-[10px]
               flex
-              cursor-pointer
             "
           >
             <div
@@ -743,7 +702,7 @@ const HomePage = () => {
                 more
               </span>
             </div>
-          </button>
+          </Link>
         </div>
       </section>
 
