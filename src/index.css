@@ -260,3 +260,24 @@ body,
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+/* Projects page: gentle sideways pulse on the "more this way" arrow */
+@keyframes scroll-hint-pulse {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+.scroll-hint-arrow {
+  display: inline-block;
+  animation: scroll-hint-pulse 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint-arrow {
+    animation: none;
+  }
+}

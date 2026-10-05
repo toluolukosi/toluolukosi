@@ -31,6 +31,14 @@ const projects = [
     line2: "Suits, Concept Fashion",
     route: "/tolukosi",
   },
+  {
+    // Placeholder – swap in the real project details + route when ready
+    title: "project 04",
+    year: "2026",
+    line1: "Coming soon",
+    line2: "In the works",
+    placeholder: true,
+  },
 ];
 
 export default projects;

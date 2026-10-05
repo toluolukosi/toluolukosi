@@ -2,10 +2,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
+const ProjectCard = ({
+  title,
+  year,
+  image,
+  logo,
+  line1,
+  line2,
+  route,
+  placeholder = false,
+}) => {
+  // Placeholder cards aren't clickable yet
+  const Wrapper = placeholder ? "div" : Link;
+  const wrapperProps = placeholder ? { "aria-disabled": true } : { to: route };
+
   return (
-    <Link
-      to={route}
+    <Wrapper
+      {...wrapperProps}
       className="
         group
         relative w-full h-[652px]
@@ -69,6 +82,7 @@ const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
           "
         >
           {/* 📸 IMAGE LAYER (zoom + grayscale) */}
+          {image && (
           <div
             className="
               absolute inset-0
@@ -83,12 +97,14 @@ const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
             "
             style={{ backgroundImage: `url(${image})` }}
           />
+          )}
 
           {/* You can optionally add a subtle overlay here if you like:
               <div className='absolute inset-0 bg-black/10 lg:group-hover:bg-black/20 transition-colors' />
           */}
 
           {/* Logo overlay */}
+          {logo && (
           <img
             src={logo}
             alt="Logo"
@@ -99,9 +115,14 @@ const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
               transition-transform duration-300
             "
           />
+          )}
 
           {/* 📱 Mobile & tablet: text always visible */}
-          <div className="absolute bottom-4 left-4 text-white lg:hidden">
+          <div
+            className={`absolute bottom-4 left-4 text-white ${
+              placeholder ? "" : "lg:hidden"
+            }`}
+          >
             <p className="text-[31px] font-bold font-thedus-condensed leading-none">
               {line1}
             </p>
@@ -111,6 +132,7 @@ const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
           </div>
 
           {/* 🖥 Desktop: text only on hover */}
+          {!placeholder && (
           <div
             className="
               absolute bottom-4 left-4
@@ -128,9 +150,10 @@ const ProjectCard = ({ title, year, image, logo, line1, line2, route }) => {
               {line2}
             </p>
           </div>
+          )}
         </div>
       </div>
-    </Link>
+    </Wrapper>
   );
 };
 

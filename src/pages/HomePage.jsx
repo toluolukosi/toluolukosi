@@ -649,9 +649,13 @@ const HomePage = () => {
       <section id="projects" className="mt-[100px] px-[4%]">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-wrap gap-6 justify-center">
-            {projects.map((project) => (
+            {/* home shows the first three real projects; the rest live on /projects */}
+            {projects
+              .filter((project) => !project.placeholder)
+              .slice(0, 3)
+              .map((project) => (
               <div
-                key={project.route}
+                key={project.title}
                 className="
                   project-card-width
                   basis-full
