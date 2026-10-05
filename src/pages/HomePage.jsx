@@ -702,6 +702,48 @@ const HomePage = () => {
               />
             </div>
           </div>
+
+          {/* "More" button – same shell + top bar styling as ProjectCard */}
+          <button
+            type="button"
+            className="
+              group
+              mt-6 w-full
+              rounded-2xl
+              bg-[#050609]
+              border border-white/10
+              lg:hover:border-white/20
+              transition-colors duration-300
+              p-[10px]
+              flex
+              cursor-pointer
+            "
+          >
+            <div
+              className="
+                w-full h-[62px]
+                flex justify-center items-center
+                px-4
+                rounded-xl
+                border border-white/10
+                bg-[#111217]
+                bg-gradient-to-br
+                from-[#111217]
+                via-[#111217]
+                to-[#111217]
+                shadow-[0_8px_24px_rgba(0,0,0,0.6)]
+                lg:group-hover:from-white/5
+                lg:group-hover:via-white/5
+                lg:group-hover:to-white/5
+                lg:group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.75)]
+                transition-[background,box-shadow] duration-300
+              "
+            >
+              <span className="text-[16px] font-medium font-thedus-condensed text-white">
+                more
+              </span>
+            </div>
+          </button>
         </div>
       </section>
 
