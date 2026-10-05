@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavIconButton from "../components/NavIconButton";
 
 const stills = [
   {
@@ -69,19 +70,7 @@ const StillsPage = () => {
         </h1>
 
         {/* 🏠 BACK TO HOME BUTTON */}
-        <Link
-          to="/"
-          className="
-            text-white text-[14px] md:text-[15px]
-            uppercase tracking-[0.22em]
-            border border-white/20
-            px-4 py-2 rounded-[8px]
-            hover:bg-white hover:text-black
-            transition duration-300
-          "
-        >
-          ←
-        </Link>
+        <NavIconButton to="/" icon="back" label="Back to home" />
       </div>
 
       {/* GRID OF STILLS */}

@@ -235,17 +235,16 @@ const HomePage = () => {
             <div className="absolute top-11 right-0 bg-black/80 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg">
               <ul className="flex flex-col items-start gap-3 font-thedus-condensed text-[16px] leading-tight">
                 {/* 01 PROJECTS */}
-                <div
-                  onClick={() => handleNavClick("#projects")}
-                  role="button"
-                  tabIndex={0}
+                <Link
+                  to="/projects"
+                  onClick={() => setMenuOpen(false)}
                   className="text-left group cursor-pointer"
                 >
                   <div className="text-white leading-[15px] group-hover:text-yellow-400 transition duration-300">
                     01
                   </div>
                   <div className="text-gray-400 leading-[15px]">Projects</div>
-                </div>
+                </Link>
 
                 {/* 02 GALLERY */}
                 <Link
@@ -289,10 +288,8 @@ const HomePage = () => {
               }
             `}
           >
-            <div
-              onClick={() => handleNavClick("#projects")}
-              role="button"
-              tabIndex={0}
+            <Link
+              to="/projects"
               className="group text-left leading-tight cursor-pointer"
             >
               <div className="text-white text-[18px] leading-[15px] group-hover:text-gray-400 transition duration-300">
@@ -301,7 +298,7 @@ const HomePage = () => {
               <div className="text-gray-400 group-hover:text-white text-[18px] leading-[15px]">
                 Projects
               </div>
-            </div>
+            </Link>
 
             <Link
               to="/stills"
