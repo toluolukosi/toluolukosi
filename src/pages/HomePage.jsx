@@ -709,12 +709,12 @@ const HomePage = () => {
             className="
               group
               mt-6 w-full
-              rounded-2xl
-              bg-[#050609]
-              border border-white/10
-              lg:hover:border-white/20
+              rounded-2xl!
+              bg-[#050609]!
+              border border-white/10!
+              lg:hover:border-white/20!
               transition-colors duration-300
-              p-[10px]
+              p-[10px]!
               flex
               cursor-pointer
             "
