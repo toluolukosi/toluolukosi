@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import NavIconButton from "./NavIconButton";
 
 const StillLayout = ({
   title,
@@ -209,23 +210,12 @@ const StillLayout = ({
                 </div>
 
                 {/* Close Button */}
-                <button
-                  type="button"
+                <NavIconButton
                   onClick={() => navigate("/stills")}
-                  className="
-                    hidden sm:flex flex-shrink-0
-                    w-9 h-9 md:w-10 md:h-10
-                    rounded-[10px]
-                    border border-white/10
-                    bg-[#171821]
-                    items-center justify-center
-                    text-sm text-gray-300
-                    hover:bg-[#1F2937] hover:text-white transition
-                  "
-                  aria-label="Close project"
-                >
-                  ×
-                </button>
+                  icon="close"
+                  label="Close project"
+                  className="hidden sm:block"
+                />
               </div>
             </div>
           </header>

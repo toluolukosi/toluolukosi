@@ -5,6 +5,41 @@ import ProjectCard from "../components/ProjectCard";
 import projects from "../data/projects";
 import AboutSlider from "../components/AboutSlider";
 
+// Side tile background: looping muted video if `video` is set, else image
+const SideMedia = ({ side }) => {
+  const mediaClasses = `
+    absolute inset-0 w-full h-full
+    transition-transform duration-300 ease-out
+    grayscale-0
+    lg:grayscale-80
+    lg:group-hover:grayscale-0
+    lg:group-hover:scale-105
+  `;
+
+  if (side.video) {
+    return (
+      <video
+        className={`${mediaClasses} object-cover`}
+        src={side.video}
+        poster={side.image}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return (
+    <div
+      className={`${mediaClasses} bg-cover bg-center`}
+      style={{ backgroundImage: `url(${side.image})` }}
+    />
+  );
+};
+
 const HomePage = () => {
   const [heroProgress, setHeroProgress] = useState(0); // 0 → top, 1 → passed hero
   const [menuOpen, setMenuOpen] = useState(false); // mobile / tablet nav
@@ -28,6 +63,7 @@ const HomePage = () => {
       title: "Sound",
       route: "/sound",
       image: "/images/AboutPictures/IMG_3747.jpg",
+      video: "", // 🎬 paste the video file URL (e.g. Cloudinary .mp4) here
       locked: true, // 🔒 this one is protected
       lockNote: "Protected", // text you want to show
     },
@@ -505,18 +541,8 @@ const HomePage = () => {
                   transition-colors duration-300
                 "
               >
-                {/* IMAGE LAYER */}
-                <div
-                  className="
-                    absolute inset-0 bg-cover bg-center
-                    transition-transform duration-300 ease-out
-                    grayscale-0
-                    lg:grayscale-80
-                    lg:group-hover:grayscale-0
-                    lg:group-hover:scale-105
-                  "
-                  style={{ backgroundImage: `url(${side.image})` }}
-                />
+                {/* IMAGE / VIDEO LAYER */}
+                <SideMedia side={side} />
 
                 {/* OVERLAY LAYER */}
                 <div
@@ -590,18 +616,8 @@ const HomePage = () => {
                   transition-colors duration-300
                 "
               >
-                {/* IMAGE LAYER */}
-                <div
-                  className="
-                    absolute inset-0 bg-cover bg-center
-                    transition-transform duration-300 ease-out
-                    grayscale-0
-                    lg:grayscale-80
-                    lg:group-hover:grayscale-0
-                    lg:group-hover:scale-105
-                  "
-                  style={{ backgroundImage: `url(${side.image})` }}
-                />
+                {/* IMAGE / VIDEO LAYER */}
+                <SideMedia side={side} />
 
                 {/* OVERLAY LAYER */}
                 <div

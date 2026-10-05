@@ -545,9 +545,9 @@ const ProjectLayout = ({
                     </button>
                   </div>
 
-                  {/* Close button – ALWAYS go home */}
+                  {/* Close button – back to the projects page */}
                   <NavIconButton
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/projects")}
                     icon="close"
                     label="Close project"
                     className="hidden sm:block"

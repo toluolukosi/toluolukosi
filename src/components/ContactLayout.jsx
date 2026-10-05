@@ -1,6 +1,7 @@
 // src/components/ContactLayout.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import NavIconButton from "./NavIconButton";
 
 /* =========================
    EDIT FONT SIZES HERE
@@ -416,25 +417,12 @@ export default function ContactLayout({ email, phone, homePath = "/" }) {
                   </div>
                 </div>
 
-                <button
-                  type="button"
+                <NavIconButton
                   onClick={handleClose}
-                  className="
-                    hidden sm:flex
-                    flex-shrink-0
-                    w-9 h-9 md:w-10 md:h-10
-                    rounded-[10px]
-                    border border-white/10
-                    bg-[#171821]
-                    items-center justify-center
-                    text-sm text-gray-300
-                    hover:bg-[#1F2937] hover:text-white
-                    transition
-                  "
-                  aria-label="Close contact"
-                >
-                  ×
-                </button>
+                  icon="close"
+                  label="Close contact"
+                  className="hidden sm:block"
+                />
               </div>
             </header>
 
