@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import projects from "../data/projects";
 import AboutSlider from "../components/AboutSlider";
+import SideVisual from "../components/SideVisual";
 
-// Side tile background: looping muted video if `video` is set, else image
+// Side tile background: animated visual, looping muted video, or image
 const SideMedia = ({ side }) => {
   const mediaClasses = `
     absolute inset-0 w-full h-full
@@ -15,6 +16,14 @@ const SideMedia = ({ side }) => {
     lg:group-hover:grayscale-0
     lg:group-hover:scale-105
   `;
+
+  if (side.visual) {
+    return (
+      <div className="absolute inset-0 transition-transform duration-300 ease-out lg:group-hover:scale-105">
+        <SideVisual type={side.visual} />
+      </div>
+    );
+  }
 
   if (side.video) {
     return (
@@ -56,6 +65,7 @@ const HomePage = () => {
       title: "Live",
       route: "/live",
       image: "/images/AboutPictures/IMG_3747.jpg",
+      visual: "live", // animated background (src/components/SideVisual.jsx)
       locked: true, // 🔒 this one is protected
       lockNote: "Protected", // text you want to show
     },
@@ -63,7 +73,7 @@ const HomePage = () => {
       title: "Sound",
       route: "/sound",
       image: "/images/AboutPictures/IMG_3747.jpg",
-      video: "", // 🎬 paste the video file URL (e.g. Cloudinary .mp4) here
+      visual: "sound", // animated background (src/components/SideVisual.jsx)
       locked: true, // 🔒 this one is protected
       lockNote: "Protected", // text you want to show
     },
@@ -71,6 +81,7 @@ const HomePage = () => {
       title: "Dev",
       route: "/dev",
       image: "/images/AboutPictures/IMG_3747.jpg",
+      visual: "dev", // animated background (src/components/SideVisual.jsx)
       locked: true, // 🔒 this one is protected
       lockNote: "Protected", // text you want to show
     },
