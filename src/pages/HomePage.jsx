@@ -102,7 +102,7 @@ const HomePage = () => {
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/React_z6myfj.png",
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545095/TailwindCSS_gxuoxu.png",
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/github_z2dw9o.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/chatgpt_k4gn9e.png",
+    "/images/claude-logo.svg",
   ];
 
   
@@ -739,12 +739,11 @@ const HomePage = () => {
       <section id="about" className="mt-[200px] px-[4%] z-10">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-[24.5px]">
           {/* LEFT COLUMN – ABOUT ME + TOOL STACK */}
-          <div className="w-full lg:flex-1 flex flex-col gap-[24.5px]">
+          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col gap-[24.5px]">
             {/* ABOUT ME CARD */}
             <section
               className="
                 w-full
-                self-start
                 rounded-2xl
                 border border-white/10
                 bg-[#151822]/90
@@ -801,7 +800,7 @@ const HomePage = () => {
             {/* TOOL STACK UNDER ABOUT ME */}
             <section
               className="
-                w-full
+                w-full lg:flex-1
                 rounded-2xl
                 border border-white/10
                 bg-[#151822]/90
@@ -842,7 +841,7 @@ const HomePage = () => {
           </div>
 
           {/* MIDDLE COLUMN – SLIDER + CERTIFICATIONS */}
-          <div className="w-full lg:flex-1 flex flex-col gap-[24.5px]">
+          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col gap-[24.5px]">
             <AboutSlider />
 
             {/* CERTIFICATIONS UNDER SLIDER */}
@@ -902,44 +901,30 @@ const HomePage = () => {
             </section>
           </div>
 
-          {/* RIGHT COLUMN – VIDEO + STRAVA (unchanged) */}
-          <div className="w-full lg:flex-1 flex flex-col gap-y-[24.5px]">
-            <div
-              className="group w-full bg-gray-800 border border-white/10 rounded-2xl overflow-hidden"
-              style={{ height: "420px" }}
+          {/* RIGHT COLUMN – WEEKLY RECAP VIDEO (fills the column height on desktop) */}
+          <div className="w-full lg:flex-1 lg:min-w-0 flex flex-col">
+            <a
+              href="https://i.airbuds.fm/tolukosi/r0bSHeN1m4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                group relative block
+                w-full h-[560px] lg:h-auto lg:flex-1
+                rounded-2xl overflow-hidden
+                border border-white/10
+                bg-[#151822]/90
+                shadow-[0_18px_60px_rgba(0,0,0,0.7)]
+              "
             >
-              <a
-                href="https://i.airbuds.fm/tolukosi/r0bSHeN1m4"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <video
-                  src="/images/videos/weeklyRecap-2025-08-04.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover transition-all duration-[1500ms] ease-in-out grayscale-[80%] group-hover:grayscale-0 scale-100 group-hover:scale-105"
-                />
-              </a>
-            </div>
-
-            <div
-              className="group w-full bg-gray-800 border border-white/10 rounded-2xl overflow-hidden"
-              style={{ height: "200px" }}
-            >
-              <a
-                href="https://strava.app.link/29lfoeGVyVb"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/images/Strava-logo.png"
-                  className="w-full h-full object-cover transition-all duration-[1500ms] ease-in-out grayscale-[80%] group-hover:grayscale-0 scale-100 group-hover:scale-105"
-                  alt="Strava"
-                />
-              </a>
-            </div>
+              <video
+                src="/images/videos/weeklyRecap-2025-08-04.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out grayscale-[80%] group-hover:grayscale-0 scale-100 group-hover:scale-105"
+              />
+            </a>
           </div>
         </div>
       </section>
