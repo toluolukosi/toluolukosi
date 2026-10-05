@@ -30,7 +30,7 @@ const capsule = (ctx, x1, y1, x2, y2, width) => {
 
 // ---------- SOUND: circular visualiser ----------
 
-const drawSound = (ctx, w, h, t, energy) => {
+const drawSound = (ctx, w, h, t) => {
   const u = Math.min(w, h) / 250;
   const cx = w / 2;
   const cy = h / 2;
@@ -48,7 +48,7 @@ const drawSound = (ctx, w, h, t, energy) => {
       Math.sin(a * 3 - t * 1.7) * 0.35 +
       Math.sin(a * 5 + t * 2.3) * 0.2;
     amp = Math.max(0, amp);
-    amp = amp * amp * beat * energy;
+    amp = amp * amp * beat;
 
     const len = amp * 34 * u;
     const x1 = cx + Math.cos(a) * R;
@@ -61,12 +61,12 @@ const drawSound = (ctx, w, h, t, energy) => {
 
 // ---------- LIVE: broadcast pulse ----------
 
-const drawLive = (ctx, w, h, t, energy) => {
+const drawLive = (ctx, w, h, t) => {
   const u = Math.min(w, h) / 250;
   const cx = w / 2;
   const cy = h / 2;
   const maxR = 110 * u;
-  const period = 1.3 / energy; // a new ring every period seconds
+  const period = 1.3; // a new ring every period seconds
   const life = 3.9; // seconds a ring takes to reach maxR
   const spacing = 11 * u;
 
@@ -111,7 +111,7 @@ const CODE_CHARS = CODE.map(([, ...toks]) => toks.reduce((s, n) => s + n + 1, 0)
 const TOTAL_CHARS = CODE_CHARS.reduce((s, n) => s + n, 0);
 const WIDEST = Math.max(...CODE.map(([indent], i) => indent * 2 + CODE_CHARS[i]));
 
-const drawDev = (ctx, w, h, t, energy, frozen) => {
+const drawDev = (ctx, w, h, t) => {
   const u = Math.min(w, h) / 250;
   const cw = 6.2 * u; // character width
   const lh = 17 * u; // line height
@@ -121,12 +121,12 @@ const drawDev = (ctx, w, h, t, energy, frozen) => {
   const x0 = (w - blockW) / 2;
   const y0 = (h - blockH) / 2 + lh / 2;
 
-  const cps = 26 * energy; // characters per second
+  const cps = 26; // characters per second
   const typeTime = TOTAL_CHARS / cps;
   const hold = 1.6;
   const fade = 0.6;
   const cycle = typeTime + hold + fade;
-  const ct = frozen ? typeTime : t % cycle;
+  const ct = t % cycle;
 
   const typed = Math.min(TOTAL_CHARS, ct * cps);
   const alpha = ct > typeTime + hold ? 1 - (ct - typeTime - hold) / fade : 1;
@@ -155,7 +155,7 @@ const drawDev = (ctx, w, h, t, energy, frozen) => {
   });
 
   // blinking cursor
-  const typing = !frozen && typed < TOTAL_CHARS;
+  const typing = typed < TOTAL_CHARS;
   const on = typing || Math.floor(t * 2.2) % 2 === 0;
   if (on && alpha > 0) {
     ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
@@ -165,14 +165,14 @@ const drawDev = (ctx, w, h, t, energy, frozen) => {
 
 // ---------- STILLS: viewfinder ----------
 
-const drawStills = (ctx, w, h, t, energy, frozen) => {
+const drawStills = (ctx, w, h, t) => {
   const u = Math.min(w, h) / 250;
   const cx = w / 2;
   const cy = h / 2;
   const size = 3.2 * u;
 
   const cycle = 3.6;
-  const ct = frozen ? 2.2 : t % cycle;
+  const ct = t % cycle;
   const huntEnd = 1.6;
   const shot = 2.1; // shutter moment
 
@@ -245,6 +245,14 @@ const drawStills = (ctx, w, h, t, energy, frozen) => {
 
 const DRAW = { sound: drawSound, live: drawLive, dev: drawDev, stills: drawStills };
 
+// moment each animation rests on before hover (picked to look good as a still)
+const REST_T = {
+  sound: 1.2,
+  live: 2.0,
+  dev: TOTAL_CHARS / 26 + 0.05, // fully typed, cursor showing
+  stills: 1.9, // focus locked, just before the capture
+};
+
 // ---------- component ----------
 
 const SideVisual = ({ type, className = "" }) => {
@@ -261,15 +269,17 @@ const SideVisual = ({ type, className = "" }) => {
     let h = 0;
     let raf = 0;
     let visible = true;
-    let t = 0;
     let last = performance.now();
-    let energy = 1; // eases up on hover
-    let target = 1;
+    // Hover devices: still frame until hovered. Touch devices: play while on screen.
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    let t = REST_T[type] ?? 0;
+    let speed = canHover ? 0 : 1; // eases 0 ↔ 1 on hover
+    let target = speed;
 
     const render = () => {
       ctx.clearRect(0, 0, w, h);
       drawBackground(ctx, w, h);
-      draw(ctx, w, h, t, energy, reduced);
+      draw(ctx, w, h, t);
     };
 
     const resize = () => {
@@ -286,14 +296,20 @@ const SideVisual = ({ type, className = "" }) => {
     const loop = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      energy += (target - energy) * Math.min(1, dt * 4);
-      t += dt * energy;
+      speed += (target - speed) * Math.min(1, dt * 5);
+      if (target === 0 && speed < 0.01) {
+        // eased to a stop: hold this frame until the next hover
+        speed = 0;
+        raf = 0;
+        return;
+      }
+      t += dt * speed;
       render();
       raf = requestAnimationFrame(loop);
     };
 
     const start = () => {
-      if (reduced || raf || !visible) return;
+      if (reduced || raf || !visible || target === 0) return;
       last = performance.now();
       raf = requestAnimationFrame(loop);
     };
@@ -302,10 +318,15 @@ const SideVisual = ({ type, className = "" }) => {
       raf = 0;
     };
 
-    // livelier while the tile is hovered
+    // animate while the tile is hovered
     const tile = canvas.closest(".group") || canvas.parentElement;
-    const onEnter = () => (target = 1.6);
-    const onLeave = () => (target = 1);
+    const onEnter = () => {
+      target = 1;
+      start();
+    };
+    const onLeave = () => {
+      target = 0;
+    };
     tile.addEventListener("mouseenter", onEnter);
     tile.addEventListener("mouseleave", onLeave);
 
