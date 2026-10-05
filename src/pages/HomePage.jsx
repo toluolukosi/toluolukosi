@@ -59,6 +59,7 @@ const HomePage = () => {
       route: "/stills",
       image:
         "https://res.cloudinary.com/dzl5osene/image/upload/v1734509688/eclipse-project_azc83s.png",
+      visual: "stills", // animated background (src/components/SideVisual.jsx)
       locked: false,
     },
     {

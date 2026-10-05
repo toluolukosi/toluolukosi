@@ -1,20 +1,15 @@
 // src/components/SideVisual.jsx
-// Animated tile backgrounds for the home page sides (white dots on a navy glow)
+// Animated tile backgrounds for the home page sides (white dots on dark)
 //   type="sound" → circular audio visualiser
 //   type="live"  → broadcast pulse (rings of dots radiating from a centre dot)
 //   type="dev"   → lines of "code" typing out in dots with a blinking cursor
+//   type="stills" → camera viewfinder: focus hunts, locks, halftone "capture" flash
 import React, { useEffect, useRef } from "react";
 
-const BG_INNER = "#22324a";
-const BG_OUTER = "#050609";
-
-// ---------- drawing helpers ----------
+const BG = "#050609";
 
 const drawBackground = (ctx, w, h) => {
-  const g = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.6);
-  g.addColorStop(0, BG_INNER);
-  g.addColorStop(1, BG_OUTER);
-  ctx.fillStyle = g;
+  ctx.fillStyle = BG;
   ctx.fillRect(0, 0, w, h);
 };
 
@@ -92,14 +87,9 @@ const drawLive = (ctx, w, h, t, energy) => {
     }
   }
 
-  // centre "on air" dot with a soft glow, beating with each new ring
+  // centre "on air" dot, beating with each new ring
   const since = (t % period) / period;
   const pulse = 1 + 0.35 * Math.pow(1 - since, 3);
-  const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 26 * u * pulse);
-  glow.addColorStop(0, "rgba(255,255,255,0.35)");
-  glow.addColorStop(1, "rgba(255,255,255,0)");
-  ctx.fillStyle = glow;
-  dot(ctx, cx, cy, 26 * u * pulse);
   ctx.fillStyle = "rgba(255,255,255,1)";
   dot(ctx, cx, cy, 7 * u * pulse);
 };
@@ -173,7 +163,87 @@ const drawDev = (ctx, w, h, t, energy, frozen) => {
   }
 };
 
-const DRAW = { sound: drawSound, live: drawLive, dev: drawDev };
+// ---------- STILLS: viewfinder ----------
+
+const drawStills = (ctx, w, h, t, energy, frozen) => {
+  const u = Math.min(w, h) / 250;
+  const cx = w / 2;
+  const cy = h / 2;
+  const size = 3.2 * u;
+
+  const cycle = 3.6;
+  const ct = frozen ? 2.2 : t % cycle;
+  const huntEnd = 1.6;
+  const shot = 2.1; // shutter moment
+
+  // outer frame: four corner brackets
+  const fw = 150 * u;
+  const fh = 100 * u;
+  const arm = 18 * u;
+  ctx.strokeStyle = "rgba(255,255,255,0.85)";
+  [
+    [-1, -1],
+    [1, -1],
+    [-1, 1],
+    [1, 1],
+  ].forEach(([sx, sy]) => {
+    const x = cx + sx * fw;
+    const y = cy + sy * fh;
+    capsule(ctx, x, y, x - sx * arm, y, size);
+    capsule(ctx, x, y, x, y - sy * arm, size);
+  });
+
+  // halftone "capture": grid of dots whose size forms a soft image, fading out
+  if (ct >= shot) {
+    const p = Math.min(1, (ct - shot) / 1.2);
+    const alpha = Math.pow(1 - p, 1.4);
+    const step = 9 * u;
+    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+    for (let y = cy - fh + step; y < cy + fh - step / 2; y += step) {
+      for (let x = cx - fw + step; x < cx + fw - step / 2; x += step) {
+        // soft "subject": a bright blob + horizon falloff
+        const dx = (x - cx - 30 * u) / (70 * u);
+        const dy = (y - cy + 10 * u) / (55 * u);
+        const blob = Math.exp(-(dx * dx + dy * dy) * 1.4);
+        const horizon = Math.max(0, (y - cy) / fh) * 0.45;
+        const v = Math.min(1, blob + horizon);
+        if (v > 0.06) dot(ctx, x, y, v * 2.6 * u);
+      }
+    }
+  }
+
+  // focus square: hunts (wobbles), then locks
+  let s;
+  if (ct < huntEnd) {
+    const k = ct / huntEnd;
+    s = 1 + 0.35 * Math.sin(ct * 9) * (1 - k);
+  } else {
+    s = 1;
+  }
+  const locked = ct >= huntEnd;
+  const fs = 30 * u * s;
+  const farm = 8 * u;
+  ctx.strokeStyle = `rgba(255,255,255,${locked ? 1 : 0.7})`;
+  [
+    [-1, -1],
+    [1, -1],
+    [-1, 1],
+    [1, 1],
+  ].forEach(([sx, sy]) => {
+    const x = cx + sx * fs;
+    const y = cy + sy * fs;
+    capsule(ctx, x, y, x - sx * farm, y, size * 0.8);
+    capsule(ctx, x, y, x, y - sy * farm, size * 0.8);
+  });
+
+  // centre dot appears when focus locks
+  if (locked) {
+    ctx.fillStyle = "rgba(255,255,255,1)";
+    dot(ctx, cx, cy, 2.4 * u);
+  }
+};
+
+const DRAW = { sound: drawSound, live: drawLive, dev: drawDev, stills: drawStills };
 
 // ---------- component ----------
 
