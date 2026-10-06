@@ -7,6 +7,7 @@ const ProjectCard = ({
   year,
   image,
   logo,
+  logoStyle,
   line1,
   line2,
   route,
@@ -108,6 +109,7 @@ const ProjectCard = ({
           <img
             src={logo}
             alt="Logo"
+            style={logoStyle}
             className="
               absolute top-6 left-6 h-15
               drop-shadow-[0_10px_25px_rgba(0,0,0,0.7)]

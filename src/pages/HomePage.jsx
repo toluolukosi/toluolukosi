@@ -230,7 +230,7 @@ const HomePage = () => {
           src="https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png"
           alt="Back to top"
           onClick={scrollToTop}
-          className="pointer-events-auto h-10 w-auto cursor-pointer select-none"
+          className="pointer-events-auto w-[75px] h-auto cursor-pointer select-none"
         />
 
         {/* ===== MOBILE / TABLET NAV (hamburger) ===== */}
@@ -970,7 +970,7 @@ const HomePage = () => {
             <img
               src="https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png"
               alt="Tolu logo"
-              className="h-15 w-auto"
+              className="w-[113px] h-auto"
             />
 
             <div className="text-gray-200 text-[11px] md:text-[13px] uppercase tracking-[0.18em]">

@@ -17,6 +17,8 @@ const projects = [
     image:
       "https://res.cloudinary.com/dzl5osene/image/upload/v1768218445/OTIS_1_ge0anb.png",
     logo: "https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png",
+    // new PNG has no top/bottom margin: match the old logo's width (71px) and position
+    logoStyle: { width: 71, height: "auto", marginTop: 11 },
     line1: "Multidisciplinary Creative Company",
     line2: "Design, Fashion, Film, Lifestyle, Music",
     route: "/otis",
