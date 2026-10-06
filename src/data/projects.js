@@ -16,7 +16,7 @@ const projects = [
     year: "2023",
     image:
       "https://res.cloudinary.com/dzl5osene/image/upload/v1768218445/OTIS_1_ge0anb.png",
-    logo: "https://res.cloudinary.com/dzl5osene/image/upload/v1765545164/otisambigramforwebsite_xpa2p4.png",
+    logo: "https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png",
     line1: "Multidisciplinary Creative Company",
     line2: "Design, Fashion, Film, Lifestyle, Music",
     route: "/otis",
