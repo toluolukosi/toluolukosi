@@ -227,7 +227,7 @@ const HomePage = () => {
       <header className="fixed top-0 left-0 right-0 z-50 px-10 pt-4 flex items-start justify-between pointer-events-none">
         {/* Icon as click-to-top image — NO background */}
         <img
-          src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545050/otis_ambigram_kvkh1g.png"
+          src="https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png"
           alt="Back to top"
           onClick={scrollToTop}
           className="pointer-events-auto h-10 w-auto cursor-pointer select-none"
@@ -968,7 +968,7 @@ const HomePage = () => {
           {/* LOGO + COPYRIGHT – CENTERED ON MOBILE/TABLET */}
           <div className="flex flex-col items-center lg:items-start gap-0 font-thedus-condensed">
             <img
-              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545050/otis_ambigram_kvkh1g.png"
+              src="https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png"
               alt="Tolu logo"
               className="h-15 w-auto"
             />
