@@ -760,39 +760,37 @@ const HomePage = () => {
 
               <div className="text-[14px] md:text-[15px] text-gray-300 space-y-4 leading-relaxed">
                 <p>
-                  I am a multidisciplinary creative based in Lagos, working at
-                  the intersection of design, technology, and storytelling. My
-                  work spans visual and motion content. To be honest, I'll do
-                  anything with good internet and the required tools.
+                  I am a visual and brand designer based in Lagos. I build
+                  identities and the systems around them: logos, typography,
+                  colour, art direction, and every touchpoint a brand lives on,
+                  from invitations and packaging to social and stage graphics.
                 </p>
                 <p>
-                  My creative process often begins with imitation, rooted in
-                  reverence rather than malice. I am drawn to people and works
-                  that inspire me, using their influence as a foundation to
-                  build ideas that evolve into my own. Artists like Slawn
-                  Pharrell, Drake, and Kanye West have shaped how I see
-                  creativity as a conversation between identity, culture, and
-                  innovation.
+                  Design is the core of what I do, but not the edge of it. I
+                  also have an interest in, and a working knowledge of, motion,
+                  music and web development. Those interests feed back
+                  into the brand work, bringing a sense of rhythm from sound,
+                  timing from motion, and structure from code.
                 </p>
                 <p>
-                  Although I sometimes question whether my work carries the
-                  emotional and moral depth that defines what I consider true
-                  art, I have learned that authenticity can take many forms. My
-                  work often resonates with others in unexpected ways, and I
-                  find meaning in that exchange.
+                  My process often begins with imitation, rooted in reverence
+                  rather than malice. I study the people and work that inspire
+                  me and use them as a foundation until the ideas become my
+                  own. Slawn, Pharrell, Drake and Kanye West have shaped how I
+                  see creativity: as a conversation between identity, culture
+                  and innovation.
                 </p>
                 <p>
-                  This portfolio reflects my curiosity, adaptability, and
-                  ability to identify patterns and connect ideas across
-                  disciplines. It is a record of growth and a testament to my
-                  commitment to mastering my craft and creating work that leaves
-                  a lasting impression.
+                  I sometimes question whether my work carries the emotional
+                  and moral depth I associate with true art. But I have learned
+                  that authenticity takes many forms, and my work often
+                  resonates with people in ways I don't expect. I find meaning
+                  in that exchange.
                 </p>
                 <p>
-                  I am especially interested in contributing to projects as an
-                  art director, where I can shape ideas from concept to
-                  execution and collaborate with others to bring creative
-                  visions to life.
+                  I am especially interested in art direction: shaping a brand
+                  or campaign from concept to execution, and working with
+                  photographers, filmmakers and writers to bring it to life.
                 </p>
               </div>
             </section>
