@@ -87,9 +87,12 @@ const ProjectsPage = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-black py-16">
+    // Exactly one screen tall: the title takes what it needs and the card row
+    // fills the rest, so the full card is visible without scrolling down.
+    // (min-h is a floor for very short screens, where the page may scroll.)
+    <section className="h-[100svh] min-h-[520px] bg-black pt-16 pb-8 flex flex-col">
       {/* PAGE TITLE */}
-      <div className="flex items-center justify-between mb-10 px-[4%]">
+      <div className="shrink-0 flex items-center justify-between mb-10 px-[4%]">
         <h1 className="text-white font-thedus-condensed text-[48px] md:text-[64px] tracking-wide">
           Projects
         </h1>
@@ -99,23 +102,24 @@ const ProjectsPage = () => {
       </div>
 
       {/* HORIZONTAL SCROLL ROW OF PROJECT CARDS */}
-      <div className="relative">
+      <div className="relative flex-1 min-h-0">
         <div
           ref={scrollerRef}
           className="
+            h-full
             no-scrollbar
-            overflow-x-auto
+            overflow-x-auto overflow-y-hidden
             snap-x snap-proximity
             scroll-px-[4%]
           "
         >
-          <div ref={trackRef} className="flex gap-6 w-max px-[4vw]">
+          <div ref={trackRef} className="flex gap-6 w-max h-full px-[4vw]">
             {projects.map((project) => (
               <div
                 key={project.title}
-                className="shrink-0 snap-start w-[85vw] sm:w-[480px] lg:w-[520px]"
+                className="shrink-0 snap-start h-full w-[85vw] sm:w-[480px] lg:w-[520px]"
               >
-                <ProjectCard {...project} />
+                <ProjectCard {...project} heightClass="h-full max-h-[652px]" />
               </div>
             ))}
             {/* keeps the right-hand gutter after the last card */}

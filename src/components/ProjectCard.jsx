@@ -12,6 +12,7 @@ const ProjectCard = ({
   line2,
   route,
   placeholder = false,
+  heightClass = "h-[652px]", // /projects overrides this so cards fit the screen
 }) => {
   // Placeholder cards aren't clickable yet
   const Wrapper = placeholder ? "div" : Link;
@@ -20,9 +21,9 @@ const ProjectCard = ({
   return (
     <Wrapper
       {...wrapperProps}
-      className="
+      className={`
         group
-        relative w-full h-[652px]
+        relative w-full ${heightClass}
         rounded-2xl
         bg-[#050609]
         border border-white/10
@@ -31,7 +32,7 @@ const ProjectCard = ({
         overflow-hidden
         p-[10px]
         flex
-      "
+      `}
     >
       {/* Inner wrapper so spacing is consistent all around */}
       <div className="flex flex-col h-full w-full">
