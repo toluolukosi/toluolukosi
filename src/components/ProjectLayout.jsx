@@ -2,7 +2,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import NavIconButton from "./NavIconButton";
+import ZoomViewer from "./ZoomViewer";
 import { useNavigate, useLocation } from "react-router-dom";
+
+// Media items are URL strings or objects ({ src, link } / { src, muted })
+const srcOf = (item) => (typeof item === "string" ? item : item.src);
+const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src);
+const isLink = (item) => typeof item === "object" && !!item.link;
+// Plain images can be opened in the zoom viewer
+const isZoomable = (item) => !isLink(item) && !isVideo(srcOf(item));
 
 const ProjectLayout = ({
   title,
@@ -35,6 +43,7 @@ const ProjectLayout = ({
   const [activeCols, setActiveCols] = useState({});
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
   const [filmOpen, setFilmOpen] = useState(false);
+  const [zoom, setZoom] = useState(null); // { row, index } while the viewer is open
 
   const filmRef = useRef(null);
 
@@ -62,6 +71,13 @@ const ProjectLayout = ({
   const currentSection = mediaSections[activeRow];
   const currentCol = activeCols[activeRow] ?? 0;
   const rowHasMultiple = currentSection?.images.length > 1;
+  const currentZoomable =
+    !!currentSection?.images[currentCol] &&
+    isZoomable(currentSection.images[currentCol]);
+
+  // Images of one section that the zoom viewer can step through
+  const zoomImages = (rowIndex) =>
+    (mediaSections[rowIndex]?.images ?? []).filter(isZoomable).map(srcOf);
 
   // Track which row / image is in view from the native scroll position
   const handleGridScroll = (e) => {
@@ -250,25 +266,48 @@ const ProjectLayout = ({
           <div
             className="
     relative
+    flex flex-col
     rounded-[10px] md:rounded-[10px]
     overflow-hidden
     border border-white/10
     shadow-[0_26px_80px_rgba(0,0,0,0.75)]
     bg-black
     select-none
-    h-[360px]
-    sm:h-[420px]
+    h-[400px]
+    sm:h-[460px]
     md:h-[480px]
     lg:h-full
   "
           >
             {hasImages ? (
               <>
+                {/* 📱 Phone top bar: section names as tabs. On phones the
+                    controls sit in bars around the image instead of on it. */}
+                {mediaSections.some((s) => s.title) && (
+                  <div className="md:hidden shrink-0 h-10 px-4 flex items-center gap-5 border-b border-white/10 overflow-x-auto no-scrollbar">
+                    {mediaSections.map(
+                      (section, i) =>
+                        section.title && (
+                          <span
+                            key={i}
+                            role="button"
+                            onClick={() => goToRow(i)}
+                            className={`shrink-0 cursor-pointer text-[10px] uppercase tracking-[0.22em] font-thedus-condensed transition-colors ${
+                              i === activeRow ? "text-white" : "text-white/40"
+                            }`}
+                          >
+                            {section.title}
+                          </span>
+                        )
+                    )}
+                  </div>
+                )}
+
                 <div
                   ref={gridRef}
                   onScroll={handleGridScroll}
                   className="
-                    w-full h-full
+                    w-full flex-1 min-h-0
                     overflow-y-auto overflow-x-hidden
                     snap-y snap-mandatory
                     no-scrollbar
@@ -291,7 +330,7 @@ const ProjectLayout = ({
                       {section.images.map((item, colIndex) => {
                         // Items are URL strings, or { src, muted: false } for
                         // a video that should play with sound
-                        const src = typeof item === "string" ? item : item.src;
+                        const src = srcOf(item);
                         const withSound = item?.muted === false;
                         const mediaClass = `
                             w-full h-full flex-shrink-0
@@ -301,8 +340,7 @@ const ProjectLayout = ({
 
                         // { src, link } is a screenshot that opens the live
                         // site in a new tab (lighter than embedding the site)
-                        // (typeof check: plain URL strings have a built-in .link)
-                        if (typeof item === "object" && item.link) {
+                        if (isLink(item)) {
                           return (
                             <a
                               key={`${src}-${colIndex}`}
@@ -338,7 +376,7 @@ const ProjectLayout = ({
                           );
                         }
                         // Video URLs (.mp4 etc.) render as muted looping clips
-                        return /\.(mp4|webm|mov)$/i.test(src) ? (
+                        return isVideo(src) ? (
                           <video
                             key={`${src}-${colIndex}`}
                             src={src}
@@ -363,7 +401,14 @@ const ProjectLayout = ({
                             }
                             loading={rowIndex === 0 ? "eager" : "lazy"}
                             draggable={false}
-                            className={mediaClass}
+                            // tap / click opens the full-screen zoom viewer
+                            onClick={() =>
+                              setZoom({
+                                row: rowIndex,
+                                index: zoomImages(rowIndex).indexOf(src),
+                              })
+                            }
+                            className={`${mediaClass} cursor-zoom-in`}
                           />
                         );
                       })}
@@ -371,10 +416,34 @@ const ProjectLayout = ({
                   ))}
                 </div>
 
-                {/* Section label – top left */}
+                {/* 📱 Phone bottom bar: position, dots, zoom hint */}
+                <div className="md:hidden shrink-0 h-10 px-4 grid grid-cols-[1fr_auto_1fr] items-center border-t border-white/10 text-[10px] uppercase tracking-[0.2em] font-thedus-condensed text-white/60">
+                  <span>
+                    {rowHasMultiple &&
+                      `${currentCol + 1}/${currentSection.images.length}`}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    {rowHasMultiple &&
+                      currentSection.images.map((_, i) => (
+                        <span
+                          key={i}
+                          onClick={() => goToImage(activeRow, i)}
+                          className={`block w-1.5 h-1.5 rounded-full ${
+                            i === currentCol ? "bg-white" : "bg-white/30"
+                          }`}
+                        />
+                      ))}
+                  </span>
+                  <span className="text-right">
+                    {currentZoomable && "Tap to zoom"}
+                  </span>
+                </div>
+
+                {/* Section label – top left (tablet / desktop) */}
                 {currentSection?.title && (
                   <div
                     className="
+                      hidden md:block
                       absolute top-5 left-5
                       px-3 py-1
                       rounded-full
@@ -399,7 +468,7 @@ const ProjectLayout = ({
                   <div
                     className="
                       absolute top-5 right-5
-                      flex flex-col items-center gap-1.5
+                      hidden md:flex flex-col items-center gap-1.5
                       px-1 py-2.5
                       rounded-full
                       bg-black/35 backdrop-blur-sm
@@ -434,7 +503,7 @@ const ProjectLayout = ({
                         rounded-[16px]
                         bg-[rgba(6,8,16,0.85)]
                         border border-white/15
-                        flex items-center justify-center
+                        hidden md:flex items-center justify-center
                         text-xs md:text-sm text-white
                         shadow-[0_16px_40px_rgba(0,0,0,0.7)]
                         hover:bg-black transition
@@ -453,7 +522,7 @@ const ProjectLayout = ({
                         rounded-[16px]
                         bg-[rgba(6,8,16,0.85)]
                         border border-white/15
-                        flex items-center justify-center
+                        hidden md:flex items-center justify-center
                         text-xs md:text-sm text-white
                         shadow-[0_16px_40px_rgba(0,0,0,0.7)]
                         hover:bg-black transition
@@ -464,7 +533,7 @@ const ProjectLayout = ({
                     </button>
 
                     {/* Image dots for the current section – bottom */}
-                    <div className="absolute bottom-5 left-1/2 -translate-x-1/2">
+                    <div className="hidden md:block absolute bottom-5 left-1/2 -translate-x-1/2">
                       <div
                         className="
                           flex items-center gap-1.5
@@ -853,6 +922,21 @@ const ProjectLayout = ({
           </article>
         </div>
       </div>
+
+      {/* FULL-SCREEN ZOOM VIEWER (tap / click an image) */}
+      {zoom && zoomImages(zoom.row).length > 0 && (
+        <ZoomViewer
+          images={zoomImages(zoom.row)}
+          index={Math.max(zoom.index, 0)}
+          onIndexChange={(index) => setZoom({ row: zoom.row, index })}
+          onClose={() => setZoom(null)}
+          label={`${title}${
+            mediaSections[zoom.row]?.title
+              ? ` – ${mediaSections[zoom.row].title}`
+              : ""
+          }`}
+        />
+      )}
 
       {/* FULL-SCREEN FILM PLAYER (click outside, × or Esc to close).
           Rendered on <body> so it covers the screen even when this page
