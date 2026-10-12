@@ -1,5 +1,6 @@
 // src/components/ProjectLayout.jsx
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import NavIconButton from "./NavIconButton";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const ProjectLayout = ({
   credits = [],
   heroImages = [],
   sections = [],
+  film = null, // { src, poster, label, note } – opens in a full-screen player
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +34,19 @@ const ProjectLayout = ({
   const [activeRow, setActiveRow] = useState(0);
   const [activeCols, setActiveCols] = useState({});
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
+  const [filmOpen, setFilmOpen] = useState(false);
+
+  const filmRef = useRef(null);
+
+  // Film player: start playing on open (the click that opened it allows
+  // sound; if a browser still blocks it, the controls are there), Esc closes
+  useEffect(() => {
+    if (!filmOpen) return;
+    filmRef.current?.play().catch(() => {});
+    const onKey = (e) => e.key === "Escape" && setFilmOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [filmOpen]);
 
   // ✅ INITIAL SLIDE DIRECTION (entry animation)
   // If we came via "Previous", new page should enter from LEFT.
@@ -284,24 +299,25 @@ const ProjectLayout = ({
                             snap-start snap-always
                           `;
 
-                        // { src, website: true } shows the live site; the
-                        // overlay keeps swipe/scroll working and opens it
-                        if (item?.website) {
+                        // { src, link } is a screenshot that opens the live
+                        // site in a new tab (lighter than embedding the site)
+                        // (typeof check: plain URL strings have a built-in .link)
+                        if (typeof item === "object" && item.link) {
                           return (
                             <a
                               key={`${src}-${colIndex}`}
-                              href={src}
+                              href={item.link}
                               target="_blank"
                               rel="noopener noreferrer"
                               draggable={false}
                               className={`${mediaClass} relative block group`}
                             >
-                              <iframe
+                              <img
                                 src={src}
-                                title={`${title} website`}
+                                alt={`${title} website`}
                                 loading="lazy"
-                                tabIndex={-1}
-                                className="w-full h-full border-0 pointer-events-none bg-black"
+                                draggable={false}
+                                className="w-full h-full object-contain object-center"
                               />
                               <span
                                 className="
@@ -627,6 +643,59 @@ const ProjectLayout = ({
               </div>
             </div>
 
+            {/* WATCH THE FILM – kept out of the swipe gallery so swiping
+                stays smooth; opens a full-screen player with sound */}
+            {film && (
+              <div className="px-4 md:px-6 pb-2">
+                <button
+                  type="button"
+                  onClick={() => setFilmOpen(true)}
+                  className="
+                    group w-full
+                    flex items-center gap-4
+                    rounded-[10px]!
+                    border! border-white/10! hover:border-white/25!
+                    bg-transparent!
+                    p-2!
+                    text-left cursor-pointer
+                    transition-colors duration-300
+                  "
+                >
+                  <span className="relative shrink-0 w-[112px] aspect-video rounded-[7px] overflow-hidden bg-black">
+                    {film.poster && (
+                      <img
+                        src={film.poster}
+                        alt=""
+                        className="w-full h-full object-cover grayscale-[60%] group-hover:grayscale-0 group-hover:scale-105 transition duration-500"
+                      />
+                    )}
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <span className="w-7 h-7 rounded-full bg-white/90 flex items-center justify-center">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="w-3 h-3 ml-[2px] fill-black"
+                          aria-hidden="true"
+                        >
+                          <path d="M6 4l14 8-14 8z" />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+
+                  <span className="min-w-0">
+                    <span className="block text-[13px] tracking-[0.12em] uppercase font-thedus-condensed text-white">
+                      {film.label ?? "Watch the film"}
+                    </span>
+                    {film.note && (
+                      <span className="block mt-1 text-[11px] leading-snug font-normal text-gray-400">
+                        {film.note}
+                      </span>
+                    )}
+                  </span>
+                </button>
+              </div>
+            )}
+
             {/* SCROLLABLE CONTENT + 5TH ROW: PREV/NEXT */}
             <div className="px-4 md:px-6 pb-4 md:pb-6 flex-1 min-h-0 flex flex-col gap-3">
               {/* Big info quadrilateral */}
@@ -784,6 +853,42 @@ const ProjectLayout = ({
           </article>
         </div>
       </div>
+
+      {/* FULL-SCREEN FILM PLAYER (click outside, × or Esc to close).
+          Rendered on <body> so it covers the screen even when this page
+          has been scrolled. */}
+      {film && filmOpen && createPortal(
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={film.label ?? "Film"}
+          onClick={() => setFilmOpen(false)}
+          className="fixed inset-0 z-[80] bg-black flex flex-col items-center justify-center px-4 py-16 md:px-10"
+        >
+          <NavIconButton
+            onClick={() => setFilmOpen(false)}
+            icon="close"
+            label="Close film"
+            className="absolute top-4 right-4"
+          />
+          <video
+            ref={filmRef}
+            src={film.src}
+            poster={film.poster}
+            controls
+            playsInline
+            onClick={(e) => e.stopPropagation()}
+            // as wide as fits, never taller than 80% of the screen
+            className="w-full max-w-[calc(80vh*16/9)] aspect-video object-contain rounded-[10px] bg-black"
+          />
+          {film.note && (
+            <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] font-thedus-condensed text-gray-400">
+              {film.note}
+            </p>
+          )}
+        </div>,
+        document.body
+      )}
     </section>
   );
 };
