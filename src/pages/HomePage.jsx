@@ -1053,7 +1053,7 @@ const HomePage = () => {
 
             {/* LINKEDIN BUTTON */}
             <a
-              href="https://www.linkedin.com/in/your-username"
+              href="https://www.linkedin.com/in/toluwanimi-olukosi-b1583134b/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
@@ -1182,7 +1182,7 @@ const HomePage = () => {
 
           {/* LINKEDIN BUTTON */}
           <a
-            href="https://www.linkedin.com/in/your-username"
+            href="https://www.linkedin.com/in/toluwanimi-olukosi-b1583134b/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
