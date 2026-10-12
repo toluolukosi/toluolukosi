@@ -50,6 +50,7 @@ const sections = [
         src: "/videos/shangeit-map-pin.mp4",
         poster: "/images/shangeit/poster-map-pin.jpg",
         aspect: 4 / 5,
+        note: "Map data © OpenStreetMap contributors", // required credit
       },
       {
         title: "ShangeIt: 3D Tour",

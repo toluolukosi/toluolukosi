@@ -73,6 +73,10 @@ const ShangeItPage = () => {
         "Designed and produced the product motion (search, map and 3D tour), building each piece in code so every frame could be timed and revised precisely.",
         "Tracked social performance and used the results to decide what the brand made next.",
       ]}
+      credits={[
+        // required credit: the Map Pin loop is drawn from OpenStreetMap data
+        { name: "Map data", role: "© OpenStreetMap contributors" },
+      ]}
     />
   );
 };
