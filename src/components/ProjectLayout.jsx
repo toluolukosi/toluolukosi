@@ -1,8 +1,8 @@
 // src/components/ProjectLayout.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import NavIconButton from "./NavIconButton";
 import ZoomViewer from "./ZoomViewer";
+import FilmPlayer from "./FilmPlayer";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Media items are URL strings or objects ({ src, link } / { src, muted })
@@ -22,7 +22,7 @@ const ProjectLayout = ({
   credits = [],
   heroImages = [],
   sections = [],
-  film = null, // { src, poster, label, note } – opens in a full-screen player
+  film = null, // { src, poster, label, note, aspect } – opens in a full-screen player
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,18 +44,6 @@ const ProjectLayout = ({
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
   const [filmOpen, setFilmOpen] = useState(false);
   const [zoom, setZoom] = useState(null); // { row, index } while the viewer is open
-
-  const filmRef = useRef(null);
-
-  // Film player: start playing on open (the click that opened it allows
-  // sound; if a browser still blocks it, the controls are there), Esc closes
-  useEffect(() => {
-    if (!filmOpen) return;
-    filmRef.current?.play().catch(() => {});
-    const onKey = (e) => e.key === "Escape" && setFilmOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [filmOpen]);
 
   // ✅ INITIAL SLIDE DIRECTION (entry animation)
   // If we came via "Previous", new page should enter from LEFT.
@@ -182,6 +170,7 @@ const ProjectLayout = ({
     { label: "Eclipse", path: "/project1" },
     { label: "OTIS", path: "/otis" },
     { label: "Tolukosi", path: "/tolukosi" },
+    { label: "ShangeIt", path: "/shangeit" },
   ];
 
   const currentProjectIndex = projectOptions.findIndex(
@@ -938,40 +927,9 @@ const ProjectLayout = ({
         />
       )}
 
-      {/* FULL-SCREEN FILM PLAYER (click outside, × or Esc to close).
-          Rendered on <body> so it covers the screen even when this page
-          has been scrolled. */}
-      {film && filmOpen && createPortal(
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={film.label ?? "Film"}
-          onClick={() => setFilmOpen(false)}
-          className="fixed inset-0 z-[80] bg-black flex flex-col items-center justify-center px-4 py-16 md:px-10"
-        >
-          <NavIconButton
-            onClick={() => setFilmOpen(false)}
-            icon="close"
-            label="Close film"
-            className="absolute top-4 right-4"
-          />
-          <video
-            ref={filmRef}
-            src={film.src}
-            poster={film.poster}
-            controls
-            playsInline
-            onClick={(e) => e.stopPropagation()}
-            // as wide as fits, never taller than 80% of the screen
-            className="w-full max-w-[calc(80vh*16/9)] aspect-video object-contain rounded-[10px] bg-black"
-          />
-          {film.note && (
-            <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] font-thedus-condensed text-gray-400">
-              {film.note}
-            </p>
-          )}
-        </div>,
-        document.body
+      {/* FULL-SCREEN FILM PLAYER */}
+      {film && filmOpen && (
+        <FilmPlayer film={film} onClose={() => setFilmOpen(false)} />
       )}
     </section>
   );

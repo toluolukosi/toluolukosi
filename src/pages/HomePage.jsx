@@ -67,8 +67,7 @@ const HomePage = () => {
       route: "/live",
       image: "/images/AboutPictures/IMG_3747.jpg",
       visual: "live", // animated background (src/components/SideVisual.jsx)
-      locked: true, // 🔒 this one is protected
-      lockNote: "Protected", // text you want to show
+      locked: false,
     },
     {
       title: "Sound",
