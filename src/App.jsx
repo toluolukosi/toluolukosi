@@ -11,6 +11,7 @@ import DevPage from "./pages/DevPage";
 import SprezzaturraPage from "./pages/SprezzaturraPage";
 import OtisPage from "./pages/OtisPage";
 import TolukosiPage from "./pages/TolukosiPage";
+import ShangeItPage from "./pages/ShangeItPage";
 import ContactPage from "./pages/ContactPage";
 import ProjectsPage from "./pages/ProjectsPage";
 
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/project1" element={<SprezzaturraPage />} />
         <Route path="/otis" element={<OtisPage />} />
         <Route path="/tolukosi" element={<TolukosiPage />} />
+        <Route path="/shangeit" element={<ShangeItPage />} />
 
         {/* Projects */}
         <Route path="/contact" element={<ContactPage />} />

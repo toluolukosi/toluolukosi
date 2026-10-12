@@ -34,12 +34,15 @@ const projects = [
     route: "/tolukosi",
   },
   {
-    // Placeholder – swap in the real project details + route when ready
-    title: "project 04",
+    title: "shangeit",
     year: "2026",
-    line1: "Coming soon",
-    line2: "In the works",
-    placeholder: true,
+    image: "/images/shangeit/ad-5.jpg",
+    logo: "/images/shangeit/wordmark-white.png",
+    // wide wordmark: size it by height instead of the default logo height
+    logoStyle: { height: 26, width: "auto", marginTop: 6 },
+    line1: "Property Marketplace",
+    line2: "Brand Management, Motion Design",
+    route: "/shangeit",
   },
 ];
 
