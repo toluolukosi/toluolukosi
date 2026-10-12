@@ -5,10 +5,11 @@ const FergieEra = () => {
   return (
     <StillLayout
       title="Fergie Era"
+      company="Poster series"
       overview={[
-        "LSD.mp3 is a poster series that reinterprets some of my favourite music albums through a psychedelic visual language.",
-        "Using fluid typography, warped compositions, saturated color gradients, and hallucinatory textures, each piece translates the emotional and sonic identity of an album into immersive, surreal forms.",
-        "The project explores how distortion, color, and visual rhythm can evoke sound, memory, and mood beyond literal representation."
+        "Fergie Era is a poster series celebrating Manchester United under Sir Alex Ferguson (1986–2013), the most successful period in the club's history.",
+        "Each poster honours a figure from that era (Ferguson, Cantona, Beckham, Scholes, Giggs, Solskjær, and the Yorke–Cole partnership) through the visual language of an old matchday programme: club reds, worn textures, collegiate type and trophy tallies.",
+        "The series explores how layout and texture can carry nostalgia, making each poster feel like it came from the era it celebrates."
       ]}
       images={[
         "https://res.cloudinary.com/dzl5osene/image/upload/v1780512300/fergie_era_3_ghkxex.png",
