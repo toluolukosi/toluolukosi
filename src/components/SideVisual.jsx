@@ -176,22 +176,9 @@ const drawStills = (ctx, w, h, t) => {
   const huntEnd = 1.6;
   const shot = 2.1; // shutter moment
 
-  // outer frame: four corner brackets
+  // extent of the halftone "capture" (no outer frame: only the focus corners show)
   const fw = 150 * u;
   const fh = 100 * u;
-  const arm = 18 * u;
-  ctx.strokeStyle = "rgba(255,255,255,0.85)";
-  [
-    [-1, -1],
-    [1, -1],
-    [-1, 1],
-    [1, 1],
-  ].forEach(([sx, sy]) => {
-    const x = cx + sx * fw;
-    const y = cy + sy * fh;
-    capsule(ctx, x, y, x - sx * arm, y, size);
-    capsule(ctx, x, y, x, y - sy * arm, size);
-  });
 
   // halftone "capture": grid of dots whose size forms a soft image, fading out
   if (ct >= shot) {

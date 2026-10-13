@@ -51,17 +51,6 @@ const ShangeItPage = () => {
           ],
         },
         {
-          title: "Brand Ad",
-          images: [
-            "/images/shangeit/ad-1.jpg",
-            "/images/shangeit/ad-2.jpg",
-            "/images/shangeit/ad-3.jpg",
-            "/images/shangeit/ad-4.jpg",
-            "/images/shangeit/ad-5.jpg",
-            "/images/shangeit/ad-6.jpg",
-          ],
-        },
-        {
           title: "Product Motion",
           images: [
             "/videos/shangeit-ui-loop.mp4",
