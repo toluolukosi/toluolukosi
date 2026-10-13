@@ -36,12 +36,13 @@ const projects = [
   {
     title: "shangeit",
     year: "2026",
-    image: "/images/shangeit/ad-5.jpg",
-    logo: "/images/shangeit/wordmark-white.png",
-    // wide wordmark: size it by height instead of the default logo height
+    // a real listing from the site: Oribanwa Phase 2, Lekki
+    image: "/images/shangeit/card-oribanwa.jpg",
+    logo: "/images/shangeit/logo-white.png",
+    // wide logo (monogram + wordmark): size it by height instead of the default
     logoStyle: { height: 26, width: "auto", marginTop: 6 },
-    line1: "Property Marketplace",
-    line2: "Brand Management, Motion Design",
+    line1: "Proptech",
+    line2: "Property Marketplace",
     route: "/shangeit",
   },
 ];
