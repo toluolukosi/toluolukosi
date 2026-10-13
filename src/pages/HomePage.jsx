@@ -93,6 +93,7 @@ const HomePage = () => {
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/Photoshop_mhn9dr.png",
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/Indesign_jpllrw.png",
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545095/Light_room_re2o9k.png",
+    "/images/tools/fresco.svg", // Adobe Fresco
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/AfterEffets_mymhmq.png",
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/Premiere_Pro_uenwlk.png",
     "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/fruityloops_j8tbhe.png",
@@ -775,9 +776,9 @@ const HomePage = () => {
                   My process often begins with imitation, rooted in reverence
                   rather than malice. I study the people and work that inspire
                   me and use them as a foundation until the ideas become my
-                  own. Slawn, Pharrell, Drake and Kanye West have shaped how I
-                  see creativity: as a conversation between identity, culture
-                  and innovation.
+                  own. Slawn's self-awareness, Pharrell's versatility, and the
+                  influence of Drake and Kanye West, to name a few, have shaped
+                  how I approach creativity.
                 </p>
                 <p>
                   I sometimes question whether my work carries the emotional
