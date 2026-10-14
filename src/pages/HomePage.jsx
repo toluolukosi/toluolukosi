@@ -133,7 +133,7 @@ const HomePage = () => {
   },
   {
     period: "2023",
-    title: "Graphics design specialisation",
+    title: "Graphic Design Specialization",
     org: "CALARTS",
     linkLabel: "Open certificate",
     href: "https://drive.google.com/drive/folders/1DB2ILoG0_6sOGD4BMIL7erH0y6_J-aII?usp=drive_link",
@@ -793,6 +793,24 @@ const HomePage = () => {
                   photographers, filmmakers and writers to bring it to life.
                 </p>
               </div>
+
+              {/* CV DOWNLOAD */}
+              <a
+                href="/Toluwanimi-Olukosi-CV.pdf"
+                download
+                className="
+                  mt-5 inline-flex items-center gap-2
+                  rounded-full border border-white/20 bg-white/5
+                  px-4 py-2
+                  text-[12px] uppercase tracking-[0.18em] text-white!
+                  hover:bg-white/15 transition-colors duration-200
+                "
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14" />
+                </svg>
+                Download CV
+              </a>
             </section>
           </div>
 
@@ -1065,6 +1083,20 @@ const HomePage = () => {
                 className="w-5 h-5 object-contain"
               />
             </a>
+
+            {/* CV DOWNLOAD BUTTON */}
+            <a
+              href="/Toluwanimi-Olukosi-CV.pdf"
+              download
+              className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
+              aria-label="Download CV"
+              title="Download CV"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 3v5h5M12 11v6M9.5 14.5 12 17l2.5-2.5" />
+              </svg>
+            </a>
           </div>
 
           {/* CREATED WITH LOVE – CENTERED ON MOBILE/TABLET */}
@@ -1193,6 +1225,19 @@ const HomePage = () => {
               alt="LinkedIn"
               className="w-5 h-5 object-contain"
             />
+          </a>
+
+          {/* CV DOWNLOAD BUTTON */}
+          <a
+            href="/Toluwanimi-Olukosi-CV.pdf"
+            download
+            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
+            aria-label="Download CV"
+          >
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+              <path d="M14 3v5h5M12 11v6M9.5 14.5 12 17l2.5-2.5" />
+            </svg>
           </a>
         </div>
       </footer>

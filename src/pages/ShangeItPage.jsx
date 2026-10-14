@@ -67,7 +67,7 @@ const ShangeItPage = () => {
           listed.
         </>,
         <>
-          I joined the team as <strong>Brand Manager</strong>, responsible for
+          I joined the team as <strong>Brand &amp; Growth Manager</strong>, responsible for
           how the brand looks, sounds and shows up everywhere people meet it.
           My first job was <strong>consistency</strong>: refining the use of
           logo, colour, type and tone of voice so that every post, video and

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Toluwanimi Olukosi – CV</title>
+<!--
+  Source for the downloadable CV (public/Toluwanimi-Olukosi-CV.pdf).
+  Edit the text here, then run:  bash cv/build.sh
+  One A4 page, single column, real text (readable by application systems).
+-->
+<style>
+  @font-face { font-family: "Thedus Condensed"; src: url("fonts/Thedus-Condensed.otf"); }
+
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #141414; --soft: #5c5c5c; --faint: #8d8d8d; --line: #e3e3e3; }
+
+  body {
+    width: 210mm; height: 297mm;
+    padding: 13mm 16mm 12mm;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8.75pt; line-height: 1.4; color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .display { font-family: "Thedus Condensed", "Helvetica Neue", sans-serif; text-transform: uppercase; }
+
+  /* header */
+  header { padding-bottom: 4.6mm; border-bottom: 0.8pt solid var(--ink); }
+  h1 { font-size: 34pt; line-height: 0.95; letter-spacing: 0.04em; font-weight: 400; }
+  .headline { margin-top: 2.2mm; font-size: 12.5pt; letter-spacing: 0.08em; }
+  .contact { margin-top: 3mm; font-size: 8.4pt; color: var(--soft); }
+  .contact span + span::before { content: "·"; margin: 0 2.2mm; color: var(--faint); }
+
+  /* sections: label column + content column */
+  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding-top: 4mm; }
+  section + section { margin-top: 0.4mm; }
+  h2 { font-size: 10.5pt; letter-spacing: 0.12em; font-weight: 400; line-height: 1.25; padding-top: 0.4mm; }
+
+  .role + .role { margin-top: 3mm; }
+  .role-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .role-title { font-weight: 700; font-size: 9.6pt; }
+  .role-title em { font-style: normal; font-weight: 400; color: var(--soft); }
+  .dates { font-size: 8.2pt; color: var(--soft); white-space: nowrap; }
+  .sub { color: var(--soft); font-size: 8.4pt; }
+  ul { margin-top: 1.1mm; padding-left: 3.6mm; }
+  li { margin-top: 0.4mm; }
+  li::marker { color: var(--faint); }
+
+  .profile p { max-width: 150mm; }
+  .list-line + .list-line { margin-top: 1.2mm; }
+  .k { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="display">Toluwanimi Olukosi</h1>
+  <div class="headline display">Visual &amp; Brand Designer</div>
+  <div class="contact">
+    <span>Lagos, Nigeria</span>
+    <span><a href="mailto:toluolukosi@gmail.com">toluolukosi@gmail.com</a></span>
+    <span><a href="tel:+2348081920330">+234 808 192 0330</a></span>
+    <span><a href="https://toluolukosi.vercel.app">toluolukosi.vercel.app</a></span>
+    <span><a href="https://www.linkedin.com/in/toluwanimi-olukosi-b1583134b/">linkedin.com/in/toluwanimi-olukosi</a></span>
+  </div>
+</header>
+
+<section class="profile">
+  <h2 class="display">Profile</h2>
+  <p>
+    Visual and brand designer with six years’ experience designing identities,
+    campaigns and content systems for a proptech startup, a branding agency,
+    freelance clients and a global youth organisation. I bring brands into line: one look, one voice,
+    every touchpoint. Working knowledge of motion, music and web development.
+    Selected work at <a href="https://toluolukosi.vercel.app">toluolukosi.vercel.app</a>.
+  </p>
+</section>
+
+<section>
+  <h2 class="display">Experience</h2>
+  <div>
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Brand &amp; Growth Manager <em>· ShangeIt, Lagos</em></div>
+        <div class="dates">Apr 2026 – Present</div>
+      </div>
+      <ul>
+        <li>Designed and wrote the ShangeIt brand book, a 26-page system covering logo use, colour, typography, photography and social templates.</li>
+        <li>Refined brand consistency across all output, aligning logo, colour, type and tone of voice on social, video and web.</li>
+        <li>Tailor content direction and social media strategy to reach ShangeIt’s target audience of renters and buyers in Lagos.</li>
+        <li>Direct social content end to end: scripts, shot lists, shoots, and presenter and creator videos.</li>
+        <li>Concepted and produced a 15-second brand ad and three product motion loops; report monthly on social performance.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Freelance Brand Designer <em>· Independent</em></div>
+      </div>
+      <ul>
+        <li>Delivered brand identities, campaign assets and event branding for independent clients, including Nilex and Weareva, alongside and between full-time roles.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Graphic Designer <em>· Frnwei, branding agency</em></div>
+        <div class="dates">Jul 2025 – Dec 2025</div>
+      </div>
+      <ul>
+        <li>Designed brand identity work for Criterion Homes (real estate) and Global Range Farms (agriculture).</li>
+        <li>Contributed to fast-paced design sprints on further client projects across the agency’s brand and digital work.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">Founder <em>· OTIS</em></div>
+        <div class="dates">2023 – Present</div>
+      </div>
+      <ul>
+        <li>Founded a multidisciplinary creative company spanning design, fashion, film and music.</li>
+        <li>Created the OTIS identity around an ambigram, and designed two apparel drops: Uncultured and Jogo Bonito.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div class="role-title">AIESEC in Lagos</div>
+      </div>
+      <div class="role-head sub">
+        <div>Brand Manager</div><div class="dates">Feb 2022 – Jan 2023</div>
+      </div>
+      <div class="role-head sub">
+        <div>Graphic Designer</div><div class="dates">Feb 2020 – Jan 2022</div>
+      </div>
+      <ul>
+        <li>Curated campaigns for AIESEC’s products and events, and made sure all outgoing media followed the brand guidelines.</li>
+        <li>Designed digital and print content: social posts, flyers, event materials and merchandise.</li>
+        <li>Led the creative for Eclipse: A Black Affair (Nov 2023 – Jan 2024), the organisation’s dinner and awards night: visual identity, art direction and an orchestral soundtrack.</li>
+        <li>Named Member of the Year (2022).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="display">Education</h2>
+  <div class="role-head">
+    <div><span class="k">BSc Geology</span> · University of Lagos</div>
+    <div class="dates">Completed 2026 · Graduating Mar 2027</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="display">Certifications</h2>
+  <div>
+    <div class="role-head"><div>Graphic Design Specialization · CalArts (Coursera)</div><div class="dates">2023</div></div>
+    <div class="role-head"><div>DELF A1, French · Alliance Française</div><div class="dates">2020</div></div>
+    <div class="role-head"><div>Music Theory Grade 4 &amp; Piano Grade 3 · MUSON</div><div class="dates">2018</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="display">Skills</h2>
+  <div>
+    <p class="list-line">Brand&nbsp;identity · Brand&nbsp;guidelines · Art&nbsp;direction · Campaign&nbsp;design · Social&nbsp;media&nbsp;strategy · Content&nbsp;direction · Motion&nbsp;design · Print</p>
+    <p class="list-line"><span class="k">Tools:</span> Figma, Illustrator, Photoshop, InDesign, Lightroom, Fresco, After&nbsp;Effects, Premiere&nbsp;Pro, FL&nbsp;Studio, React, Tailwind</p>
+    <p class="list-line"><span class="k">Languages:</span> English, Yoruba, French (A1)</p>
+  </div>
+</section>
+
+</body>
+</html>
