@@ -1005,11 +1005,10 @@ const HomePage = () => {
               className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
               aria-label="Contact Me"
             >
-              <img
-                src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
-                alt="Contact Me"
-                className="w-5 h-5 object-contain"
-              />
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20 11.5a7.5 7.5 0 0 1-10.9 6.7L4 19.5l1.3-4.7A7.5 7.5 0 1 1 20 11.5z" />
+                <path d="M8.5 10h7M8.5 13h4.5" />
+              </svg>
             </Link>
 
             {/* COPY EMAIL BUTTON */}
@@ -1062,11 +1061,10 @@ const HomePage = () => {
   "
               aria-label="Copy Email"
             >
-              <img
-                src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
-                alt="Copy Email"
-                className="w-5 h-5 object-contain"
-              />
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+                <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+              </svg>
             </div>
 
             {/* LINKEDIN BUTTON */}
@@ -1077,11 +1075,10 @@ const HomePage = () => {
               className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-black transition-colors duration-200"
               aria-label="LinkedIn"
             >
-              <img
-                src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
-                alt="LinkedIn"
-                className="w-5 h-5 object-contain"
-              />
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="3.5" />
+                <path d="M8.2 10.6v5.9M8.2 7.6v.01M11.8 16.5v-5.9M11.8 13.1a2.5 2.5 0 0 1 5 0v3.4" />
+              </svg>
             </a>
 
             {/* CV DOWNLOAD BUTTON */}
@@ -1126,14 +1123,13 @@ const HomePage = () => {
           {/* CONTACT BUTTON */}
           <Link
             to="/contact"
-            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
             aria-label="Contact Me"
           >
-            <img
-              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/reachout_b7oqop.png"
-              alt="Contact"
-              className="w-5 h-5 object-contain"
-            />
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M20 11.5a7.5 7.5 0 0 1-10.9 6.7L4 19.5l1.3-4.7A7.5 7.5 0 1 1 20 11.5z" />
+              <path d="M8.5 10h7M8.5 13h4.5" />
+            </svg>
           </Link>
 
           {/* COPY EMAIL BUTTON */}
@@ -1200,16 +1196,15 @@ const HomePage = () => {
     border border-white/20
     bg-white/5
     flex items-center justify-center
-    hover:bg-white hover:text-black
+    hover:bg-white/20
     transition-colors duration-200
   "
             aria-label="Copy Email"
           >
-            <img
-              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/email_gambux.png"
-              alt="Copy Email"
-              className="w-5 h-5 object-contain"
-            />
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+              <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+            </svg>
           </div>
 
           {/* LINKEDIN BUTTON */}
@@ -1217,14 +1212,13 @@ const HomePage = () => {
             href="https://www.linkedin.com/in/toluwanimi-olukosi-b1583134b/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-200"
+            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
             aria-label="LinkedIn"
           >
-            <img
-              src="https://res.cloudinary.com/dzl5osene/image/upload/v1765808385/linkedin_p72bhv.png"
-              alt="LinkedIn"
-              className="w-5 h-5 object-contain"
-            />
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="3.5" />
+              <path d="M8.2 10.6v5.9M8.2 7.6v.01M11.8 16.5v-5.9M11.8 13.1a2.5 2.5 0 0 1 5 0v3.4" />
+            </svg>
           </a>
 
           {/* CV DOWNLOAD BUTTON */}
