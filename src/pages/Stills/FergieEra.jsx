@@ -12,14 +12,14 @@ const FergieEra = () => {
         "The series explores how layout and texture can carry nostalgia, making each poster feel like it came from the era it celebrates."
       ]}
       images={[
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780512300/fergie_era_3_ghkxex.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325587/SAF_djj0rd.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325587/DB_evwshf.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325591/PS_ocaujj.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325587/RG_uw6iip.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325572/OGS_mccieo.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325584/EC_jmrni8.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1780325571/DY_AC_jbammb.png"
+        "/img/stills/fergie-era/fergie-era-3.webp",
+        "/img/stills/fergie-era/saf.webp",
+        "/img/stills/fergie-era/db.webp",
+        "/img/stills/fergie-era/ps.webp",
+        "/img/stills/fergie-era/rg.webp",
+        "/img/stills/fergie-era/ogs.webp",
+        "/img/stills/fergie-era/ec.webp",
+        "/img/stills/fergie-era/dy-ac.webp"
       ]}
     />
   );

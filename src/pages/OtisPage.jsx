@@ -22,20 +22,26 @@ const CovidProjectPage = () => {
       // TODO: swap in the real Cloudinary URLs for each section.
       sections={[
         {
+          // Collection 01: cover, five tech-pack sheets, two lookbook photos
+          title: "Unkultured",
+          images: [
+            "/img/otis/unkultured-00-cover.webp",
+            "/img/otis/unkultured-01-iron.webp",
+            "/img/otis/unkultured-02-the-worm.webp",
+            "/img/otis/unkultured-03-balo.webp",
+            "/img/otis/unkultured-04-abami-eda.webp",
+            "/img/otis/unkultured-05-zazu.webp",
+            "/img/otis/unkultured-06-lookbook-worm.webp",
+            "/img/otis/unkultured-07-lookbook-balo.webp",
+          ],
+        },
+        {
           title: "Branding",
           images: [
             SprezzaturaImg1,
             // TEMP placeholders so the swipe is visible – replace with OTIS branding
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/LAGOS_mm0r7l.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/TOKYO_xbnsrq.png",
-          ],
-        },
-        {
-          title: "Clothing Drops",
-          // TEMP placeholders – replace with OTIS clothing drop images
-          images: [
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1777115687/KOD_tlz109.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1777115686/TAKE_CARE_ik7t2n.png",
+            "/img/stills/brutalist-cities/lagos.webp",
+            "/img/stills/brutalist-cities/tokyo.webp",
           ],
         },
       ]}

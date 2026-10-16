@@ -57,22 +57,20 @@ const HomePage = () => {
     {
       title: "Stills",
       route: "/stills",
-      image:
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1734509688/eclipse-project_azc83s.png",
       visual: "stills", // animated background (src/components/SideVisual.jsx)
       locked: false,
     },
     {
       title: "Live",
       route: "/live",
-      image: "/images/AboutPictures/IMG_3747.jpg",
+      image: "/img/about/IMG_3747.webp",
       visual: "live", // animated background (src/components/SideVisual.jsx)
       locked: false,
     },
     {
       title: "Sound",
       route: "/sound",
-      image: "/images/AboutPictures/IMG_3747.jpg",
+      image: "/img/about/IMG_3747.webp",
       visual: "sound", // animated background (src/components/SideVisual.jsx)
       locked: true, // 🔒 this one is protected
       lockNote: "Protected", // text you want to show
@@ -80,7 +78,7 @@ const HomePage = () => {
     {
       title: "Dev",
       route: "/dev",
-      image: "/images/AboutPictures/IMG_3747.jpg",
+      image: "/img/about/IMG_3747.webp",
       visual: "dev", // animated background (src/components/SideVisual.jsx)
       locked: true, // 🔒 this one is protected
       lockNote: "Protected", // text you want to show
@@ -88,21 +86,21 @@ const HomePage = () => {
   ];
 
   const toolIcons = [
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/figma_jb5nuy.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/Illustrator_rdt3et.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/Photoshop_mhn9dr.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/Indesign_jpllrw.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545095/Light_room_re2o9k.png",
-    "/images/tools/fresco.svg", // Adobe Fresco
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/AfterEffets_mymhmq.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/Premiere_Pro_uenwlk.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/fruityloops_j8tbhe.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/Audacity_jejvn0.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/VScode_qjjlp6.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545101/React_z6myfj.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545095/TailwindCSS_gxuoxu.png",
-    "https://res.cloudinary.com/dzl5osene/image/upload/v1765545094/github_z2dw9o.png",
-    "/images/claude-logo.svg",
+    "/img/tools/figma.webp",
+    "/img/tools/illustrator.webp",
+    "/img/tools/photoshop.webp",
+    "/img/tools/indesign.webp",
+    "/img/tools/light-room.webp",
+    "/img/tools/fresco.svg", // Adobe Fresco
+    "/img/tools/aftereffets.webp",
+    "/img/tools/premiere-pro.webp",
+    "/img/tools/fruityloops.webp",
+    "/img/tools/audacity.webp",
+    "/img/tools/vscode.webp",
+    "/img/tools/react.webp",
+    "/img/tools/tailwindcss.webp",
+    "/img/tools/github.webp",
+    "/img/tools/claude.svg",
   ];
 
   
@@ -227,7 +225,7 @@ const HomePage = () => {
       <header className="fixed top-0 left-0 right-0 z-50 px-10 pt-4 flex items-start justify-between pointer-events-none">
         {/* Icon as click-to-top image — NO background */}
         <img
-          src="https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png"
+          src="/img/brand/otis-ambigram.webp"
           alt="Back to top"
           onClick={scrollToTop}
           className="pointer-events-auto w-[75px] h-auto cursor-pointer select-none"
@@ -379,7 +377,7 @@ const HomePage = () => {
       <section id="hero" className="relative h-screen bg-black overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <img
-            src="/images/portfolio-landing-page.jpg"
+            src="/img/home/portfolio-landing-page.webp"
             alt="Tolu Olukosi portrait"
             className="h-[72vh] w-auto object-cover transition-opacity duration-500"
             style={{ opacity: 0.7 + middleOpacity * 0.8 }}
@@ -512,10 +510,10 @@ const HomePage = () => {
               {[
                 "src/assets/ICONS/aftereffects.png",
                 "src/assets/ICONS/illustrator.png",
-                "https://res.cloudinary.com/dzl5osene/image/upload/v1765545102/Indesign_jpllrw.png",
+                "/img/tools/indesign.webp",
                 "src/assets/ICONS/photoshop.png",
-                "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/Premiere_Pro_uenwlk.png",
-                "https://res.cloudinary.com/dzl5osene/image/upload/v1765545106/fruityloops_j8tbhe.png",
+                "/img/tools/premiere-pro.webp",
+                "/img/tools/fruityloops.webp",
                 "src/assets/ICONS/figma.png",
                 "src/assets/ICONS/html.png",
                 "src/assets/ICONS/css.png",
@@ -572,7 +570,7 @@ const HomePage = () => {
                   <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                     <span>{side.title}</span>
                     <img
-                      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545065/Padlock_fpevps.png"
+                      src="/img/ui/padlock.webp"
                       alt="locked"
                       className="w-4 h-4 object-contain"
                     />
@@ -598,7 +596,7 @@ const HomePage = () => {
                   <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                     <span>{side.title}</span>
                     <img
-                      src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545065/Padlock_fpevps.png"
+                      src="/img/ui/padlock.webp"
                       alt="locked"
                       className="w-4 h-4 object-contain"
                     />
@@ -934,7 +932,7 @@ const HomePage = () => {
               "
             >
               <video
-                src="/images/videos/weeklyRecap-2025-08-04.mp4"
+                src="/videos/weekly-recap.mp4"
                 autoPlay
                 muted
                 loop
@@ -984,7 +982,7 @@ const HomePage = () => {
           {/* LOGO + COPYRIGHT – CENTERED ON MOBILE/TABLET */}
           <div className="flex flex-col items-center lg:items-start gap-0 font-thedus-condensed">
             <img
-              src="https://res.cloudinary.com/dzl5osene/image/upload/v1791284623/Frame_216_ywctna.png"
+              src="/img/brand/otis-ambigram.webp"
               alt="Tolu logo"
               className="w-[113px] h-auto"
             />

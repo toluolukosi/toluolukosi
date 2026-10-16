@@ -3,9 +3,9 @@ import React from "react";
 import ProjectLayout from "../components/ProjectLayout";
 
 // adjust image paths to your setup (public/images or src/assets)
-import Covid1 from "/public/images/Strava-logo.png";
-import Covid2 from "/public/images/portfolio-landing-page.jpg";
-import Covid3 from "/public/images/Strava-logo.png";
+import Covid1 from "/public/img/tolukosi/strava-logo.webp";
+import Covid2 from "/public/img/home/portfolio-landing-page.webp";
+import Covid3 from "/public/img/tolukosi/strava-logo.webp";
 
 const CovidProjectPage = () => {
   return (

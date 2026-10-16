@@ -1,7 +1,7 @@
 /* Thedus Condensed */
 @font-face {
   font-family: 'Thedus-Condensed';
-  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-Condensed_skvflo.otf')
+  src: url('/fonts/Thedus-Condensed.otf')
        format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -11,7 +11,7 @@
 /* Thedus Condensed Light */
 @font-face {
   font-family: 'Thedus-CondensedLight';
-  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-CondensedLight_uxphfe.otf')
+  src: url('/fonts/Thedus-CondensedLight.otf')
        format('opentype');
   font-weight: 300;
   font-style: normal;
@@ -21,7 +21,7 @@
 /* Thedus Stencil Condensed */
 @font-face {
   font-family: 'Thedus-StencilCondensed';
-  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-StencilCondensed_sgtfql.otf')
+  src: url('/fonts/Thedus-StencilCondensed.otf')
        format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -31,7 +31,7 @@
 /* Thedus Stencil Wide */
 @font-face {
   font-family: 'Thedus-StencilWide';
-  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-StencilWide_khcuj6.otf')
+  src: url('/fonts/Thedus-StencilWide.otf')
        format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -41,7 +41,7 @@
 /* Thedus Wide */
 @font-face {
   font-family: 'Thedus-Wide';
-  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-Wide_wnfnwf.otf')
+  src: url('/fonts/Thedus-Wide.otf')
        format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -51,7 +51,7 @@
 /* Thedus Wide Light */
 @font-face {
   font-family: 'Thedus-WideLight';
-  src: url('https://res.cloudinary.com/dzl5osene/raw/upload/v1765890407/Thedus-WideLight_luczri.otf')
+  src: url('/fonts/Thedus-WideLight.otf')
        format('opentype');
   font-weight: 300;
   font-style: normal;

@@ -11,13 +11,13 @@ const BrutalistCities = () => {
         "The project explores how restraint, structure, and “material” noise can communicate identity with impact.",
       ]}
       images={[
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/BC_ovhoa6.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/LAGOS_mm0r7l.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/TOKYO_xbnsrq.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987429/LONDON_unjtjz.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987427/PARIS_kwm2yu.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/NY_e30eem.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/ROME_abfkvi.png",
+        "/img/stills/brutalist-cities/bc.webp",
+        "/img/stills/brutalist-cities/lagos.webp",
+        "/img/stills/brutalist-cities/tokyo.webp",
+        "/img/stills/brutalist-cities/london.webp",
+        "/img/stills/brutalist-cities/paris.webp",
+        "/img/stills/brutalist-cities/ny.webp",
+        "/img/stills/brutalist-cities/rome.webp",
       ]}
     />
   );

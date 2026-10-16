@@ -31,28 +31,28 @@ const EclipsePage = () => {
         {
           title: "Branding",
           images: [
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489765/Frame_227_oq4drk.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489780/Frame_238_p1ojnn.png",
+            "/img/eclipse/frame-227.webp",
+            "/img/eclipse/frame-238.webp",
             EclipseLoop,
           ],
         },
         {
           title: "In Use",
           images: [
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489763/Frame_230_fx15cv.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489768/Frame_236_cl590r.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489773/Frame_231_lqrufp.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489783/Frame_234_i0s3q2.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489772/Frame_233_uc23qt.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489773/Frame_232_ish5ca.png",
-            "https://res.cloudinary.com/dzl5osene/image/upload/v1790489878/Frame_237_xsmuvx.png",
+            "/img/eclipse/frame-230.webp",
+            "/img/eclipse/frame-236.webp",
+            "/img/eclipse/frame-231.webp",
+            "/img/eclipse/frame-234.webp",
+            "/img/eclipse/frame-233.webp",
+            "/img/eclipse/frame-232.webp",
+            "/img/eclipse/frame-237.webp",
           ],
         },
         {
           title: "Website",
           images: [
             {
-              src: "/images/eclipse-website.jpg",
+              src: "/img/eclipse/website.webp",
               link: "https://ail-eclipse.netlify.app/",
             },
           ],

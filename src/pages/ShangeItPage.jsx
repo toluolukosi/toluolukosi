@@ -12,7 +12,7 @@ const ShangeItPage = () => {
       // panel opens it full-screen with sound.
       film={{
         src: "/videos/shangeit-brand-ad.mp4",
-        poster: "/images/shangeit/poster-brand-ad.jpg",
+        poster: "/img/shangeit/poster-brand-ad.webp",
         label: "Watch the ad",
         note: "Sound on · 15 seconds",
         aspect: 9 / 16,
@@ -24,30 +24,30 @@ const ShangeItPage = () => {
         {
           title: "Logo System",
           images: [
-            "/images/shangeit/brand-08.jpg",
-            "/images/shangeit/brand-09.jpg",
-            "/images/shangeit/brand-10.jpg",
-            "/images/shangeit/brand-11.jpg",
+            "/img/shangeit/brand-08.webp",
+            "/img/shangeit/brand-09.webp",
+            "/img/shangeit/brand-10.webp",
+            "/img/shangeit/brand-11.webp",
           ],
         },
         {
           title: "Colour & Type",
           images: [
-            "/images/shangeit/brand-12.jpg",
-            "/images/shangeit/brand-13.jpg",
-            "/images/shangeit/brand-14.jpg",
-            "/images/shangeit/brand-15.jpg",
+            "/img/shangeit/brand-12.webp",
+            "/img/shangeit/brand-13.webp",
+            "/img/shangeit/brand-14.webp",
+            "/img/shangeit/brand-15.webp",
           ],
         },
         {
           title: "Social System",
           images: [
-            "/images/shangeit/brand-07.jpg",
-            "/images/shangeit/brand-16.jpg",
-            "/images/shangeit/brand-17.jpg",
-            "/images/shangeit/brand-18.jpg",
-            "/images/shangeit/brand-20.jpg",
-            "/images/shangeit/brand-21.jpg",
+            "/img/shangeit/brand-07.webp",
+            "/img/shangeit/brand-16.webp",
+            "/img/shangeit/brand-17.webp",
+            "/img/shangeit/brand-18.webp",
+            "/img/shangeit/brand-20.webp",
+            "/img/shangeit/brand-21.webp",
           ],
         },
         {

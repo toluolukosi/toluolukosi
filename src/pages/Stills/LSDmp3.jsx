@@ -11,12 +11,12 @@ const LSDmp3 = () => {
         "The project explores how distortion, color, and visual rhythm can evoke sound, memory, and mood beyond literal representation."
       ]}
       images={[
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115694/PARIS_ej7vkn.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115686/TAKE_CARE_ik7t2n.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115687/KOD_tlz109.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777202374/SYRE_n4w83b.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115695/PSYCHODDRAMA_deuluy.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1777115691/THE_MELODIC_BLUE_f7zpzd.png",
+        "/img/stills/lsd-mp3/paris.webp",
+        "/img/stills/lsd-mp3/take-care.webp",
+        "/img/stills/lsd-mp3/kod.webp",
+        "/img/stills/lsd-mp3/syre.webp",
+        "/img/stills/lsd-mp3/psychoddrama.webp",
+        "/img/stills/lsd-mp3/the-melodic-blue.webp",
       ]}
     />
   );

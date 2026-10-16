@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 const images = [
-  "/images/AboutPictures/IMG_1552.jpg",
-  "/images/AboutPictures/IMG_3747.jpg",
-  "/images/AboutPictures/IMG_0220.jpg",
-  "/images/AboutPictures/IMG_1566.jpg",
-  "/images/AboutPictures/IMG_4792.jpg",
-  "/images/AboutPictures/IMG_1298.jpg",
-  "/images/AboutPictures/IMG_1462.jpg",
-  "/images/AboutPictures/IMG_8181.jpg",
-  "/images/AboutPictures/IMG_9535.jpg",
-  "/images/AboutPictures/IMG_0199.jpg",
-  "/images/AboutPictures/IMG_9665.jpg",
+  "/img/about/IMG_1552.webp",
+  "/img/about/IMG_3747.webp",
+  "/img/about/IMG_0220.webp",
+  "/img/about/IMG_1566.webp",
+  "/img/about/IMG_4792.webp",
+  "/img/about/IMG_1298.webp",
+  "/img/about/IMG_1462.webp",
+  "/img/about/IMG_8181.webp",
+  "/img/about/IMG_9535.webp",
+  "/img/about/IMG_0199.webp",
+  "/img/about/IMG_9665.webp",
 ];
 
 function AboutSlider() {

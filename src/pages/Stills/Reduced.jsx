@@ -12,12 +12,12 @@ const Reduced = () => {
         "The series covers Interstellar, The Wolf of Wall Street, Dune, Whiplash and American Psycho."
       ]}
       images={[
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/REDUCED_qeutvv.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007943/INTERSTELLAR_tvdkgx.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/WOLF_OF_WALL_SREET_uouxhr.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007775/DUNE_lepqfb.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/WHIPLASH_nccybw.png",
-        "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/AMERICAN_PSYCHO_fstddl.png"
+        "/img/stills/reduced/reduced.webp",
+        "/img/stills/reduced/interstellar.webp",
+        "/img/stills/reduced/wolf-of-wall-sreet.webp",
+        "/img/stills/reduced/dune.webp",
+        "/img/stills/reduced/whiplash.webp",
+        "/img/stills/reduced/american-psycho.webp"
       ]}
     />
   );

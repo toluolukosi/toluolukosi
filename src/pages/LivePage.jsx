@@ -34,21 +34,21 @@ const sections = [
         title: "ShangeIt: Brand Ad",
         meta: "15 sec · 2026",
         src: "/videos/shangeit-brand-ad.mp4",
-        poster: "/images/shangeit/poster-brand-ad.jpg",
+        poster: "/img/shangeit/poster-brand-ad.webp",
         aspect: 9 / 16,
       },
       {
         title: "ShangeIt: Search Loop",
         meta: "Product motion · 2026",
         src: "/videos/shangeit-ui-loop.mp4",
-        poster: "/images/shangeit/poster-ui-loop.jpg",
+        poster: "/img/shangeit/poster-ui-loop.webp",
         aspect: 4 / 5,
       },
       {
         title: "ShangeIt: Map Pin",
         meta: "Product motion · 2026",
         src: "/videos/shangeit-map-pin.mp4",
-        poster: "/images/shangeit/poster-map-pin.jpg",
+        poster: "/img/shangeit/poster-map-pin.webp",
         aspect: 4 / 5,
         note: "Map data © OpenStreetMap contributors", // required credit
       },
@@ -56,7 +56,7 @@ const sections = [
         title: "ShangeIt: 3D Tour",
         meta: "Product motion · 2026",
         src: "/videos/shangeit-3d-tour.mp4",
-        poster: "/images/shangeit/poster-3d-tour.jpg",
+        poster: "/img/shangeit/poster-3d-tour.webp",
         aspect: 4 / 5,
       },
       {

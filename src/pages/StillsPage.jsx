@@ -6,20 +6,20 @@ const stills = [
   {
     title: "Brutalist Cities",
     image:
-      "https://res.cloudinary.com/dzl5osene/image/upload/v1765987428/BC_ovhoa6.png",
+      "/img/stills/brutalist-cities/bc.webp",
     route: "/stills/brutalist-cities",
     locked: false,
   },  {
     title: "Fergie Era",
     image:
-      "https://res.cloudinary.com/dzl5osene/image/upload/v1780512300/fergie_era_3_ghkxex.png",
+      "/img/stills/fergie-era/fergie-era-3.webp",
     route: "/stills/fergie-era",
     locked: false,
   },
   {
     title: "LSD.mp3",
     image:
-      "https://res.cloudinary.com/dzl5osene/image/upload/v1777115694/PARIS_ej7vkn.png",
+      "/img/stills/lsd-mp3/paris.webp",
     route: "/stills/LSDmp3",
     locked: false,
   },
@@ -33,7 +33,7 @@ const stills = [
   {
     title: "Reduced",
     image:
-      "https://res.cloudinary.com/dzl5osene/image/upload/v1781007774/REDUCED_qeutvv.png",
+      "/img/stills/reduced/reduced.webp",
     route: "/stills/Reduced",
     locked: false,
   },
@@ -99,7 +99,7 @@ const StillsPage = () => {
                 <p className="text-[24px] font-bold font-thedus-condensed leading-none flex items-center gap-2">
                   <span>{still.title}</span>
                   <img
-                    src="https://res.cloudinary.com/dzl5osene/image/upload/v1765545065/Padlock_fpevps.png"
+                    src="/img/ui/padlock.webp"
                     alt="locked"
                     className="w-4 h-4 object-contain"
                   />
