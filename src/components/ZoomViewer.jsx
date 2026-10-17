@@ -8,7 +8,7 @@ import NavIconButton from "./NavIconButton";
 const MAX_SCALE = 4;
 const TAP_SCALE = 2.5; // zoom level for double-tap / click
 
-const ZoomViewer = ({ images, index, onIndexChange, onClose, label }) => {
+const ZoomViewer = ({ images, notes = [], index, onIndexChange, onClose, label }) => {
   const boxRef = useRef(null); // scroll container (panning = native scroll)
   const imgRef = useRef(null);
   const scaleRef = useRef(1);
@@ -215,6 +215,7 @@ const ZoomViewer = ({ images, index, onIndexChange, onClose, label }) => {
         )}
         <span className="px-3 py-1.5 rounded-full bg-black/60 text-[10px] uppercase tracking-[0.2em] font-thedus-condensed text-white/80">
           {hasMultiple && `${index + 1}/${images.length} · `}
+          {notes[index] && <span className="text-white">{notes[index]} · </span>}
           <span className="lg:hidden">Pinch or double-tap to zoom</span>
           <span className="hidden lg:inline">Click to zoom</span>
         </span>

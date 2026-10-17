@@ -11,6 +11,8 @@ const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src);
 const isLink = (item) => typeof item === "object" && !!item.link;
 // Plain images can be opened in the zoom viewer
 const isZoomable = (item) => !isLink(item) && !isVideo(srcOf(item));
+// Optional label shown on a slide, e.g. { src, note: "AI-generated" }
+const noteOf = (item) => (typeof item === "object" ? item.note : undefined);
 
 const ProjectLayout = ({
   title,
@@ -66,6 +68,8 @@ const ProjectLayout = ({
   // Images of one section that the zoom viewer can step through
   const zoomImages = (rowIndex) =>
     (mediaSections[rowIndex]?.images ?? []).filter(isZoomable).map(srcOf);
+  const zoomNotes = (rowIndex) =>
+    (mediaSections[rowIndex]?.images ?? []).filter(isZoomable).map(noteOf);
 
   // Track which row / image is in view from the native scroll position
   const handleGridScroll = (e) => {
@@ -380,8 +384,11 @@ const ProjectLayout = ({
                             className={mediaClass}
                           />
                         ) : (
-                          <img
+                          <div
                             key={`${src}-${colIndex}`}
+                            className={`${mediaClass} relative`}
+                          >
+                          <img
                             src={src}
                             alt={
                               section.title
@@ -397,8 +404,14 @@ const ProjectLayout = ({
                                 index: zoomImages(rowIndex).indexOf(src),
                               })
                             }
-                            className={`${mediaClass} cursor-zoom-in`}
+                            className="w-full h-full object-contain object-center cursor-zoom-in"
                           />
+                          {noteOf(item) && (
+                            <span className="pointer-events-none absolute bottom-3 md:bottom-5 left-3 md:left-5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-sm border border-white/15 text-[10px] uppercase tracking-[0.18em] font-thedus-condensed text-white">
+                              {noteOf(item)}
+                            </span>
+                          )}
+                          </div>
                         );
                       })}
                     </div>
@@ -916,6 +929,7 @@ const ProjectLayout = ({
       {zoom && zoomImages(zoom.row).length > 0 && (
         <ZoomViewer
           images={zoomImages(zoom.row)}
+          notes={zoomNotes(zoom.row)}
           index={Math.max(zoom.index, 0)}
           onIndexChange={(index) => setZoom({ row: zoom.row, index })}
           onClose={() => setZoom(null)}

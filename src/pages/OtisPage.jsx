@@ -28,8 +28,8 @@ const OtisPage = () => {
             "/img/otis/unkultured-03-balo.webp",
             "/img/otis/unkultured-04-abami-eda.webp",
             "/img/otis/unkultured-05-zazu.webp",
-            "/img/otis/unkultured-06-lookbook-worm.webp",
-            "/img/otis/unkultured-07-lookbook-balo.webp",
+            { src: "/img/otis/unkultured-06-lookbook-worm.webp", note: "AI-generated" },
+            { src: "/img/otis/unkultured-07-lookbook-balo.webp", note: "AI-generated" },
           ],
         },
         {
