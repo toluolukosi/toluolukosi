@@ -1,26 +1,23 @@
-// src/pages/SprezzaturaPage.jsx
+// src/pages/OtisPage.jsx
 import React from "react";
 import ProjectLayout from "../components/ProjectLayout";
 
-// ✅ ADD Cloudinary URLs as plain constants instead:
-const SprezzaturaImg1 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
-const SprezzaturaImg2 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
-const SprezzaturaImg3 =
-  "https://res.cloudinary.com/dzl5osene/image/upload/v1734510558/NEXLDSABUJA_p5gons.png";
-
-const CovidProjectPage = () => {
+const OtisPage = () => {
   return (
     <ProjectLayout
       title="OTIS"
       company="Multidisciplinary Creative Company"
-      year="2020"
-      type="Mobile"
+      year="2023"
       // Each section is a row: swipe left/right through its images,
       // scroll up/down to move to the next section.
-      // TODO: swap in the real Cloudinary URLs for each section.
       sections={[
+        {
+          // Identity: the OTIS stamp, its variants and rules
+          title: "Logo System",
+          images: [
+            "/img/otis/logo-system.webp",
+          ],
+        },
         {
           // Collection 01: cover, five tech-pack sheets, two lookbook photos
           title: "Unkultured",
@@ -36,26 +33,66 @@ const CovidProjectPage = () => {
           ],
         },
         {
-          title: "Branding",
+          // Collection 02: cover + nine national-team ringer tees
+          title: "Jogo Bonito",
           images: [
-            SprezzaturaImg1,
-            // TEMP placeholders so the swipe is visible – replace with OTIS branding
-            "/img/stills/brutalist-cities/lagos.webp",
-            "/img/stills/brutalist-cities/tokyo.webp",
+            "/img/otis/jogo-bonito-00-cover.webp",
+            "/img/otis/jogo-bonito-01-bra.webp",
+            "/img/otis/jogo-bonito-02-por.webp",
+            "/img/otis/jogo-bonito-03-fra.webp",
+            "/img/otis/jogo-bonito-04-ger.webp",
+            "/img/otis/jogo-bonito-05-jpn.webp",
+            "/img/otis/jogo-bonito-06-esp.webp",
+            "/img/otis/jogo-bonito-07-arg.webp",
+            "/img/otis/jogo-bonito-08-eng.webp",
+            "/img/otis/jogo-bonito-09-nga.webp",
+          ],
+        },
+        {
+          // Collection 03: coming soon
+          title: "Creative Dictator",
+          images: [
+            "/img/otis/creative-dictator-00-cover.webp",
           ],
         },
       ]}
       overview={[
-        "In the early days of the COVID-19 pandemic in Brazil, the Ministry of Health faced an urgent challenge: to swiftly and accurately provide citizens with official health information while also gathering data on their health status.",
-        "The solution was an intuitive progressive web app designed to inform, guide, and track the pandemic's progression. This app provided critical information to the public and gathered essential data to shape public policies.",
+        <>
+          <strong>OTIS</strong> is a multidisciplinary creative company built
+          to make and produce media in every form: design, fashion, film and
+          music. It starts with apparel, released in small, numbered
+          collections.
+        </>,
+        <>
+          The identity is the <strong>OTIS stamp</strong>, an ambigram with
+          rotational symmetry that reads the same upside down. Beneath it sits
+          a phonetic rendering of the name in Yoruba orthography, chosen for
+          the rhythm of its tone marks rather than any meaning. The brand
+          works like the mark: limited runs, coded language, made for people
+          who look twice.
+        </>,
+        <>
+          <strong>Collection 01, Unkultured</strong>, celebrates people who
+          refused to express themselves the way they were told to: Mike Tyson,
+          Dennis Rodman, Mario Balotelli, Fela Kuti and Portable, printed
+          tonal on acid-washed black tees and vests.
+        </>,
+        <>
+          <strong>Collection 02, Jogo Bonito</strong>, is a set of ringer tees
+          for nine national football teams, each crest redrawn to carry the
+          OTIS stamp. <strong>Collection 03, Creative Dictator</strong>, is in
+          development.
+        </>,
       ]}
       contributions={[
-        "Conducted interviews with epidemiology experts, desk research of global solutions, and benchmark analyses to derive insights and shape the app's foundational strategy.",
-        "Developed a user-centric interface complemented by diverse, color-coded virtual screening illustrations and consistent iconography to enhance user engagement and comprehension.",
-        "Introduced features such as GPS-based Health Unit locator, symptom self-assessment flows, and tailored recommendations based on risk categorization.",
+        "Founded OTIS in 2023 and lead its creative direction across every release.",
+        "Designed the OTIS stamp and its logo system: horizontal and vertical lockups, monochrome and inverted versions, minimum size, clear space, construction and misuse rules.",
+        "Designed each collection end to end, from concept and naming to the graphics, tech-pack sheets and garment specifications.",
+        "Built a coded system for the range, with collection numbers, season tags and design codes (OTS-C01-01) carried from the sheets onto the labels.",
       ]}
+      credits={[{ name: "Tolu Olukosi", role: "Founder" }]}
     />
   );
 };
 
-export default CovidProjectPage;
+export default OtisPage;
