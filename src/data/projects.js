@@ -15,7 +15,7 @@ const projects = [
     title: "otis",
     year: "2023",
     image:
-      "/img/projects/otis-1.webp",
+      "/img/projects/otis-card.webp",
     logo: "/img/brand/otis-ambigram.webp",
     // new PNG has no top/bottom margin: match the old logo's width (71px) and position
     logoStyle: { width: 71, height: "auto", marginTop: 11 },
@@ -36,11 +36,11 @@ const projects = [
   {
     title: "shangeit",
     year: "2026",
-    // a real listing from the site: Oribanwa Phase 2, Lekki
-    image: "/img/shangeit/card-oribanwa.webp",
-    logo: "/img/shangeit/logo-white.webp",
-    // wide logo (monogram + wordmark): size it by height instead of the default
-    logoStyle: { height: 26, width: "auto", marginTop: 6 },
+    // ShangeIt-listed homes, darkened, with the wordmark over them (like the TOLUKOSI card)
+    image: "/img/projects/shangeit-card.webp",
+    logo: "/img/shangeit/icon-white.webp",
+    // solid monogram reads heavier than the other icons: size it down a little
+    logoStyle: { height: 44, width: "auto", marginTop: 8 },
     line1: "Proptech",
     line2: "Property Marketplace",
     route: "/shangeit",
