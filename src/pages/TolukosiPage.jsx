@@ -2,30 +2,96 @@
 import React from "react";
 import ProjectLayout from "../components/ProjectLayout";
 
-// adjust image paths to your setup (public/images or src/assets)
-import Covid1 from "/public/img/tolukosi/strava-logo.webp";
-import Covid2 from "/public/img/home/portfolio-landing-page.webp";
-import Covid3 from "/public/img/tolukosi/strava-logo.webp";
+// Frames are rendered from ~/Documents/TOLUKOSI/Identity (bash tools/build.sh),
+// copied into images-src/tolukosi and converted with `npm run images`.
+const img = (name) => `/img/tolukosi/${name}.webp`;
 
-const CovidProjectPage = () => {
+const TolukosiPage = () => {
   return (
     <ProjectLayout
       title="TOLUKOSI"
       company="Luxury Fashion"
-      year="2020"
-      type="Mobile"
-      heroImages={[Covid1, Covid2, Covid3]}
+      year="2024"
+      // Each section is a row: swipe left/right through its images,
+      // scroll up/down to move to the next section.
+      sections={[
+        {
+          // Wordmark, monogram and the rules around them
+          title: "Logo System",
+          images: [
+            img("01-cover"),
+            img("02-essence"),
+            img("03-wordmark"),
+            img("04-clearspace"),
+            img("05-monogram"),
+            img("06-versions"),
+          ],
+        },
+        {
+          title: "Colour & Type",
+          images: [
+            img("07-palette"),
+            img("07b-pairings"),
+            img("08-type"),
+            img("08b-type-scale"),
+            img("09-pattern"),
+          ],
+        },
+        {
+          // Concept applications
+          title: "In Use",
+          images: [
+            img("10-stationery"),
+            img("11-labels"),
+            img("12-packaging"),
+            img("13-invitation"),
+            img("14-signage"),
+            img("15-hardware"),
+            img("16-closing"),
+          ],
+        },
+      ]}
       overview={[
-        "Luxury menswear brand redefining the modern suit.",
-        "Tolukosi's designs prioritize a relaxed fit that balances comfort with precision, offering versatility that allows each piece to transition effortlessly between formal and casual settings.",
+        <>
+          <strong>TOLUKOSI</strong> is a Lagos menswear house redefining the
+          modern suit. Its tailoring is cut for a <strong>relaxed fit</strong>{" "}
+          that balances comfort with precision, so each piece moves easily
+          between formal and casual settings.
+        </>,
+        <>
+          The identity rests on two marks. The <strong>wordmark</strong> is a
+          high-contrast display serif with one gesture: the tail of the L and
+          the hook of the U join the middle of the name into a single stroke,
+          the way a well-cut jacket reads as one line. The{" "}
+          <strong>monogram</strong> takes the last two letters, an S drawn as
+          the tailor’s curve beside an upright I, and signs the work from the
+          inside: buttons, linings, seals and labels.
+        </>,
+        <>
+          The palette is <strong>emerald, burgundy, charcoal and cream</strong>
+          , with <strong>antique gold</strong> kept for foil and brass, never
+          flat ink. Every text pairing is checked for contrast. Type pairs{" "}
+          <strong>Cormorant Garamond</strong> for editorial expression with{" "}
+          <strong>Raleway</strong> in light, widely spaced capitals for labels
+          and details, echoing the LAGOS line under the marks.
+        </>,
+        <>
+          The system is shown across <strong>concept applications</strong>:
+          stationery, woven and care labels, hang tags, packaging, a show
+          invitation, boutique signage and monogrammed brass buttons.
+        </>,
       ]}
       contributions={[
-        "Conducted interviews with epidemiology experts, desk research of global solutions, and benchmark analyses to derive insights and shape the app's foundational strategy.",
-        "Developed a user-centric interface complemented by diverse, color-coded virtual screening illustrations and consistent iconography to enhance user engagement and comprehension.",
-        "Introduced features such as GPS-based Health Unit locator, symptom self-assessment flows, and tailored recommendations based on risk categorization.",
+        "Defined the brand: a Lagos menswear house built around the relaxed modern suit.",
+        "Designed the TOLUKOSI wordmark and the SI monogram, with clear space, minimum sizes and approved colour versions.",
+        "Built the colour system, with usage proportions, material roles and contrast-checked text pairings.",
+        "Set the typography: Cormorant Garamond and Raleway, with a full type scale from display to price labels.",
+        "Designed the monogram jacquard pattern for linings, tissue and garment bags.",
+        "Extended the identity across concept applications, from stationery and labels to packaging, invitations, signage and hardware.",
       ]}
+      credits={[{ name: "Tolu Olukosi", role: "Founder & Creative Director" }]}
     />
   );
 };
 
-export default CovidProjectPage;
+export default TolukosiPage;

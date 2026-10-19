@@ -90,7 +90,7 @@ const OtisPage = () => {
         "Designed each collection end to end, from concept and naming to the graphics, tech-pack sheets and garment specifications.",
         "Built a coded system for the range, with collection numbers, season tags and design codes (OTS-C01-01) carried from the sheets onto the labels.",
       ]}
-      credits={[{ name: "Tolu Olukosi", role: "Founder" }]}
+      credits={[{ name: "Tolu Olukosi", role: "Founder & Creative Director" }]}
     />
   );
 };
