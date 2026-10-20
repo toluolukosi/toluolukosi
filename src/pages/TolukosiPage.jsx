@@ -19,12 +19,8 @@ const TolukosiPage = () => {
           // Wordmark, icon and the rules around them
           title: "Logo System",
           images: [
-            img("01-cover"),
             img("01a-system-sheet"),
-            img("02-essence"),
             img("03-wordmark"),
-            img("04-clearspace"),
-            img("05-monogram"),
             img("06-versions"),
             img("06b-cards"),
           ],
@@ -34,9 +30,7 @@ const TolukosiPage = () => {
           images: [
             img("07-palette"),
             img("07b-pairings"),
-            img("08-type"),
             img("08b-type-scale"),
-            img("09-pattern"),
           ],
         },
         {
@@ -78,12 +72,15 @@ const TolukosiPage = () => {
           begins with.
         </>,
         <>
-          The palette is <strong>emerald, burgundy, charcoal and cream</strong>
-          , with <strong>antique gold</strong> kept for foil and brass, never
-          flat ink. Every text pairing is checked for contrast. Type pairs{" "}
-          <strong>Cormorant Garamond</strong> for editorial expression with{" "}
-          <strong>Raleway</strong> in light, widely spaced capitals for labels
-          and details, echoing the LAGOS line under the marks.
+          The colour system has ten tones in two families:{" "}
+          <strong>ivory, sage, olive, umber and ebony</strong>, the colours of
+          the cloth, and <strong>blush, rose, burgundy, wine and oxblood</strong>
+          , for linings and accents. Every text pairing is checked for
+          contrast. Type works in three roles: <strong>Cinzel Decorative</strong>{" "}
+          as the signature for the logo, collection names and invitations,{" "}
+          <strong>Geista Mond</strong> for campaign headlines, and{" "}
+          <strong>Raleway</strong> as the workhorse for labels, navigation and
+          care labels, set in widely spaced capitals.
         </>,
         <>
           The system is shown across <strong>concept applications</strong>:
@@ -94,8 +91,8 @@ const TolukosiPage = () => {
       contributions={[
         "Defined the brand: a Lagos menswear house built around the relaxed modern suit.",
         "Designed the TOLUKOSI wordmark and the needle-and-thread icon cut from it, with lockups, clear space, minimum sizes and approved colour versions.",
-        "Built the colour system, with usage proportions, material roles and contrast-checked text pairings.",
-        "Set the typography: Cormorant Garamond and Raleway, with a full type scale from display to price labels.",
+        "Built the ten-tone colour system, with approved logo colourways and contrast-checked text pairings.",
+        "Set the typography system: Cinzel Decorative as the signature, Geista Mond for headlines and Raleway as the workhorse.",
         "Designed the icon jacquard pattern for linings, tissue and garment bags.",
         "Extended the identity across concept applications, from stationery and labels to packaging, invitations, signage and hardware.",
       ]}
