@@ -43,12 +43,8 @@ const TolukosiPage = () => {
           title: "In Use",
           images: [
             img("09a-packaging-mockups"),
-            img("10-stationery"),
             img("11-labels"),
-            img("12-packaging"),
-            img("13-invitation"),
             img("14-signage"),
-            img("15-hardware"),
             img("16-closing"),
           ],
         },
@@ -84,8 +80,8 @@ const TolukosiPage = () => {
         </>,
         <>
           The system is shown across <strong>concept applications</strong>:
-          stationery, woven and care labels, hang tags, packaging, a show
-          invitation, boutique signage and brass buttons stamped with the icon.
+          a business card, garment bag, shopping bag and icon jacquard, woven
+          and care labels, hang tags, and boutique signage.
         </>,
       ]}
       contributions={[
@@ -94,7 +90,7 @@ const TolukosiPage = () => {
         "Built the ten-tone colour system, with approved logo colourways and contrast-checked text pairings.",
         "Set the typography system: Cinzel Decorative as the signature, Geista Mond for headlines and Raleway as the workhorse.",
         "Designed the icon jacquard pattern for linings, tissue and garment bags.",
-        "Extended the identity across concept applications, from stationery and labels to packaging, invitations, signage and hardware.",
+        "Extended the identity across concept applications, from packaging and labels to boutique signage.",
       ]}
       credits={[{ name: "Tolu Olukosi", role: "Founder & Creative Director" }]}
     />
