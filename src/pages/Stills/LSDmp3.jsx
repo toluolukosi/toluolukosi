@@ -11,7 +11,6 @@ const LSDmp3 = () => {
         "The project explores how distortion, color, and visual rhythm can evoke sound, memory, and mood beyond literal representation."
       ]}
       images={[
-        "/img/stills/lsd-mp3/paris.webp",
         "/img/stills/lsd-mp3/take-care.webp",
         "/img/stills/lsd-mp3/kod.webp",
         "/img/stills/lsd-mp3/syre.webp",
