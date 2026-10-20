@@ -16,15 +16,17 @@ const TolukosiPage = () => {
       // scroll up/down to move to the next section.
       sections={[
         {
-          // Wordmark, monogram and the rules around them
+          // Wordmark, icon and the rules around them
           title: "Logo System",
           images: [
             img("01-cover"),
+            img("01a-system-sheet"),
             img("02-essence"),
             img("03-wordmark"),
             img("04-clearspace"),
             img("05-monogram"),
             img("06-versions"),
+            img("06b-cards"),
           ],
         },
         {
@@ -38,9 +40,15 @@ const TolukosiPage = () => {
           ],
         },
         {
+          // Campaign imagery with the marks applied
+          title: "Campaign",
+          images: [img("17-campaign")],
+        },
+        {
           // Concept applications
           title: "In Use",
           images: [
+            img("09a-packaging-mockups"),
             img("10-stationery"),
             img("11-labels"),
             img("12-packaging"),
@@ -59,13 +67,15 @@ const TolukosiPage = () => {
           between formal and casual settings.
         </>,
         <>
-          The identity rests on two marks. The <strong>wordmark</strong> is a
-          high-contrast display serif with one gesture: the tail of the L and
-          the hook of the U join the middle of the name into a single stroke,
-          the way a well-cut jacket reads as one line. The{" "}
-          <strong>monogram</strong> takes the last two letters, an S drawn as
-          the tailor’s curve beside an upright I, and signs the work from the
-          inside: buttons, linings, seals and labels.
+          The identity rests on two marks cut from the same line. The{" "}
+          <strong>wordmark</strong> is a high-contrast display serif: the
+          right stroke of the U rises above the cap height and curls over,
+          while the tail of the L sweeps beneath it. The <strong>icon</strong>{" "}
+          is lifted straight from the wordmark. Split the name between the U
+          and the K and keep the two strokes that meet there: the K’s upright
+          stem becomes a <strong>needle</strong>, and the U’s curving stroke a{" "}
+          <strong>thread</strong> pulled through it, the two tools every suit
+          begins with.
         </>,
         <>
           The palette is <strong>emerald, burgundy, charcoal and cream</strong>
@@ -78,15 +88,15 @@ const TolukosiPage = () => {
         <>
           The system is shown across <strong>concept applications</strong>:
           stationery, woven and care labels, hang tags, packaging, a show
-          invitation, boutique signage and monogrammed brass buttons.
+          invitation, boutique signage and brass buttons stamped with the icon.
         </>,
       ]}
       contributions={[
         "Defined the brand: a Lagos menswear house built around the relaxed modern suit.",
-        "Designed the TOLUKOSI wordmark and the SI monogram, with clear space, minimum sizes and approved colour versions.",
+        "Designed the TOLUKOSI wordmark and the needle-and-thread icon cut from it, with lockups, clear space, minimum sizes and approved colour versions.",
         "Built the colour system, with usage proportions, material roles and contrast-checked text pairings.",
         "Set the typography: Cormorant Garamond and Raleway, with a full type scale from display to price labels.",
-        "Designed the monogram jacquard pattern for linings, tissue and garment bags.",
+        "Designed the icon jacquard pattern for linings, tissue and garment bags.",
         "Extended the identity across concept applications, from stationery and labels to packaging, invitations, signage and hardware.",
       ]}
       credits={[{ name: "Tolu Olukosi", role: "Founder & Creative Director" }]}
