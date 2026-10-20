@@ -11,7 +11,7 @@ const TolukosiPage = () => {
     <ProjectLayout
       title="TOLUKOSI"
       company="Luxury Fashion"
-      year="2024"
+      year="2026"
       // Each section is a row: swipe left/right through its images,
       // scroll up/down to move to the next section.
       sections={[

@@ -7,7 +7,7 @@ const OtisPage = () => {
     <ProjectLayout
       title="OTIS"
       company="Multidisciplinary Creative Company"
-      year="2023"
+      year="2026"
       // Each section is a row: swipe left/right through its images,
       // scroll up/down to move to the next section.
       sections={[
@@ -85,7 +85,7 @@ const OtisPage = () => {
         </>,
       ]}
       contributions={[
-        "Founded OTIS in 2023 and lead its creative direction across every release.",
+        "Founded OTIS in 2026 and lead its creative direction across every release.",
         "Designed the OTIS stamp and its logo system: horizontal and vertical lockups, monochrome and inverted versions, minimum size, clear space, construction and misuse rules.",
         "Designed each collection end to end, from concept and naming to the graphics, tech-pack sheets and garment specifications.",
         "Built a coded system for the range, with collection numbers, season tags and design codes (OTS-C01-01) carried from the sheets onto the labels.",

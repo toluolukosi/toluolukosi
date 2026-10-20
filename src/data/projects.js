@@ -13,7 +13,7 @@ const projects = [
   },
   {
     title: "otis",
-    year: "2023",
+    year: "2026",
     image:
       "/img/projects/otis-card.webp",
     logo: "/img/brand/otis-ambigram.webp",
@@ -25,7 +25,7 @@ const projects = [
   },
   {
     title: "tolukosi",
-    year: "2024",
+    year: "2026",
     image:
       "/img/projects/tolukosi-1.webp",
     logo: "/img/projects/tolukosiicon.webp",
