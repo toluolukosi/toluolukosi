@@ -93,7 +93,7 @@ const ProjectsPage = () => {
     <section className="h-[100svh] min-h-[520px] bg-black pt-16 pb-8 flex flex-col">
       {/* PAGE TITLE */}
       <div className="shrink-0 flex items-center justify-between mb-10 px-[4%]">
-        <h1 className="text-white font-thedus-condensed text-[48px] md:text-[64px] tracking-wide">
+        <h1 className="text-white font-thedus-condensed text-[3.2rem] leading-[1.1] tracking-wide">
           Projects
         </h1>
 

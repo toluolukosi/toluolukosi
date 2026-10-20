@@ -881,7 +881,7 @@ const ProjectLayout = ({
                         px-4 md:px-5
                         py-2.5
                         text-center
-                        text-[11px] md:text-[12px]
+                        text-[16px]
                         tracking-[0.22em]
                         uppercase
                         font-thedus-condensed
@@ -906,7 +906,7 @@ const ProjectLayout = ({
                         px-4 md:px-5
                         py-2.5
                         text-center
-                        text-[11px] md:text-[12px]
+                        text-[16px]
                         tracking-[0.22em]
                         uppercase
                         font-thedus-condensed

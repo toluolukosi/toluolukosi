@@ -19,7 +19,7 @@ const stills = [
   {
     title: "LSD.mp3",
     image:
-      "/img/stills/lsd-mp3/paris.webp",
+      "/img/stills/lsd-mp3/take-care.webp",
     route: "/stills/LSDmp3",
     locked: false,
   },
@@ -65,7 +65,7 @@ const StillsPage = () => {
     <section className="min-h-screen bg-black px-[4%] py-16">
       {/* PAGE TITLE */}
       <div className="flex items-center justify-between mb-10">
-        <h1 className="text-white font-thedus-condensed text-[48px] md:text-[64px] tracking-wide">
+        <h1 className="text-white font-thedus-condensed text-[3.2rem] leading-[1.1] tracking-wide">
           Gallery
         </h1>
 

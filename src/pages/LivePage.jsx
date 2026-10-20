@@ -154,7 +154,7 @@ const LivePage = () => {
     <section className="min-h-screen bg-black px-[4%] py-16">
       {/* PAGE TITLE */}
       <div className="flex items-center justify-between mb-10">
-        <h1 className="text-white font-thedus-condensed text-[48px] md:text-[64px] tracking-wide">
+        <h1 className="text-white font-thedus-condensed text-[3.2rem] leading-[1.1] tracking-wide">
           Live
         </h1>
 

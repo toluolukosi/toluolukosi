@@ -113,7 +113,7 @@ const StillLayout = ({
               <img
                 src={images[current]}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-500 ease-out"
+                className="w-full h-full object-contain transition-transform duration-500 ease-out"
               />
 
               {/* Hide arrows on mobile */}
@@ -200,7 +200,7 @@ const StillLayout = ({
                     <h1
                       className="
       font-thedus-condensed uppercase
-      text-[clamp(12px,4vw,24px)] leading-tight
+      text-[3.2rem] leading-[1.1]
       text-white truncate
     "
                     >
@@ -316,7 +316,7 @@ const StillLayout = ({
                     className="
                       flex-1 rounded-[10px] border border-white/10
                       bg-[#171821] px-5 py-2.5
-                      text-[11px] md:text-[12px]
+                      text-[16px]
                       tracking-[0.22em] uppercase
                       text-gray-100 hover:bg-white hover:text-black transition
                     "
@@ -331,7 +331,7 @@ const StillLayout = ({
                     className="
                       flex-1 rounded-[10px] border border-white/10
                       bg-[#171821] px-5 py-2.5
-                      text-[11px] md:text-[12px]
+                      text-[16px]
                       tracking-[0.22em] uppercase
                       text-gray-100 hover:bg-white hover:text-black transition
                     "

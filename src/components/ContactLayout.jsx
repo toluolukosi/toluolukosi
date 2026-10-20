@@ -16,7 +16,7 @@ const UI_CATEGORY_LABEL = "text-[14px]";
 const UI_OPTION_TEXT = "text-[13px]";
 const UI_ERROR_TEXT = "text-[12px]";
 const UI_STATUS_TEXT = "text-[13px]";
-const UI_BUTTON_TEXT = "text-[11px] md:text-[12px]";
+const UI_BUTTON_TEXT = "text-[16px]";
 
 /* =========================
    OPTIONS
@@ -104,11 +104,13 @@ function validate(form) {
 }
 
 /**
- * Sends via EmailJS REST if env vars exist; otherwise falls back to mailto.
- * Vite env:
- *  - VITE_EMAILJS_SERVICE_ID
- *  - VITE_EMAILJS_TEMPLATE_ID
- *  - VITE_EMAILJS_PUBLIC_KEY
+ * Delivers the enquiry to the inbox and only resolves once it has actually
+ * been accepted, so the form never says "Sent" for a message that went nowhere.
+ *
+ * Default: FormSubmit (no account; the first enquiry sends a one-time
+ * activation email to the address below, which has to be confirmed once).
+ * If EmailJS keys are set in Vite env, EmailJS is used instead:
+ *  - VITE_EMAILJS_SERVICE_ID / VITE_EMAILJS_TEMPLATE_ID / VITE_EMAILJS_PUBLIC_KEY
  */
 async function sendContact({ toEmail, payload }) {
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -126,34 +128,27 @@ async function sendContact({ toEmail, payload }) {
         template_params: payload,
       }),
     });
-
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      throw new Error(`Email send failed (${res.status}). ${text}`.trim());
-    }
+    if (!res.ok) throw new Error("not-sent");
     return;
   }
 
-  const subject = encodeURIComponent("New project inquiry");
-  const lines = [
-    `Name: ${payload.firstName} ${payload.lastName}`,
-    `Email: ${payload.email}`,
-    `Phone: ${payload.phone}`,
-    "",
-    "Selections:",
-    `Stills: ${payload.stills || "-"}`,
-    `Live: ${payload.live || "-"}`,
-    `Sound: ${payload.sound || "-"}`,
-    `Dev: ${payload.dev || "-"}`,
-    `Multi-service: ${payload.multi || "-"}`,
-    "",
-    payload.customProjectDescription
-      ? `Custom Project Description:\n${payload.customProjectDescription}`
-      : "Custom Project Description: -",
-  ];
-
-  const body = encodeURIComponent(lines.join("\n"));
-  window.location.href = `mailto:${encodeURIComponent(toEmail)}?subject=${subject}&body=${body}`;
+  const res = await fetch(`https://formsubmit.co/ajax/${toEmail}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      _subject: `New project enquiry from ${payload.firstName} ${payload.lastName}`,
+      _replyto: payload.email,
+      _template: "table",
+      _captcha: "false",
+      Name: `${payload.firstName} ${payload.lastName}`,
+      Email: payload.email,
+      Phone: payload.phone,
+      Services: payload.selectedServices || "-",
+      "Project description": payload.customProjectDescription || "-",
+    }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || String(data.success) !== "true") throw new Error("not-sent");
 }
 
 function buildSelectedServices(form) {
@@ -303,8 +298,12 @@ export default function ContactLayout({ email, phone, homePath = "/" }) {
         customProjectDescription: "",
       });
       setErrors({});
-    } catch (err) {
-      setStatus({ state: "error", message: err?.message || "Failed to send. Try again." });
+    } catch {
+      // never claim it was sent: point them to email instead
+      setStatus({
+        state: "error",
+        message: `Couldn’t send just now. Please email me at ${email} instead.`,
+      });
     }
   };
 
@@ -354,7 +353,7 @@ export default function ContactLayout({ email, phone, homePath = "/" }) {
             "
           >
             <div className="w-full max-w-[460px] px-6 sm:px-8 text-left">
-              <h1 className="font-thedus-condensed uppercase text-[clamp(22px,4vw,44px)] leading-[1.05] text-white">
+              <h1 className="font-thedus-condensed uppercase text-[3.2rem] leading-[1.1] text-white">
                 Get in touch
               </h1>
 
