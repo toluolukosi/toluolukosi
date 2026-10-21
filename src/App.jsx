@@ -27,6 +27,9 @@ const App = () => {
     <div className="bg-black min-h-screen w-full overflow-x-hidden overflow-y-auto">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        {/* Tracking links: /r/<source> shows the homepage but is counted as its own
+            page in Vercel Analytics, so each application/CV/post link can be told apart */}
+        <Route path="/r/:source" element={<HomePage />} />
 
         {/* Sides */}
         <Route path="/stills" element={<StillsPage />} />
